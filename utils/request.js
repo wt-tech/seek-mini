@@ -232,6 +232,7 @@ function postRequestWithJSONSchema([url, params = null]) {
       header: {
         'Content-Type': 'application/json'
       },
+      dataType:'json',
       success: (res) => {
         if (res.statusCode === 200)
           resolved(res.data);//成功时,这里只返回数据,状态码没有返回
@@ -301,6 +302,7 @@ function getUserInfo() {
     wx.getUserInfo({
       success: function (res) {
         resolved(res.userInfo)//成功后直接返回userInfo
+        wx.setStorageSync(userInfo, res.userInfo)
       }
     });
   });
@@ -353,7 +355,8 @@ module.exports = {
   putRequest: putRequest,
   postRequestWithJSONSchema: postRequestWithJSONSchema,
   fileUpload: fileUpload,
-  formatTime: formatTime
+  formatTime: formatTime,
+  getUserInfo: getUserInfo
 }
 
 

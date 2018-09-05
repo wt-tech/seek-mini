@@ -141,17 +141,19 @@ Page({
   // 评论外层内容
   coment:function(e){
     let id = e.currentTarget.dataset.id
-    console.log('外层id', id)
+    let detailid = this.data.id
+    console.log('外层id', id,'内容id',detailid)
     wx.navigateTo({
-      url: '../comment/comment?replyId=' + id,
+      url: '../comment/comment?repplyId=' + id + '&detailId=' + detailid,
     })
   },
   // 评论内层内容
   reply:function(e){
     let id = e.currentTarget.dataset.id
+    let detailid = this.data.id
     console.log('内层评论的id',id)
     wx.navigateTo({
-      url: '../comment/comment?replyId=' + id,
+      url: '../comment/comment?replyId=' + id + '&detailId=' + detailid,
     })
   }
 })

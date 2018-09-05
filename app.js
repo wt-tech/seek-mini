@@ -40,6 +40,24 @@ App({
     }).catch(function (err) {
       console.log(err);
     });
-  }
+  },
+
+  getUserInfo :function () {
+    let _userInfo = wx.getStorageSync('uerInfo')
+    if(!_userInfo){
+      wx.getUserInfo({
+        success: function (res) {
+          wx.setStorageSync("userInfo", res.userInfo)
+          console.log('*****************************')
+        },
+        fail: function (e) {
+          wx.navigateTo({
+            url: 'pages/authorize.wxml',
+          })
+        }
+      })
+    }
+
+  },
 
 })

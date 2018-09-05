@@ -76,7 +76,7 @@
               <view class="repply-list">
                 <view class="nickname">{{item.customer.nickname}}:</view>
                 <view >{{item.content}}</view>
-                <view class="reply-btn" bindtap="reply" data-id="{{item.comentId}}">
+                <view class="reply-btn" bindtap="reply" data-id="{{item.id}}">
                   <image src="../../resource/img/reply2.png"></image>
                   <text>回复</text>
                 </view>

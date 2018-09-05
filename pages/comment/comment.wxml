@@ -4,8 +4,9 @@
     <text class="title">提供线索：
 
     </text>
-    <textarea name='content' placeholder='发现失踪人的详细时间、地点等'></textarea>
+    <textarea name='content' value="{{content}}" placeholder='发现失踪人的详细时间、地点等'></textarea>
   </view>
+
 
   <view class="mt50">
     <text class="title">留下您的联系方式：

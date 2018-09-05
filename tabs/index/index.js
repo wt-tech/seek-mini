@@ -174,28 +174,31 @@ Page({
     that.setData({
       showModels: !showModels
     })
-    let params = e.detail.value;
-    let IDs = that.data.IDs
-    console.log(params,IDs)
-    params.birthProvinceId = IDs[0]
-    params.birthCityId = IDs[1]
-    params.birthCountyId = IDs[2]
-    // 没有填写内容时提示，不发起请求
-    // if (params.province[0] == 0 && params.province[1] == 0 && params.province[2] == 0 && params.province == [0,0,0] && !params.birthdate && params.gender == "" && params.hadBrowsed.length == 0 && params.missName=="" && !params.missdate &&!params.province  && params.seekType == ""){
-    //   wx.showLoading({
-    //     title: '你什么都没有选择',
-    //   });
-    //   setTimeout(function () {
-    //     wx.hideLoading()
-    //   }, 1000)
-    // }else{
-    //   // 发起请求，开始筛选
-    // }
-    that.submit(params)
+
+    console.log(e)
+    that.seekRequestSubmit(e)
+  },
+
+
+  parserDate:function (date) {
+    var t = Date.parse(date);
+    if (!isNaN(t)) {
+      return new Date(Date.parse(date.replace(/-/g, "/")));
+    } else {
+      return new Date();
+    }
+  },
+
+  convertDateFromString:function (dateString) {
+    if(dateString) {
+      var date = new Date(dateString);
+      // var da = date.format('yyyy-MM-dd hh:mm:ss')
+      return date;
+    }
   },
 
   submit:function(params){
-    request.postRequest(['seek/listseek',params]).then(function(res){
+    request.getRequest(['seek/listseek',params]).then(function(res){
       console.log(res)
     }).catch(function(err){
       console.log(err)
@@ -415,13 +418,15 @@ Page({
 
   saveSeekFilter2PageData: function (detail) {
     let page = this;
+    let value = detail.value;
     var obj = {
-      birthdate: detail.birthdate || null,
-      gender: detail.gender || null,
-      missName: detail.missName || null,
-      missDate: detail.missdate || null,
-      seekType: detail.seekType || null,
-      hadBrowsed: detail.hadBrowsed.length == 1,
+      birthdate: value.birthdate || null,
+      gender: value.gender || null,
+      missName: value.missName || null,
+      missDate: value.missdate || null,
+      seekType: value.seekType || null,
+      hadBrowsed: value.hadBrowsed.length == 1,
+      address : {}
     };
     page.setData({
       seekFilterParams: obj
@@ -433,6 +438,7 @@ Page({
   prepareParams: function () {
     let page = this;
     let seekFilterParams = page.data.seekFilterParams;
+    console.log(seekFilterParams);
     return page.assembleMissPosAndPageNo(seekFilterParams);
   },
 
@@ -441,10 +447,10 @@ Page({
    */
   assembleMissPosAndPageNo: function (obj) {
     let pageData = this.data;
+    console.log(obj);
     obj.address.missProvinceId = pageData.IDs[0];
     obj.address.missCityId = pageData.IDs[1];
     obj.address.missCountyId = pageData.IDs[2];
-    obj.address.ss = null;
     obj.currentPageNo = pageData.currentPageNo;
     return obj;
   },
