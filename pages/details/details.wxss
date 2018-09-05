@@ -1,0 +1,132 @@
+/* pages/details/details.wxss */
+page{
+  background:#f0f0f0
+}
+
+
+.detail{
+  background:#fff;
+  padding:20rpx 0;
+}
+.title{
+  font-size:16px;
+  width:100%;
+  text-align: center;
+}
+
+swiper{
+  width:80%;
+  margin:0 auto;
+  height:520rpx;
+}
+
+.details{
+  /* display: flex;
+  justify-content: space-between; */
+  position: relative;
+  margin:20rpx 20rpx 0 20rpx;
+}
+.details-cont{
+  margin:0 20rpx;
+}
+/* .details .left{
+  width:60%;
+} */
+.details .left view,.details-cont{
+  /* height:50rpx; */
+  line-height: 50rpx;
+  /* display: flex;
+  justify-content: flex-start; */
+}
+.details .right{
+  /* position: absolute;
+  right:0;
+  top:0; */
+  width:280rpx;
+  height: 340rpx;
+}
+.details .right image{
+  width:100%;
+  height: 100%;
+}
+.firstText{
+  margin-right:10px;
+}
+
+
+/* 底部功能 */
+
+.Clue{
+  background:#fff;
+  z-index: 999;
+  position: fixed;
+  bottom:0;
+  display: flex;
+  justify-content: space-around;
+  border-top:2rpx solid #ccc;
+  height:70rpx;
+  line-height: 70rpx;
+  font-size:16px;
+  width:100%;
+}
+.Clue image{
+  width:33rpx;
+  height: 33rpx;
+  vertical-align: middle;
+  padding-right:10rpx;
+}
+.Clue view{
+  width:33%;
+  padding-left:5%;
+}
+.border{
+  border-right:2rpx solid #ccc;
+}
+.collection{
+  color:#00AF82;
+}
+.collectioned{
+  color:red;
+}
+
+.Mtitle{
+  color:red;
+}
+.comment{
+  background: #fff;
+  /* padding:20rpx; */
+  font-size:12px;
+}
+.comment-list,.repply-list{
+
+  padding:20rpx;
+}
+.comment-list{
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 15rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.content{
+  width:82%;
+}
+.nickname{
+  color:#00AF82;
+  width:18%;
+}
+.repply{
+  background:#f0f0f0;
+  width:100%;
+}
+
+.reply-btn{
+  padding:10rpx;
+  color:#999;
+}
+.reply-btn image{
+  width:30rpx;
+  height:30rpx;
+  padding-right:10rpx;
+  vertical-align:middle;
+  margin-left:80%;
+}

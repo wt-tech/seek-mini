@@ -1,0 +1,35 @@
+/* pages/comment/comment.wxss */
+page{
+  background:#f0f0f0;
+}
+
+.title{
+  color:red;
+}
+textarea{
+  border:1px solid #999;
+  background:#fff;
+  padding-left:15rpx;
+  margin: 0 auto;
+}
+input{
+  border:1px solid #999;
+  background:#fff;
+  padding-left:15rpx;
+  width:70%;
+}
+.content{
+  margin:20rpx;
+  display: flex;
+  justify-content: flex-start;
+  height: 55rpx;
+  line-height: 55rpx;
+}
+
+button{
+  width:80%;
+  height:55rpx;
+  line-height: 55rpx;
+  font-size:14px;
+
+}

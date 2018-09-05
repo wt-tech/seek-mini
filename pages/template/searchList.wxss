@@ -1,0 +1,22 @@
+.List{
+  background:#fff;
+  border-radius:15rpx;
+  display: flex;
+  justify-content:flex-start;
+  margin: 15rpx 20rpx;
+  box-shadow: 2px 3px 6px #dcdbdb;
+}
+.avatarImg{
+  padding: 15rpx;
+  width:200rpx;
+  height: 200rpx;
+}
+.avatarImg image{
+  border-radius:10rpx;
+  width:100%;
+  height: 100%;
+}
+.Info view{
+  height:50rpx;
+  line-height: 50rpx;
+}

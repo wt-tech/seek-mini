@@ -1,0 +1,95 @@
+<!--index.wxml-->
+<import src="../../pages/template/searchList.wxml" />
+
+
+<!-- 遮罩层 -->
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModels}}"></view>
+<view class="modelsbox" wx:if="{{showModels}}">
+  <form bindsubmit="formSubmit">
+    <view class="name mt20 ml30">
+      <text decode='true'>姓&emsp;&emsp;名：</text>
+      <input name="missName" placeholder='失踪人的姓名'></input>
+    </view>
+    <view class="mt10 ml30">
+      <text decode='true'>性&emsp;&emsp;别：</text>
+      <radio-group name="gender">
+        <radio value='男' /> 男
+        <radio value="女" /> 女
+      </radio-group>
+    </view>
+    <view class="mt10 ml30">
+      <text decode='true'>类&emsp;&emsp;别：</text>
+      <radio-group name="seekType">
+        <radio value='寻人' /> 寻人
+        <radio value="寻家" /> 寻家
+      </radio-group>
+    </view>
+    <view  class="mt10 ml30">
+      <text>出生日期：</text>
+      <picker name="birthdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindDateChange">
+        <view class="picker">
+          {{birthdate}}
+        </view>
+      </picker>
+    </view>
+    <view  class="mt10 ml30">
+      <text>失踪日期：</text>
+      <picker name="missdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindMissDateChange">
+        <view class="picker">
+          {{missdate}}
+        </view>
+      </picker>
+    </view>
+    <view class="mt10 ml30">
+      <text  class="title">失踪城市：</text>
+       <picker name="birthProvinceId"  mode="multiSelector" bindchange='addressChange' bindcolumnchange='addresscolumnchange' 
+          value='{{pccIndex}}' range='{{provinceCityCounty}}' range-key='name'>
+        {{address}}
+        </picker>
+    </view>
+
+    <view class="mt10 ml30">
+      <checkbox-group name="hadBrowsed">
+        <checkbox value="true" />过滤掉已查看
+      </checkbox-group>
+    </view>
+    <view class="mt10">
+      <button form-type='submit' type="primary">
+        确定
+      </button>
+    </view>
+  </form>
+</view>
+
+
+
+
+
+
+<swiper autoplay='true' indicator-dots='true' interval="3000" duration="500" circular="true" indicator-active-color='#00af82'>
+  <block wx:for="{{imgUrls}}" wx:key="banner">
+    <swiper-item>
+        <image  src="{{item.url}}" width="100%" height="150"></image> 
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="selced mt10">
+  <!-- <view class="tab">
+    <view class="search1 search {{selected?'active':''}}" bindtap="selected">寻人</view>
+    <view class="search1 search {{selected1?'active':''}}" bindtap="selected1">寻家</view>
+  </view> -->
+  <view>
+    当前位置：{{address}}
+  </view>
+  <view class="screen" bindtap='showModels'>
+    筛选
+  </view>
+</view>
+
+
+
+
+<block wx:for="{{searchList}}" wx:key="searchList" >
+  <template is="searchList" data="{{...item}}"  data-index="{{item.index}}"></template>
+</block>

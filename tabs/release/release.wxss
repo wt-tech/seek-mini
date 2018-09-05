@@ -1,0 +1,30 @@
+/* pages/release/release.wxss */
+page{
+  background: #f0f0f0;
+}
+
+.tips{
+  width:80%;
+  margin: 0 auto;
+  margin-top:50rpx;
+}
+
+.choose{
+  margin-top:400rpx;
+  display: flex;
+  justify-content:space-around;
+}
+.shearchPeople,.shearchHome{
+  border:2rpx solid #aaa;
+  border-radius:15rpx;
+  width:180rpx;
+  height: 180rpx;
+  background: #fff;
+  text-align: center;
+}
+.shearchPeople image,.shearchHome image{
+  width:50%;
+  height: 50%;
+  /* margin-left:25%; */
+  margin-top:15%;
+}

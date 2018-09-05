@@ -1,0 +1,60 @@
+/* pages/searchPeople/searchPeople.wxss */
+
+.title{
+  color:red;
+}
+
+.fillIn{
+  margin:0 20rpx;
+}
+.list{
+  display: flex;
+  justify-content:flex-start;
+  line-height: 50rpx;
+}
+.list text{
+  width:25%;
+}
+input,textarea{
+  width:70%;
+  border:1px solid #999;
+  padding-left:15rpx;
+}
+textarea{
+  height: 150rpx;
+}
+radio{
+  transform: scale(0.7)
+}
+.img .btn{
+  width:140rpx;
+  height: 50rpx;
+  font-size:12px;
+  text-align:center;
+  line-height: 50rpx;
+  background:#eee;
+  border:1rpx solid #999;
+  border-radius:10rpx;
+}
+.touxiang{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap
+}
+.touxiang image{
+  width:200rpx;
+  height:200rpx;  
+  margin-left:20rpx;
+}
+
+.icon image{
+  width:40rpx;
+  height: 40rpx;
+  padding-left:38%;
+}
+
+.submit button{
+  width:90%;
+  height: 60rpx;
+  line-height: 60rpx;
+}

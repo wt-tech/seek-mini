@@ -1,0 +1,26 @@
+<!--pages/comment/comment.wxml-->
+<form bindsubmit='formSubmit'>
+  <view>
+    <text class="title">提供线索：
+
+    </text>
+    <textarea name='content' placeholder='发现失踪人的详细时间、地点等'></textarea>
+  </view>
+
+  <view class="mt50">
+    <text class="title">留下您的联系方式：
+    
+    </text>
+    <view class="content">
+      <view>联系人姓名：</view> 
+      <input name="realName" value="{{realName}}" placeholder='您的姓名'></input>
+    </view>
+    <view class="content mt20">
+      <view>联系人手机：</view> 
+      <input name="tel" value="{{tel}}" placeholder='您的手机号'></input>
+    </view>
+  </view>
+
+
+  <button class="mt50" form-type='submit' type="primary">提交</button>
+</form>

@@ -1,0 +1,138 @@
+<!--pages/searchPeople/searchPeople.wxml-->
+
+<view>
+  <view class="title mt20">
+    <text>失踪人信息:</text>
+  </view>
+
+
+<form bindsubmit="formSubmit">
+  <view class="fillIn">
+    <view class="list mt20">
+      <text decode="true">标&emsp;&emsp;题：</text>
+      <input name="title" placeholder='30字以内的寻人标题'></input>
+    </view>
+    <view  class="list mt20">
+      <text decode="true">姓&emsp;&emsp;名：</text>
+      <input name="missName" placeholder='失踪人的名字'></input>
+    </view>
+    <view  class="list mt20">
+      <text decode="true">性&emsp;&emsp;别：</text>
+      <radio-group name="gender">
+        <radio value='' />男
+        <radio value='' />女
+      </radio-group>
+    </view>
+    <view class="list mt20">
+      <text>出生日期：</text>
+      <picker name="birthdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindDateChange">
+        <view class="picker">
+          {{birthdate}}
+        </view>
+      </picker>
+    </view>
+    <view  class="list mt20">
+      <text>失踪日期：</text>
+      <picker name="missdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindMissDateChange">
+        <view class="picker">
+          {{missdate}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="list mt20">
+      <text>失踪城市：</text>
+       <picker name="province"  mode="multiSelector" bindchange='addressChange' bindcolumnchange='addresscolumnchange' 
+          value='{{pccIndex}}' range='{{provinceCityCounty}}' range-key='name'>
+        {{address}}
+        </picker>
+    </view>
+
+    <view  class="list mt20">
+      <text decode="true">详细地点：</text>
+      <input name="missDetailPlace" placeholder='详细的失踪地点'></input>
+    </view>
+    <view  class="list mt20">
+      <text decode="true">失踪经过：</text>
+      <textarea name="plot" placeholder='详细的失踪经过'></textarea>
+    </view>
+    <view  class="list mt20">
+      <text decode="true">相貌特征：</text>
+      <textarea name="feature" placeholder='失踪人的具体相貌特征'></textarea>
+    </view>
+    <view  class="list mt20 img">
+      <text decode="true">照片资料：</text>
+      <view class="btn" bindtap='chooseImg'>上传照片</view>
+      
+    </view>
+
+    <view class="touxiang mt20">    
+      <view wx:for="{{touxiang}}" wx:key="touxiang">      
+        <view>
+          <image mode="aspectFill" src="{{item}}"></image>
+          <view class="icon mt10">            
+            <image src="../../resource/img/delicon1.png" data-index="{{index}}"  bindtap='delImg'></image>
+          </view>
+        </view>
+      </view>    
+    </view>
+
+
+    <view  class="list mt20">
+      <text decode="true">备注信息：</text>
+      <textarea name="" placeholder='失踪人的其它信息'></textarea>
+    </view>
+    <view  class="list mt20">
+      <text decode="seekSubtype">失踪原因：</text>
+      <radio-group name="gender">
+        <radio value='' />走失走散
+        <radio value='' />离家出走
+        <radio value='' />拐骗
+        <radio value='' />原因不明
+      </radio-group>
+    </view>
+    <view class="list mt20">
+      <text decode="true">与失踪人关系：</text>
+      <input name="relationship" placeholder='与失踪人关系'></input>
+    </view>
+    <view class="title mt30" style="margin-left:-20rpx">
+      联系人信息:<text style="color:#000;">（此信息会保密）</text>
+    </view>
+    <view class="list mt20">
+      <text decode="true">姓&emsp;&emsp;名：</text>
+      <input name="contactName" placeholder='联系人姓名'></input>
+    </view>
+    <view class="list mt20">
+      <text decode="true">手&emsp;&emsp;机：</text>
+      <input name="contactTel" placeholder='联系人手机号'></input>
+    </view>
+    <view class="list mt20">
+      <text decode="true">微&emsp;&emsp;信：</text>
+      <input name="contactWechat" placeholder='联系人微信号'></input>
+    </view>
+    <view class="list mt20">
+      <text decode="true">QQ：</text>
+      <input name="contactQQ" placeholder='联系人手机号'></input>
+    </view>
+    <view class="list mt20">
+      <text decode="true">联系地址：</text>
+      <input name="contactAddress" placeholder='联系人地址'></input>
+    </view>
+    <view class="list mt20">
+      <text decode="true">备用手机：</text>
+      <input name="extraTel" placeholder='联系人备用手机号'></input>
+    </view>
+    
+  </view>
+  <view class="submit mt30 mb30 submit-form-info">
+    
+    <button form-type='submit' type="primary">提交</button>
+  </view>
+</form>
+
+
+
+
+
+
+</view>

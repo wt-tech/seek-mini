@@ -1,0 +1,32 @@
+/* pages/my/my.wxss */
+page{
+  background: #f0f0f0;
+}
+
+
+.userInfo{
+  margin:0 auto;
+  width:150rpx;
+  text-align: center;
+  font-size:16px;
+  padding-top:20rpx;
+}
+.avatarUrl{
+  width:150rpx;
+  height:150rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom:10rpx;
+}
+
+.list-cont{
+  background:#fff;
+  padding:30rpx;
+}
+.list-cont image{
+  width:35rpx;
+  height:35rpx;
+  vertical-align: middle;
+  padding-right:15rpx;
+  margin-top:-3rpx;
+}

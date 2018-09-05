@@ -1,0 +1,64 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+page{
+  font-size:12px;
+}
+
+.mt10{
+  margin-top:10rpx;
+}
+.mt20{
+  margin-top:20rpx;
+}
+.mt30{
+  margin-top:30rpx;
+}
+.mt40{
+  margin-top:40rpx;
+}
+.mt50{
+  margin-top:50rpx
+}
+
+.ml20{
+  margin-left:20rpx;
+}
+.ml30{
+  margin-left:30rpx;
+}
+.ml40{
+  margin-left:40rpx;
+}
+.ml50{
+  margin-left:50rpx;
+}
+.mb20{
+  margin-bottom: 20rpx;
+}
+.mb30{
+  margin-bottom: 30rpx;
+}
+.mb40{
+  margin-bottom:40rpx;
+}
+.mb50{
+  margin-bottom:50rpx;
+}
+.mb80{
+  margin-bottom:80rpx;
+}
+
+.clgray{
+  color:#888;
+}
+.border-bottom{
+  border-bottom:1rpx solid #f0f0f0;
+}

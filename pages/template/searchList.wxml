@@ -1,0 +1,14 @@
+<template name="searchList">
+<view class="List mt20" bindtap='toDetails' data-id="{{id}}">
+  <view class="avatarImg">
+    <image  src="../../resource/img/touxiang.jpg"></image>
+  </view>
+  <view class="Info ml20 mt10">
+    <view>姓名：{{missName}} <text class='ml50'>性别：{{gender}}</text></view>    
+    <view>出生日期：{{birthdate}}</view>
+    <view>失踪日期：{{missDate}}</view>
+    <view>详细地点：{{missDetailPlace}}</view>
+  </view>
+
+</view>
+</template>

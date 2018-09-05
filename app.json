@@ -1,0 +1,41 @@
+{
+  "pages":[
+    "tabs/index/index",
+    "tabs/release/release",
+    "pages/searchPeople/searchPeople",
+    "pages/Authentication/Authentication",
+    "pages/comment/comment",
+    "pages/searchHome/searchHome",
+    "tabs/my/my",
+    "pages/details/details"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#00af82",
+    "navigationBarTitleText": "火把寻人",
+    "navigationBarTextStyle":"light"
+  },
+  "tabBar": {
+    "selectedColor":"#00af82",
+    "list": [
+      {
+      "pagePath": "tabs/index/index",
+      "text": "首页",
+      "iconPath": "resource/img/home.png",
+      "selectedIconPath": "resource/img/home2.png"
+    },
+    {
+      "pagePath": "tabs/release/release",
+      "text": "发布",
+      "iconPath": "resource/img/release2.png",
+      "selectedIconPath": "resource/img/release.png"
+    },
+    {
+      "pagePath": "tabs/my/my",
+      "text": "个人中心",
+      "iconPath": "resource/img/my.png",
+      "selectedIconPath": "resource/img/my2.png"
+    }
+    ]
+  }
+}
