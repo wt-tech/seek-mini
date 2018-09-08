@@ -1,2 +1,38 @@
 <!--pages/Authentication/Authentication.wxml-->
-<text>pages/Authentication/Authentication.wxml</text>
+<form bindsubmit="formSubmit">
+  <view class="fillIn">
+    <view class="list mt20">
+      <text decode="true">姓&emsp;&emsp;名：</text>
+      <input name='customerName'  placeholder='您的真实姓名'></input>
+    </view>
+    <view class="list mt20">
+      <text decode="true">身份证号：</text>
+      <input name='identityNO' type="idcard"  placeholder='您的身份证号码'></input>
+    </view>
+
+    <view class="list mt20">
+    
+        <text decode="true">身份证照片：</text>
+        <view class="img">
+          <view class="idcard" bindtap='adImg'> 
+            <text>正面照</text>
+            <image mode="aspectFill" src="{{zheng}}"></image>
+          </view>
+          <view class="idcard" bindtap='adImg2'>
+            <text>反面照</text>
+           <image mode="aspectFill" src="{{fan}}"></image>
+           </view>
+        </view>
+    </view>
+    <view class="list mt20">
+      <text decode="true">联系地址：</text>
+      <input name='address' type="idcard" placeholder='您的联系地址'></input>
+    </view>
+    <view class="list mt20">
+      <text decode="true">联系电话：</text>
+      <input name="tel" type="idcard" placeholder='您的手机或者电话号码'></input>
+    </view>
+  </view>
+
+  <button form-type='submit' type="primary">提交</button>
+</form>

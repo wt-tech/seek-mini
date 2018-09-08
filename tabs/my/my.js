@@ -21,13 +21,46 @@ Page({
 
 
 
-
+// 认证
   Authentication:function(){
     wx.navigateTo({
       url: '../../pages/Authentication/Authentication',
     })
   },
 
+// 发布
+  Release:function(){
+    wx.navigateTo({
+      url: '../../pages/myReleased/myReleased',
+    })
+  },
+
+// 我的评论
+  Comment:function(){
+    wx.navigateTo({
+      url: '../../pages/myReply/myReply',
+    })
+  },
+// 评论我的
+  CommentMe:function(){
+    wx.navigateTo({
+      url: '../../pages/replyMe/replyMe',
+    })
+  },
+
+// 浏览记录
+  Records:function(){
+    wx.navigateTo({
+      url: '../../pages/browse/browse',
+    })
+  },
+
+// 收藏
+  Collection:function(){
+    wx.navigateTo({
+      url: '../../pages/myCollection/myCollection',
+    })
+  },
 
 
 

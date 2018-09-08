@@ -5,8 +5,15 @@
     "tabs/release/release",
     "pages/searchPeople/searchPeople",
     "pages/Authentication/Authentication",
+    "pages/myReleased/myReleased",
+    "pages/myReply/myReply",
+    "pages/replyMe/replyMe",
+    "pages/browse/browse",
+    "pages/myCollection/myCollection",
+    "pages/volunteer/volunteer",
     "pages/comment/comment",
     "pages/searchHome/searchHome",
+    "pages/matching/matching",
     "tabs/my/my",
     "pages/details/details"
   ],
@@ -34,8 +41,8 @@
     {
       "pagePath": "tabs/my/my",
       "text": "个人中心",
-      "iconPath": "resource/img/my.png",
-      "selectedIconPath": "resource/img/my2.png"
+      "iconPath": "resource/img/my2.png",
+      "selectedIconPath": "resource/img/my.png"
     }
     ]
   }

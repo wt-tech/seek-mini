@@ -1,4 +1,6 @@
 // pages/authorize/authorize.js
+import util from '../../utils/request.js'
+import constant from '../../utils/constant.js'
 var app = getApp()
 Page({
 
@@ -82,13 +84,32 @@ Page({
   onGetUserInfo: function (e) {
     var that = this
     console.log(e)
-    let userInfo = e.detail.userInfo
-    wx.setStorageSync('userInfo', userInfo)
-    console.log(userInfo)
-    wx.navigateBack({
-      delta: 1
-    });
+    if (e.detail.errMsg == "getUserInfo:fail auth deny"){
+      wx.switchTab({
+        url: '/tabs/index/index'
+      })
+    } else {
+      let userInfo = e.detail.userInfo
+      wx.setStorageSync('userInfo', userInfo)
+      app.saveCustomerId2Local(userInfo);
+      console.log(userInfo)
+      wx.navigateBack({
+        delta: 1
+      });
+
+
+    }
   },
+
+
+  saveuserInfo: function (params) {
+    util.putRequest(['customer', params]).then(function (res) {
+      console.log(res)
+    }).catch(function (err) {
+      console.log(err)
+    })
+  },
+
 
   loadOrderStatus: function () {
 

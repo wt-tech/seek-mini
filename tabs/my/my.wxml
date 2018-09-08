@@ -1,5 +1,5 @@
 <!--pages/my/my.wxml-->
-<view style="margin:0">
+<view style="margin:0;background:#00af82;color:#fff;padding-bottom:20rpx;">
   <view class="userInfo" >
   <view class="avatarUrl">
     <open-data type="userAvatarUrl"></open-data>

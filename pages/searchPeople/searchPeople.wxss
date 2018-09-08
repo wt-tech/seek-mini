@@ -11,13 +11,14 @@
   display: flex;
   justify-content:flex-start;
   line-height: 50rpx;
+  /* border-bottom:1px solid #eee; */
 }
 .list text{
   width:25%;
 }
 input,textarea{
   width:70%;
-  border:1px solid #999;
+  border:1px solid #ddd;
   padding-left:15rpx;
 }
 textarea{
@@ -26,6 +27,7 @@ textarea{
 radio{
   transform: scale(0.7)
 }
+
 .img .btn{
   width:140rpx;
   height: 50rpx;
@@ -57,4 +59,9 @@ radio{
   width:90%;
   height: 60rpx;
   line-height: 60rpx;
+  font-size:14px;
+}
+
+.active{
+  border:1rpx solid #00af82;
 }

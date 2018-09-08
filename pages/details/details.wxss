@@ -17,7 +17,7 @@ page{
 swiper{
   width:80%;
   margin:0 auto;
-  height:520rpx;
+  height:480rpx;
 }
 
 .details{
@@ -91,11 +91,13 @@ swiper{
 
 .Mtitle{
   color:red;
+  padding-top:20rpx;
 }
 .comment{
   background: #fff;
   /* padding:20rpx; */
   font-size:12px;
+  margin-bottom:200rpx;
 }
 .comment-list,.repply-list{
 

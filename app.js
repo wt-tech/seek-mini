@@ -1,6 +1,7 @@
 //app.js
 import request from './utils/request.js';
 import constant from './utils/constant.js';
+import initaddress from './utils/init.address.js'
 App({
   onLaunch: function () {
     this.saveCustomerId2Local();
@@ -10,7 +11,30 @@ App({
     userInfo: null
   },
 
-  saveCustomerId2Local: function () {
+  saveCustomerId2Local: function (userInfo) {
+
+  // userInfo存在表示当前点击了允许授权，向后台发送用户信息
+    if (userInfo) {
+      // let userInfo = wx.getStorageSync(userInfo)
+      var id = wx.getStorageSync(constant.customerId)
+      console.log(id, userInfo)
+      let nickname = userInfo.nickName;
+      let gender = userInfo.gender;
+      let avatarurl = userInfo.avatarUrl;
+      let params = {
+        id: id,
+        nickname: nickname,
+        gender: gender,
+        avatarurl: avatarurl
+      }
+      request.putRequest(['customer', params]).then(function (res) {
+        console.log(res)
+      }).catch(function (err) {
+        console.log(err)
+      })
+    }
+
+
     if (wx.getStorageSync(constant.customerId))//有值
       return;
     wx.login({
@@ -25,7 +49,11 @@ App({
         });
       }
     });
+
+    
   },
+
+
 
   saveVisitRecord: function () {
     if (!wx.getStorageSync(constant.customerId)) //无值
@@ -52,8 +80,9 @@ App({
         },
         fail: function (e) {
           wx.navigateTo({
-            url: 'pages/authorize.wxml',
+            url: "/pages/authorize/authorize",
           })
+          return false
         }
       })
     }

@@ -88,9 +88,17 @@ Page({
 
   onReachBottom: function () {
     let page = this;
+    wx.showLoading({
+      title: '正在加载...',
+    })
     //维护当前页数
     if (!page.maintainPageNo(false)) {//后台没有更多数据
       console.log('no more data');
+      wx.showToast({
+        title: '没有更多数据了',
+        image: '../../resource/img/tip.png'
+      })
+      wx.hideLoading()
       return;
     }
     //获取查询参数
@@ -129,6 +137,10 @@ Page({
       page.setData({
         searchList: page.data.searchList.concat(toAddList)
       });
+      // for (let tmp of page.data.searchList){
+      //   tmp.seekImgs.split(',')
+      //   tmp.seekImgs = tmp.seekImgs[0]
+      // }
     }
   },
 
@@ -376,6 +388,7 @@ Page({
     //发送请求
     request.postRequestWithJSONSchema(['seek/listseek', params]).then(function (success) {
       console.log(success);
+      wx.hideLoading()
       //1.展示数据
       page.maintainSeekList(false, success.Seeks);
       //2.维护当前页数,noMoreData

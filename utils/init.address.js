@@ -1,7 +1,7 @@
 
 //先将所有的省市县放入缓存
 (function initPos() {
-
+  console.log('come in');
   if (wx.getStorageSync('provinces') 
     && wx.getStorageSync('cities') 
     && wx.getStorageSync('counties')){

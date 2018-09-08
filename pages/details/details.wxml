@@ -11,9 +11,9 @@
         </view>
 
       <swiper  autoplay='true' indicator-dots='true' interval="3000" duration="500" circular="true" indicator-active-color='#00af82' >
-        <block wx:for="{{content.imgUrls}}" wx:key="banner" >
+        <block wx:for="{{imgUrls}}" wx:key="banner" >
           <swiper-item>
-              <image mode="aspectFill" data-src="{{item}}" src="{{item}}" width="100%" height="150"  bindtap='previewImg'></image> 
+              <image mode="aspectFill" data-index="{{index}}" data-src="{{imgUrls}}" src="{{item}}" width="100%" height="150"  bindtap='previewImg'></image> 
           </swiper-item>
         </block>
       </swiper>
@@ -25,20 +25,20 @@
         <view>
           <text decode='true' class="firstText clgray">性&emsp;&emsp;别：</text>{{content.gender}}
         </view>
-        <!-- <view>
-          <text>籍贯：</text>{{content.missName}}
-        </view> -->
         <view>
-          <text class="firstText clgray">出生日期：</text><text>{{content.birthdate}}</text>
+          <text decode="true" class="firstText clgray">籍&emsp;&emsp;贯：</text>{{content.address.birthProvinceName+'-'+content.address.birthCityName +'-'+content.address.birthCountyName}}
         </view>
         <view>
-          <text class="firstText clgray">失踪日期：</text><text>{{content.missDate}}</text>
+          <text class="firstText clgray">出生日期：</text><text>{{content.birthdate?content.birthdate:'不详'}}</text>
+        </view>
+        <view>
+          <text class="firstText clgray">失踪日期：</text><text>{{content.missDate?content.missDate:'不详'}}</text>
         </view>
         <view>
           <text  class="firstText clgray">失踪城市：</text><text>{{content.address.missProvinceName+'-'+content.address.missCountyName +'-'+content.address.missCityName}}</text>
         </view>
         <view>
-          <text class="firstText clgray">详细地点：</text><text>{{content.missDetailPlace}}</text>
+          <text class="firstText clgray">详细地点：</text><text>{{content.missDetailPlace?content.missDetailPlace:'不详'}}</text>
         </view>
       </view>
 
@@ -53,36 +53,46 @@
       <view class="details-cont">
         <text class="clgray">失踪原因：</text><text>{{content.seekSubtype}}</text>
       </view>
-
+      <view class="details-cont">
+        <text class="clgray">与失踪人关系：</text><text>{{content.relationship}}</text>
+      </view>
+      <view class="details-cont">
+        <text class="clgray">其它信息：</text><text>{{content.otherInformation}}</text>
+      </view>
 
   </view>
 
 <!-- 评论回复内容 -->
- <view class="comment mb80" >
+ <view class="comment" wx:if="{{comment.length!=0}}" >
     <view class="Mtitle">线索信息:</view>
-    <view  wx:for="{{comment}}" wx:key="comment">
+
+    <view  wx:for="{{comment}}" wx:key="comment" wx:for-item="coment">
       <view class="comment-list">
         <view class="nickname">
-          {{item.customer.nickname}}:
+          {{coment.customer.nickname}}:
         </view>
         <view class="content">
-          <view>{{item.content}}</view>
-          <view class="reply-btn" bindtap="coment" data-id="{{item.id}}">
+          <view>{{coment.content}}</view>
+          <view class="reply-btn" bindtap="coment" data-comentid="{{coment.id}}" data-index="{{index}}">
             <image src="../../resource/img/reply2.png"></image>
             <text>回复</text>
           </view>
-          <view wx:if="{{item.coment}}">
-            <view class="repply" wx:for="{{item.coment}}" wx:key="repply">
+
+
+          <view wx:if="{{coment.coment}}">
+            <view class="repply" wx:for="{{coment.coment}}" wx:key="repply">
               <view class="repply-list">
                 <view class="nickname">{{item.customer.nickname}}:</view>
                 <view >{{item.content}}</view>
-                <view class="reply-btn" bindtap="reply" data-id="{{item.id}}">
+                <view class="reply-btn" bindtap="reply" data-id="{{item.id}}" data-comentid="{{coment.id}}">
                   <image src="../../resource/img/reply2.png"></image>
                   <text>回复</text>
                 </view>
               </view>
             </view>
           </view>
+
+
         </view>
       </view>
       
@@ -97,7 +107,7 @@
       <image src="../../resource/img/collection.png"></image>
       <text>收藏</text>
     </view>
-    <view wx:else="{{!collectioned}}" class="collectioned border" bindtap='collectioned'>
+    <view wx:else="{{collectioned}}" class="collectioned border" bindtap='collectioned'>
       <image src="../../resource/img/collectioned.png"></image>
       <text>已收藏</text>
     </view>

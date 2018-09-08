@@ -1,13 +1,13 @@
 <template name="searchList">
 <view class="List mt20" bindtap='toDetails' data-id="{{id}}">
   <view class="avatarImg">
-    <image  src="../../resource/img/touxiang.jpg"></image>
+    <image  src="{{seekimgs}}"></image>
   </view>
   <view class="Info ml20 mt10">
-    <view>姓名：{{missName}} <text class='ml50'>性别：{{gender}}</text></view>    
-    <view>出生日期：{{birthdate}}</view>
-    <view>失踪日期：{{missDate}}</view>
-    <view>详细地点：{{missDetailPlace}}</view>
+    <view><text class="clgray">姓名：</text>{{missName?missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{gender}}</text></view>    
+    <view><text class="clgray">出生日期：</text>{{birthdate?birthdate:'不详'}}</view>
+    <view><text class="clgray">失踪日期：</text>{{missDate?missDate:'不详'}}</view>
+    <view><text class="clgray">详细地点：</text>{{missDetailPlace?missDetailPlace:'不详'}}</view>
   </view>
 
 </view>

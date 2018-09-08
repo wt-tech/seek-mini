@@ -15,6 +15,7 @@ Page({
     seek : {},
     topComent : {},
     getcustomerbyid : '',
+    repplyId : '',
   },
 
   /**
@@ -26,7 +27,7 @@ Page({
     let detailid = options.detailId || ''
     // 上级评论的id
     let replyId = options.replyId || ''
-    let repplyId = options.replyId||''
+    let repplyId = options.repplyId||''
     // 用户的id
     var getcustomerbyid = wx.getStorageSync(constant.customerId)
 
@@ -36,8 +37,9 @@ Page({
     let topComent = that.data.topComent;
     seek.id = Number(detailid);
     customer.id = getcustomerbyid;
-    topComent.id = Number(replyId);
+    topComent.id = Number(repplyId);
     that.setData({
+      repplyId: repplyId,
       seek: seek,
       replyId: replyId,
       customer: customer
@@ -53,23 +55,25 @@ Page({
 
   formSubmit:function(e){
     let that = this
+    console.log(that.data.repplyId, '*********')
     let thatData = this.data
     let value = {} 
     let concat = {}
+    let coment = {}
     let topComent = {}
     concat.realName = e.detail.value.realName;
     concat.tel = e.detail.value.tel;
     concat.customer = {} ;
     concat.customer = thatData.customer;
+    coment.id = thatData.replyId;
 
     value.content = e.detail.value.content;
     // value.seekId = thatData.seek.seekId
     value.seek = that.data.seek
     value.customer = {}
     value.customer = thatData.customer;
-    if (thatData.replyId){
-      value.topComent = thatData.topComent
-    }
+    value.topComent = thatData.topComent
+
     console.log(value)
     if (value.content == ''){
       wx.showToast({
@@ -88,11 +92,18 @@ Page({
       })
     }else {
       // 发起请求
-      console.log(concat,value)
-      if (that.data.seek){
+      if (!that.data.replyId && !that.data.repplyId){
+        // 评论寻人信息
         that.savetopcoment(value)
        
-      }else{
+      } else if (that.data.replyId) {
+        // 内层层评论
+        value.topComent = that.data.topComent
+        value.coment = coment
+        that.savecoment(value)
+      }else {
+        //外层的评论
+        value.topComent = that.data.topComent
         that.savecoment(value)
       }
 
@@ -101,9 +112,18 @@ Page({
   },
 
   savetopcoment:function(params){
+    let that = this
     request.postRequestWithJSONSchema(['topcoment/savetopcoment',params]).then(function(res){
       console.log(res)
       if (res.status == 'success'){
+        wx.showToast({
+          title: '提交成功',
+        })
+        that.setData({
+          realName: '',
+          content: '',
+          tel: ''
+        })
 
       }
     }).catch(function(err){
@@ -112,8 +132,20 @@ Page({
   },
 
   savecoment:function(params){
+    let that = this
     request.postRequestWithJSONSchema(['coment/savecoment', params]).then(function(res){
       console.log(res)
+      if (res.status == 'success') {
+        wx.showToast({
+          title: '提交成功',
+        })
+        that.setData({
+          realName: '',
+          content: '',
+          tel: ''
+        })
+
+      }
     }).catch(function(err){
       console.log(err)
     })
