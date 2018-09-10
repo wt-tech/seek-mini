@@ -61,7 +61,12 @@ Page({
       url: '../../pages/myCollection/myCollection',
     })
   },
-
+// 志愿者
+  volunteer:function(){
+    wx.navigateTo({
+      url: '../../pages/volunteer/volunteer',
+    })
+  },
 
 
 

@@ -34,9 +34,10 @@ radio{
   font-size:12px;
   text-align:center;
   line-height: 50rpx;
-  background:#eee;
-  border:1rpx solid #999;
-  border-radius:10rpx;
+  background:#00af82;
+  /* border:1rpx solid #ccc; */
+  border-radius:15rpx;
+  color:#fff;
 }
 .touxiang{
   display: flex;
@@ -65,3 +66,4 @@ radio{
 .active{
   border:1rpx solid #00af82;
 }
+

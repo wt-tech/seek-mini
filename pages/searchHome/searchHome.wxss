@@ -5,7 +5,7 @@
 }
 
 .fillIn{
-  margin:0 40rpx;
+  margin:0 20rpx;
 }
 .list{
   display: flex;
@@ -14,7 +14,7 @@
   /* border-bottom:1px solid #eee; */
 }
 .list text{
-  width:22%;
+  width:25%;
 }
 input,textarea{
   width:70%;
@@ -27,15 +27,17 @@ textarea{
 radio{
   transform: scale(0.7)
 }
+
 .img .btn{
   width:140rpx;
   height: 50rpx;
   font-size:12px;
   text-align:center;
   line-height: 50rpx;
-  background:#eee;
-  border:1rpx solid #999;
-  border-radius:10rpx;
+  background:#00af82;
+  /* border:1rpx solid #ccc; */
+  border-radius:15rpx;
+  color:#fff;
 }
 .touxiang{
   display: flex;
@@ -60,3 +62,8 @@ radio{
   line-height: 60rpx;
   font-size:14px;
 }
+
+.active{
+  border:1rpx solid #00af82;
+}
+

@@ -1,5 +1,5 @@
 <!--pages/details/details.wxml-->
-  <view class="mb80 detail">
+  <view wx:if="{{content.length!=0}}" class="mb80 detail">
     <view class="title" >
       {{content.title}}
     </view>
@@ -26,7 +26,7 @@
           <text decode='true' class="firstText clgray">性&emsp;&emsp;别：</text>{{content.gender}}
         </view>
         <view>
-          <text decode="true" class="firstText clgray">籍&emsp;&emsp;贯：</text>{{content.address.birthProvinceName+'-'+content.address.birthCityName +'-'+content.address.birthCountyName}}
+          <text decode="true" class="firstText clgray">籍&emsp;&emsp;贯：</text><text  wx:if="{{content.address.birthProvinceName}}">{{content.address.birthProvinceName+'-'+content.address.birthCityName +'-'+content.address.birthCountyName}}</text>
         </view>
         <view>
           <text class="firstText clgray">出生日期：</text><text>{{content.birthdate?content.birthdate:'不详'}}</text>
@@ -35,7 +35,7 @@
           <text class="firstText clgray">失踪日期：</text><text>{{content.missDate?content.missDate:'不详'}}</text>
         </view>
         <view>
-          <text  class="firstText clgray">失踪城市：</text><text>{{content.address.missProvinceName+'-'+content.address.missCountyName +'-'+content.address.missCityName}}</text>
+          <text  class="firstText clgray">失踪城市：</text><text  wx:if="{{content.address.missProvinceName}}">{{content.address.missProvinceName+'-'+content.address.missCityName +'-'+content.address.missCountyName}}</text>
         </view>
         <view>
           <text class="firstText clgray">详细地点：</text><text>{{content.missDetailPlace?content.missDetailPlace:'不详'}}</text>

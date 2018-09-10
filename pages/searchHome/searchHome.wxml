@@ -10,21 +10,21 @@
   <view class="fillIn">
     <view class="list mt20">
       <text decode="true">编&emsp;&emsp;号：</text>
-      <input disabled='true' name="sequence" value="{{sequence}}" placeholder='30字以内的寻人标题'></input>
+      <input  disabled='true' name="sequence" value="{{sequence}}"></input>
     </view>
     <view class="list mt20">
       <text decode="true">标&emsp;&emsp;题：</text>
-      <input name="title" placeholder='30字以内的寻人标题'></input>
+      <input name="title"  class="{{status1?'active':'no'}}" bindfocus='focus1' bindblur='blur1' placeholder='30字以内的寻家标题'></input>
     </view>
     <view  class="list mt20">
       <text decode="true">姓&emsp;&emsp;名：</text>
-      <input name="missName" placeholder='失踪人的名字'></input>
+      <input name="missName" class="{{status2?'active':'no'}}" bindfocus='focus2' bindblur='blur2' placeholder='本人姓名'></input>
     </view>
     <view  class="list mt20">
       <text decode="true">性&emsp;&emsp;别：</text>
       <radio-group name="gender" bindchange="gender">
         <label>
-          <radio checked="true" value='男' />男
+          <radio checked='true' value='男' />男
         </label>
         <label>
           <radio value='女' />女
@@ -42,7 +42,7 @@
 
     <view class="list mt20">
       <text>出生日期：</text>
-      <picker name="birthdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindDateChange">
+      <picker name="birthdate" mode="date" value="{{date}}" start="1900-01-01" end="{{endTime}}" bindchange="bindDateChange">
         <view class="picker">
           {{birthdate}}
         </view>
@@ -50,7 +50,7 @@
     </view>
     <view  class="list mt20">
       <text>失踪日期：</text>
-      <picker name="missdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindMissDateChange">
+      <picker name="missdate" mode="date" value="{{date}}" start="1900-01-01" end="{{endTime}}" bindchange="bindMissDateChange">
         <view class="picker">
           {{missdate}}
         </view>
@@ -67,15 +67,15 @@
 
     <view  class="list mt20">
       <text decode="true">详细地点：</text>
-      <input name="missDetailPlace" placeholder='详细的失踪地点'></input>
+      <input name="missDetailPlace" class="{{status3?'active':'no'}}" bindfocus='focus3' bindblur='blur3' placeholder='与家人走失的地点'></input>
     </view>
     <view  class="list mt20">
-      <text decode="true">失踪经历：</text>
-      <textarea name="plot" placeholder='详细的失踪经过'></textarea>
+      <text decode="true">失踪经过：</text>
+      <textarea name="plot" class="{{status4?'active':'no'}}" bindfocus='focus4' bindblur='blur4' placeholder='与家人走失的经过'></textarea>
     </view>
     <view  class="list mt20">
       <text decode="true">相貌特征：</text>
-      <textarea name="feature" placeholder='失踪人的具体相貌特征'></textarea>
+      <textarea name="feature" class="{{status5?'active':'no'}}" bindfocus='focus5' bindblur='blur5' placeholder='具体相貌特征'></textarea>
     </view>
     <view  class="list mt20 img">
       <text decode="true">照片资料：</text>
@@ -97,55 +97,55 @@
 
     <view  class="list mt20">
       <text decode="true">其他信息：</text>
-      <textarea name="otherInformation"  placeholder='失踪人的其它信息'></textarea>
+      <textarea name="otherInformation" class="{{status6?'active':'no'}}" bindfocus='focus6' bindblur='blur6' placeholder='失踪人的其它信息'></textarea>
     </view>
     <view  class="list mt20">
       <text decode="seekSubtype">失踪原因：</text>
       <radio-group name="seekSubtype">
         <label>        
-          <radio value='走失' />走失
+          <radio checked="true"  value='走失' />走失
         </label>
         <label>
           <radio value='离家出走' />离家出走        
         </label>
         <label>
-          <radio checked="true" value='拐骗' />拐骗
+          <radio value='拐骗' />拐骗
         </label>
         <label>
-          <radio value='原因不明' />原因不明
+          <radio  value='原因不明' />原因不明
         </label>
       </radio-group>
     </view>
     <!-- <view class="list mt20">
       <text decode="true">与失踪人关系：</text>
-      <input name="relationship" placeholder='与失踪人关系'></input>
+      <input name="relationship" class="{{status7?'active':'no'}}" bindfocus='focus7' bindblur='blur7' placeholder='与失踪人关系'></input>
     </view> -->
-    <view class="title mt30" style="margin-left:-40rpx">
+    <view class="title mt30" style="margin-left:-20rpx">
       联系人信息:<text style="color:#000;">（此信息会保密）</text>
     </view>
     <view class="list mt20">
       <text decode="true">姓&emsp;&emsp;名：</text>
-      <input name="contactName" placeholder='联系人姓名'></input>
+      <input name="contactName" class="{{status8?'active':'no'}}" bindfocus='focus8' bindblur='blur8' placeholder='联系人姓名'></input>
     </view>
     <view class="list mt20">
       <text decode="true">手&emsp;&emsp;机：</text>
-      <input name="contactTel" placeholder='联系人手机号'></input>
+      <input name="contactTel" class="{{status9?'active':'no'}}" bindfocus='focus9' bindblur='blur9' placeholder='联系人手机号'></input>
     </view>
     <view class="list mt20">
       <text decode="true">微&emsp;&emsp;信：</text>
-      <input name="contactWechat" placeholder='联系人微信号'></input>
+      <input name="contactWechat" class="{{status10?'active':'no'}}" bindfocus='focus10' bindblur='blur10' placeholder='联系人微信号'></input>
     </view>
     <view class="list mt20">
       <text decode="true">QQ：</text>
-      <input name="contactQQ" placeholder='联系人手机号'></input>
+      <input name="contactQQ" class="{{status11?'active':'no'}}" bindfocus='focus11' bindblur='blur11' placeholder='联系人手机号'></input>
     </view>
     <view class="list mt20">
       <text decode="true">联系地址：</text>
-      <input name="contactAddress" placeholder='联系人地址'></input>
+      <input name="contactAddress" class="{{status12?'active':'no'}}" bindfocus='focus12' bindblur='blur12' placeholder='联系人地址'></input>
     </view>
     <view class="list mt20">
       <text decode="true">备用手机：</text>
-      <input name="extraTel" placeholder='联系人备用手机号'></input>
+      <input name="extraTel" class="{{status13?'active':'no'}}" bindfocus='focus13' bindblur='blur13' placeholder='联系人备用手机号'></input>
     </view>
     
   </view>

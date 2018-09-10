@@ -25,7 +25,8 @@ Page({
     region: [],
     customItem: '全部',
     IDs2: [],
-    sequence: ''
+    sequence: '',
+    status: false
   },
 
 
@@ -42,6 +43,7 @@ Page({
     that.initValidata()
 
   },
+
 
 
   initValidata: function () {
@@ -79,6 +81,7 @@ Page({
       contactAddress: {
         required: true
       },
+
     }
     const messages = {
       missName: {
@@ -364,11 +367,9 @@ Page({
     address = data.IDs[2] ? address + '-' + data.provinceCityCounty[2][data.pccIndex[2]].name : address;
 
 
-    let address2 = p + '-' + city + '-' + data.provinceCityCounty[2][data.pccIndex[2]].name;
 
     this.setData({
       address: address,
-      address2: address2,
     });
   },
 
@@ -378,6 +379,7 @@ Page({
     let city = data.provinceCityCounty[1][data.pccIndex[1]].name;
 
     let address2 = p + '-' + city + '-' + data.provinceCityCounty[2][data.pccIndex[2]].name;
+
 
     this.setData({
       address2: address2,
@@ -510,7 +512,6 @@ Page({
       IDs: IDs,
       IDs2: IDs
     });
-    console.log(IDs)
     this.initMultiSelector(IDs);
   },
 
@@ -522,6 +523,160 @@ Page({
 
 
 
+  focus1: function () {
+    this.setData({
+      status1: true
+    })
+  },
+
+  blur1: function () {
+    this.setData({
+      status1: false
+    })
+  },
+
+  focus2: function () {
+    this.setData({
+      status2: true
+    })
+  },
+
+  blur2: function () {
+    this.setData({
+      status2: false
+    })
+  },
+
+  focus3: function () {
+    this.setData({
+      status3: true
+    })
+  },
+
+  blur3: function () {
+    this.setData({
+      status3: false
+    })
+  },
+
+  focus4: function () {
+    this.setData({
+      status4: true
+    })
+  },
+
+  blur4: function () {
+    this.setData({
+      status4: false
+    })
+  },
+
+  focus5: function () {
+    this.setData({
+      status5: true
+    })
+  },
+
+  blur5: function () {
+    this.setData({
+      status5: false
+    })
+  },
+
+  focus6: function () {
+    this.setData({
+      status6: true
+    })
+  },
+
+  blur6: function () {
+    this.setData({
+      status6: false
+    })
+  },
 
 
+  focus7: function () {
+    this.setData({
+      status7: true
+    })
+  },
+
+  blur7: function () {
+    this.setData({
+      status7: false
+    })
+  },
+
+  focus8: function () {
+    this.setData({
+      status8: true
+    })
+  },
+
+  blur8: function () {
+    this.setData({
+      status8: false
+    })
+  },
+
+  focus9: function () {
+    this.setData({
+      status9: true
+    })
+  },
+
+  blur9: function () {
+    this.setData({
+      status9: false
+    })
+  },
+
+  focus10: function () {
+    this.setData({
+      status10: true
+    })
+  },
+
+  blur10: function () {
+    this.setData({
+      status10: false
+    })
+  },
+
+  focus11: function () {
+    this.setData({
+      status11: true
+    })
+  },
+
+  blur11: function () {
+    this.setData({
+      status11: false
+    })
+  },
+
+  focus12: function () {
+    this.setData({
+      status12: true
+    })
+  },
+
+  blur12: function () {
+    this.setData({
+      status12: false
+    })
+  },
+
+  focus13: function () {
+    this.setData({
+      status13: true
+    })
+  },
+
+  blur13: function () {
+    this.setData({
+      status13: false
+    })
+  },
 })

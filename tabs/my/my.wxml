@@ -40,7 +40,7 @@
     我的收藏
     <view style='float:right'> 〉</view>
   </view>
-  <view class="list-cont border-bottom" bindtap="Apply">
+  <view class="list-cont border-bottom" bindtap="volunteer">
     <image src="../../resource/img/volunteer.png"></image>
     申请成为志愿者
     <view style='float:right'> 〉</view>

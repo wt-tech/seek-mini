@@ -12,21 +12,7 @@ Page({
     collectioned:false,
     currentPageNo: 1,
     content:{
-      // title:'我想寻找走丢的某某',
-      // sequence:'A20180506001',
-      // missName:'刘某某',
-      // gender:'男',
-      // birthdate:'2005-06-24',
-      // missDate:'2018-05-24',
-      // missCityId:'安徽合肥',
-      // missDetailPlace:'某某公园附近某某公公某某公园某某公园',
-      // feature:'身高，走失时穿着打扮，口音，有没有明显的胎记、痣、身体情况等等',
-      // plot:'失踪时的具体情况',
-      // seekSubtype:'走失',
       imgUrls: [
-        // 'https://www.qghls.com/statics/lawyerv1/views/images/133/1.jpg',
-        // 'https://www.qghls.com/statics/lawyerv1/views/images/133/4.jpg',
-        // 'https://www.qghls.com/statics/lawyerv1/views/images/133/2.jpg'
       ],
     },
     id:'',
@@ -55,7 +41,8 @@ Page({
       customerId: customerId,
       seekId : id
     }
-    that.getmark(params)
+    that.getmark(params) 
+    that.browse()   //向后台插入浏览记录
   },
 
 // 加载详情数据
@@ -123,8 +110,22 @@ Page({
     })
   },
 
-  // 预览照片
-
+// 保存浏览记录
+  browse:function(){
+    let that = this
+    let customer = that.data.customer
+    let seek = {}
+    seek.id = Number(that.data.id)
+    let params = {
+      customer: customer,
+      seek : seek
+    }
+    request.postRequestWithJSONSchema(['browsehistory/savebrowsehistory',params]).then(function(res){
+      console.log(res)
+    }).catch(function(err){
+      console.log(err)
+    })
+  },
 
 
 // 上拉加载

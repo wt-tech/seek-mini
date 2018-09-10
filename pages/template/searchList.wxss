@@ -5,6 +5,7 @@
   justify-content:flex-start;
   margin: 15rpx 20rpx;
   box-shadow: 2px 3px 6px #dcdbdb;
+  padding-right:10rpx;
 }
 .avatarImg{
   padding: 15rpx;
@@ -17,6 +18,5 @@
   height: 100%;
 }
 .Info view{
-  height:50rpx;
   line-height: 50rpx;
 }

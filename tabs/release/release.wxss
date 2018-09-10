@@ -15,7 +15,7 @@ page{
   justify-content:space-around;
 }
 .shearchPeople,.shearchHome{
-  border:2rpx solid #aaa;
+  border:2rpx solid #ccc;
   border-radius:15rpx;
   width:180rpx;
   height: 180rpx;
@@ -27,4 +27,5 @@ page{
   height: 50%;
   /* margin-left:25%; */
   margin-top:15%;
+  margin-bottom:6%;
 }

@@ -42,7 +42,7 @@
 
     <view class="list mt20">
       <text>出生日期：</text>
-      <picker name="birthdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindDateChange">
+      <picker name="birthdate" mode="date" value="{{date}}" start="1900-01-01" end="{{endTime}}" bindchange="bindDateChange">
         <view class="picker">
           {{birthdate}}
         </view>
@@ -50,7 +50,7 @@
     </view>
     <view  class="list mt20">
       <text>失踪日期：</text>
-      <picker name="missdate" mode="date" value="{{date}}" start="1960-01-01" end="{{endTime}}" bindchange="bindMissDateChange">
+      <picker name="missdate" mode="date" value="{{date}}" start="1900-01-01" end="{{endTime}}" bindchange="bindMissDateChange">
         <view class="picker">
           {{missdate}}
         </view>

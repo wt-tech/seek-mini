@@ -29,18 +29,18 @@ Page({
     ],
     birthdate:'点击选择出生日期',
     missdate:'点击选择失踪日期',
-     currentPageNo: 1,
-     hasNoMoreData: false,//没有更多的数据了,默认为false.
-     seekFilterParams: {
-       birthdate: null,
-       gender: null,
-       missName: null,
-       missDate: null,
-       seekType: null,
-       hadBrowsed: false,
-       address: {},
-       currentPageNo: null
-     }
+    currentPageNo: 1,
+    hasNoMoreData: false,//没有更多的数据了,默认为false.
+    seekFilterParams: {
+      birthdate: null,
+      gender: null,
+      missName: null,
+      missDate: null,
+      seekType: null,
+      hadBrowsed: false,
+      address: {},
+      currentPageNo: null
+    }
   },
 // 页面加载
   onLoad: function () {
@@ -451,6 +451,9 @@ Page({
   prepareParams: function () {
     let page = this;
     let seekFilterParams = page.data.seekFilterParams;
+    seekFilterParams.customer = {
+      id : wx.getStorageSync(constant.customerId)
+    };
     console.log(seekFilterParams);
     return page.assembleMissPosAndPageNo(seekFilterParams);
   },

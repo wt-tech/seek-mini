@@ -371,12 +371,9 @@ submit:function(e){
     address = data.IDs[2] ? address + '-' + data.provinceCityCounty[2][data.pccIndex[2]].name : address;
 
 
-    let address2 = p + '-' + city + '-' + data.provinceCityCounty[2][data.pccIndex[2]].name;
-
     
     this.setData({
       address: address,
-      address2: address2,
     });
   },
 
