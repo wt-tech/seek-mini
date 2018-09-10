@@ -1,0 +1,8 @@
+<!--pages/replyMe/replyMe.wxml-->
+<view class="allComents mt20" wx:for="{{allComents}}" wx:key="allComents">
+  <view class="content">
+    <view><text class="title">{{item.customer.nickname}}</text><text decode='true'>&emsp;回复&emsp;我 ：</text></view>
+    <view class="coment">{{item.content}}</view>
+  </view>
+
+</view>

@@ -1,0 +1,12 @@
+<!--pages/myReleased/myReleased.wxml-->
+<import src="../template/searchList.wxml" />
+
+
+<view wx:if="{{searchList.length != 0}}">
+  <block wx:for="{{searchList}}" wx:key="searchList" >
+    <template is="searchList" data="{{...item}}"  data-index="{{item.index}}"></template>
+  </block>
+</view>
+<view wx:else>
+  <view class="container">暂时没有数据</view>
+</view>

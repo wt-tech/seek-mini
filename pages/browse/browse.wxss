@@ -1,0 +1,6 @@
+/* pages/myCollection/myCollection.wxss */
+@import '../template/searchList.wxss';
+
+page{
+  background:#f0f0f0
+}

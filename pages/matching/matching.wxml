@@ -1,0 +1,15 @@
+<!--pages/matching/matching.wxml-->
+<import src="../template/searchList.wxml" />
+<view class="has " wx:if="{{searchList.length != 0}}">您的信息已经发布，数据库中与您的信息匹配的内容如下：</view>
+<view class="container" wx:else>数据库中暂时没有匹配的信息，请您继续关注平台信息。
+  <button type="primary" bindtap='btn'>确定</button>
+</view>
+
+
+
+
+<view wx:if="{{searchList.length != 0}}">
+  <block wx:for="{{searchList}}" wx:key="searchList">
+    <template is="searchList" data="{{...item}}" data-index="{{item.index}}"></template>
+  </block>
+</view>

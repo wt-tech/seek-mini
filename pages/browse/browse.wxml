@@ -1,0 +1,18 @@
+<!--pages/myCollection/myCollection.wxml-->
+<view  wx:for="{{searchList}}">
+
+<view class="List mt20" bindtap='toDetails'  data-id="{{item.seek.id}}" wx:key="bros">
+  <view class="avatarImg">
+    <image  src="{{item.seek.seekimgs}}"></image>
+  </view>
+  <view class="Info ml20 mt10">
+    <view><text class="clgray">姓名：</text>{{item.seek.missName?item.seek.missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{item.seek.gender}}</text></view>    
+    <view><text class="clgray">出生日期：</text>{{item.seek.birthdate?item.seek.birthdate:'不详'}}</view>
+    <view><text class="clgray">失踪日期：</text>{{item.seek.missDate?item.seek.missDate:'不详'}}</view>
+    <view><text class="clgray">详细地点：</text>{{item.seek.missDetailPlace?item.seek.missDetailPlace:'不详'}}</view>
+  </view>
+
+</view>
+
+
+</view>

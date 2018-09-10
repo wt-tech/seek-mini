@@ -12,8 +12,7 @@ Page({
     collectioned:false,
     currentPageNo: 1,
     content:{
-      imgUrls: [
-      ],
+      imgUrls: [],
     },
     id:'',
     customer : {}

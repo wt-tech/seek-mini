@@ -1,10 +1,10 @@
 <!--pages/details/details.wxml-->
-  <view wx:if="{{content.length!=0}}" class="mb80 detail">
+  <view hidden='{{!content.missName}}' class="mb80 detail">
     <view class="title" >
       {{content.title}}
     </view>
 
-    <view class="details">
+    <view class="details"  >
       <view class="left">
         <view class="clgray">
           <text decode='true' class="firstText">编&emsp;&emsp;号：</text>{{content.sequence}}
@@ -53,10 +53,10 @@
       <view class="details-cont">
         <text class="clgray">失踪原因：</text><text>{{content.seekSubtype}}</text>
       </view>
-      <view class="details-cont">
+      <view class="details-cont" wx:if="{{content.relationship}}">
         <text class="clgray">与失踪人关系：</text><text>{{content.relationship}}</text>
       </view>
-      <view class="details-cont">
+      <view class="details-cont" wx:if="{{content.otherInformation}}">
         <text class="clgray">其它信息：</text><text>{{content.otherInformation}}</text>
       </view>
 

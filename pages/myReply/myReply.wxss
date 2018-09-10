@@ -1,0 +1,24 @@
+/* pages/myReply/myReply.wxss */
+page{
+  background:#f0f0f0;
+}
+
+.allComents{
+  background:#fff;
+  padding:10rpx 20rpx;
+}
+
+.content{
+  display: flex;
+  justify-content: flex-start;
+}
+.coment{
+  width:100%;
+}
+.content view{
+  padding:10rpx 0;
+}
+.title{
+  width:100rpx;
+  color:#00af82;
+}
