@@ -96,5 +96,5 @@ button{
   height: 55rpx;
   line-height: 55rpx;
   width:90%;
-  font-size:14px;
+  font-size:22rpx;
 }

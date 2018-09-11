@@ -1,0 +1,26 @@
+/* pages/share/share.wxss */
+
+.img{
+  width:550rpx;
+  height:750rpx;
+  margin:0 auto;
+  margin-top:50rpx;
+}
+.img image{
+  width:100%;
+  height:100%;
+}
+.btn{
+  width:550rpx;
+  margin:0 auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top:80rpx;
+}
+.btn button{
+  font-size:22rpx;
+  height:70rpx;
+  line-height: 70rpx;
+  background:#00af82;
+  color:#fff;
+}

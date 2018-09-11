@@ -31,7 +31,7 @@ radio{
 .img .btn{
   width:140rpx;
   height: 50rpx;
-  font-size:12px;
+  font-size:22rpx;
   text-align:center;
   line-height: 50rpx;
   background:#00af82;

@@ -378,9 +378,12 @@ Page({
     let p = data.provinceCityCounty[0][data.pccIndex[0]].name;
     let city = data.provinceCityCounty[1][data.pccIndex[1]].name;
 
-    let address2 = p + '-' + city + '-' + data.provinceCityCounty[2][data.pccIndex[2]].name;
+    if (data.provinceCityCounty[2][data.pccIndex[2]] == undefined) {
+      var address2 = p + '-' + city
+    } else {
+      var address2 = p + '-' + city + '-' + data.provinceCityCounty[2][data.pccIndex[2]].name;
 
-
+    }
     this.setData({
       address2: address2,
     });
@@ -447,7 +450,14 @@ Page({
     let provinceCityCounty = that.data.provinceCityCounty
     let province = provinceCityCounty[0][ids[0]].id
     let city = provinceCityCounty[1][ids[1]].id
-    let conty = provinceCityCounty[2][ids[2]].id
+    // let conty = provinceCityCounty[2][ids[2]].id
+    if (provinceCityCounty[2][ids[2]] == undefined) {
+      console.log('baocuo')
+      var conty = 0
+    } else {
+      var conty = provinceCityCounty[2][ids[2]].id
+      console.log(conty)
+    }
     console.log(province, city, conty)
     that.setData({
       IDs: [province, city, conty],
@@ -491,7 +501,14 @@ Page({
     let provinceCityCounty = that.data.provinceCityCounty
     let province = provinceCityCounty[0][ids[0]].id
     let city = provinceCityCounty[1][ids[1]].id
-    let conty = provinceCityCounty[2][ids[2]].id
+    // let conty = provinceCityCounty[2][ids[2]].id
+    if (provinceCityCounty[2][ids[2]] == undefined) {
+      console.log('baocuo')
+      var conty = 0
+    } else {
+      var conty = provinceCityCounty[2][ids[2]].id
+      console.log(conty)
+    }
     console.log(province, city, conty)
     that.setData({
       IDs2: [province, city, conty],

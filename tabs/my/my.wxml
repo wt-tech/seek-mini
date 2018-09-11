@@ -13,7 +13,13 @@
   <view class="list-cont border-bottom" bindtap="Authentication">
     <image src="../../resource/img/renz.png"></image>
     发布前认证
-    <view style='float:right'> 〉</view>
+    <view style='float:right'>
+     <text style="color:red" wx:if="{{renzed == 'fail'}}">未认证</text>
+     <text style="color:red" wx:elif="{{renzed == '等待认证'}}">已提交，等待审核</text>
+     <text style="color:red" wx:elif="{{renzed == '认证不通过'}}">认证未通过，请重新认证</text>
+     <text style="color:green" wx:else="{{renzed == '认证通过'}}">认证已通过</text>
+    
+    </view>
   </view>
   <view class="list-cont border-bottom" bindtap="Release">
     <image src="../../resource/img/released.png"></image>

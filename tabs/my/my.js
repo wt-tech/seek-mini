@@ -1,23 +1,60 @@
 // pages/my/my.js
+import util from '../../utils/request.js';
+import constant from '../../utils/constant.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    renzed:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let that = this
+    that.renzheng()
   },
 
 
 
-
+  renzheng: function () {
+    let that = this
+    var customerId = wx.getStorageSync(constant.customerId)
+    let params = {
+      customerId: customerId
+    }
+    util.getRequest(['authentication/getAuthentication', params]).then(function (res) {
+      console.log(res)
+      if (res.status == 'fail') {
+        that.setData({
+          renzed : res.status
+        })
+      }else if (res.authentication.authResult == '等待认证'){
+        that.setData({
+          renzed: res.authentication.authResult
+        })
+      } else if (res.authentication.authResult == '认证不通过'){
+        that.setData({
+          renzed: res.authentication.authResult
+        })
+      }else{
+        that.setData({
+          renzed: res.authentication.authResult
+        })
+      }
+    }).catch(function (err) {
+      console.log(err)
+      wx.showToast({
+        title: '加载失败...',
+      }, wx.navigateBack({
+        delta: 1
+      })
+      )
+    })
+  },
 
 
 
