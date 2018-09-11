@@ -1,0 +1,11 @@
+<!--pages/share/share.wxml-->
+
+<view class="img">
+  <image mode="aspectFill"  src="{{filePath}}"></image>
+</view>
+
+<view class="btn">
+  <button open-type="share" >分享微信群</button>
+  
+  <button bindtap='saveImg'>保存到手机相册</button>
+</view>

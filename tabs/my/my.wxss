@@ -8,7 +8,7 @@ page{
   margin:0 auto;
   width:150rpx;
   text-align: center;
-  font-size:16px;
+  font-size:24rpx;
   padding-top:20rpx;
 }
 .avatarUrl{

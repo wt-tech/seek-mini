@@ -340,6 +340,7 @@ Page({
       })
       let shi = page.data.changeshi[columnIndex].id
       page.pccPushCounty(shi, provinceCityCounty)
+
     };
     if(columnIndex == 1){
       page.pccPushCounty(id, provinceCityCounty)
@@ -369,7 +370,11 @@ Page({
     let provinceCityCounty = that.data.provinceCityCounty
     let province = provinceCityCounty[0][ids[0]].id
     let city = provinceCityCounty[1][ids[1]].id
-    let conty = provinceCityCounty[2][ids[2]].id
+    if (provinceCityCounty[2][ids[2]] == undefined ){
+      var conty = 0
+    }else{
+      var conty = provinceCityCounty[2][ids[2]].id 
+    }
     console.log(province, city,conty)
     that.setData({
       IDs: [province, city, conty],

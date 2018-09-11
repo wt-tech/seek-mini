@@ -10,7 +10,8 @@ Page({
   data: {
     zheng : [],
     fan :[],
-    id:''
+    id:'',
+    renzed:''
   },
 
   /**
@@ -22,7 +23,52 @@ Page({
     this.setData({
       id: customerId
     })
+    this.renzheng()
   },
+
+
+
+  renzheng: function () {
+    let that = this
+    var customerId = wx.getStorageSync(constant.customerId)
+    let params = {
+      customerId: customerId
+    }
+    request.getRequest(['authentication/getAuthentication', params]).then(function (res) {
+      console.log(res)
+      if (res.authentication.authResult == '等待认证') {
+        wx.showModal({
+          title: '',
+          content: '你已经提交过认证，请耐心等待',
+        })
+        that.setData({
+          renzed: false
+        })
+      }
+      
+      if (res.authentication.authResult == '认证通过') {
+        that.setData({
+          renzed: false
+        })
+      }
+      if (res.authentication.authResult == '认证不通过') {
+        that.setData({
+          renzed: true
+        })
+      }
+    }).catch(function (err) {
+      console.log(err)
+      wx.showToast({
+        title: '加载失败...',
+      }, wx.navigateBack({
+        delta: 1
+      })
+      )
+    })
+  },
+
+
+
 
   adImg:function(){
     let that = this
@@ -54,6 +100,12 @@ Page({
 formSubmit:function(e){
   let that = this
   console.log(e)
+  if(!that.data.renzed){
+    wx.showToast({
+      title: '请勿重复认证',
+    })
+  }else{
+    
   let value = e.detail.value
   let positiveIdentityUrl = that.data.zheng
   let negativIdentityUrl = that.data.fan
@@ -96,6 +148,10 @@ formSubmit:function(e){
     delete value.positiveIdentityUrl
     delete value.negativIdentityUrl
     that.athentication(value)
+  }
+
+
+
   }
 },
 
