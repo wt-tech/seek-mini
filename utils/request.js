@@ -3,8 +3,8 @@
  */
 
 // const baseURL = "http://www.want-tech.com:8080/seek01/"
-// const baseURL = "http://192.168.0.177:8888/seek01/"
-const baseURL = "http://192.168.0.101:8080/seek01/"
+const baseURL = "http://192.168.0.177:8888/seek01/"
+// const baseURL = "http://192.168.0.101:8080/seek01/"
 
 /*
 params是一个对象,该对象的每一个属性均需要传递到后台,
@@ -223,7 +223,7 @@ function fileUpload([url, filePath, name, formData = null]) {
 
 
 function postRequestWithJSONSchema([url, params = null]) {
-  console.log(params)
+  //console.log(params)
   const promise = new Promise(function (resolved, reject) {
     wx.request({
       url: urlFactory(url),
@@ -263,7 +263,7 @@ function isNullOrUndefined(params) {
 util.baseURL 其实没必要每次都重写一遍
 */
 function urlFactory(resource) {
-  console.log(baseURL + resource);
+  //console.log(baseURL + resource);
   return baseURL + resource;
 }
 

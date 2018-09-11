@@ -112,11 +112,18 @@ Page({
    */
   maintainPageNo: function (isReset) {
     let page = this;
+    let pageNo = 1;
+    if(isReset){
+      page.setData({
+        currentPageNo: pageNo
+      });
+      return true;
+    }
     if (page.data.hasNoMoreData)//后台已经没有更多数据了.
       return false;
-    let pageNo = page.data.currentPageNo + 1;
+    pageNo = page.data.currentPageNo + 1;
     page.setData({
-      currentPageNo: isReset ? 1 : pageNo
+      currentPageNo: pageNo
     });
     return true;
   },
@@ -383,7 +390,7 @@ Page({
    * 发送get请求,获取寻亲列表
    */
   getSeekList: function (params) {
-    console.log(params);
+    //console.log(params);
     let page = this;
     //发送请求
     request.postRequestWithJSONSchema(['seek/listseek', params]).then(function (success) {
@@ -454,7 +461,7 @@ Page({
     seekFilterParams.customer = {
       id : wx.getStorageSync(constant.customerId)
     };
-    console.log(seekFilterParams);
+    //console.log(seekFilterParams);
     return page.assembleMissPosAndPageNo(seekFilterParams);
   },
 
@@ -463,7 +470,7 @@ Page({
    */
   assembleMissPosAndPageNo: function (obj) {
     let pageData = this.data;
-    console.log(obj);
+    //console.log(obj);
     obj.address.missProvinceId = pageData.IDs[0];
     obj.address.missCityId = pageData.IDs[1];
     obj.address.missCountyId = pageData.IDs[2];
