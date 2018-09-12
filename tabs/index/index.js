@@ -12,9 +12,8 @@ Page({
      address: '',
      pccIndex: [0, 0, 0],//pcc=>provinceCityCounty,三个picker选中的索引.
      provinceCityCounty: [],
-     changeshi:[],
     imgUrls:[],
-     showModels: false,
+    showModels: false,
     selected:true,
     selected1:false,
     searchList:[
@@ -306,9 +305,6 @@ Page({
       if (p.id == provinceId) {
         provinceCityCounty[1] = p.cities;//城市
         console.log(provinceCityCounty[1])
-        this.setData({
-          changeshi : provinceCityCounty[1]
-        })
         return true;
       }
     });
@@ -327,29 +323,48 @@ Page({
     console.log(event)
     var pageData = this.data
     var page = this;
-    if (columnIndex == 2) return;
     var columnIndex = event.detail.column;
     var index = event.detail.value;
-    var provinceCityCounty = page.data.provinceCityCounty
+
+    let provinceCityCounty = pageData.provinceCityCounty;
     let id = provinceCityCounty[columnIndex][index].id;
-    if (columnIndex == 0) {
 
-      page.pccPushCity(id, provinceCityCounty);
-      page.setData({
-        provinceCityCounty: provinceCityCounty
-      })
-      let shi = page.data.changeshi[columnIndex].id
-      page.pccPushCounty(shi, provinceCityCounty)
+    // console.log('columnIndex:'+columnIndex);
+    // console.log('index:'+index);
+    // console.log('id:'+id);
+    // console.log('IDs:' + pageData.IDs);
+    // console.log('index:' + pageData.pccIndex);
 
-    };
-    if(columnIndex == 1){
-      page.pccPushCounty(id, provinceCityCounty)
+    switch(columnIndex){
+      case 0 :
+        page.provinceColumnChange(id, provinceCityCounty);
+        break;
+      case 1 :
+        page.cityColumnChange(id, provinceCityCounty);
+        break;
+      default :
+        page.countyColumnChange(id, provinceCityCounty);
     }
-    page.setData({
-      provinceCityCounty: provinceCityCounty
-    })
   },
 
+  provinceColumnChange: function (id, provinceCityCounty){
+    this.pccPushCity(id, provinceCityCounty);
+    provinceCityCounty[2] = [];
+    this.setData({
+      provinceCityCounty: provinceCityCounty
+    });
+  },
+
+  cityColumnChange: function (id, provinceCityCounty) {
+    this.pccPushCounty(id, provinceCityCounty);
+    this.setData({
+      provinceCityCounty: provinceCityCounty
+    });
+  },
+
+  //do nothing
+  countyColumnChange: function (id, provinceCityCounty) {
+  },
 
   autoLocate: function () {
     authorize.getLocation(this);//最终的结果是将 自动定位的省份城市区县的 ID放在了 IDs中.
