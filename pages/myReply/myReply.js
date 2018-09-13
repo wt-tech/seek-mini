@@ -55,6 +55,14 @@ myReply: function (currentPageNo){
     that.myReply(currentPageNo)
     
   },
+
+  todetails:function(e){
+    console.log(e)
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../details/details?id='+id,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

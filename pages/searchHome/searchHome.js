@@ -33,6 +33,7 @@ Page({
   //生命周期函数--监听页面加载   
   onLoad: function (options) {
     let that = this
+    that.renzheng()
     that.autoLocate();
     let time = util.formatTime(new Date())
     let getRandomString = random.getRandomString(5, false)
@@ -41,7 +42,76 @@ Page({
       sequence: getRandomString
     })
     that.initValidata()
+  },
+  // 判断是否认证
+  renzheng: function () {
 
+    var customerId = wx.getStorageSync(constant.customerId)
+    let params = {
+      customerId: customerId
+    }
+    util.getRequest(['authentication/getAuthentication', params]).then(function (res) {
+      console.log(res)
+      if (res.status == 'fail') {
+        wx.showModal({
+          title: '提示',
+          content: '你还没有认证，是否前往认证',
+          success: function (res) {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: '../Authentication/Authentication',
+              })
+            }
+            if (res.cancel) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+
+          }
+        })
+      }else if (res.authentication.authResult == '等待认证') {
+        wx.showModal({
+          title: '',
+          content: '您的认证正在审核，请您耐心等待',
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateBack({
+                delta: 1
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+      }else if (res.authentication.authResult == '认证不通过') {
+        wx.showModal({
+          title: '',
+          content: '您的认证未通过，请前往重新认证',
+          success: function (res) {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: '../Authentication/Authentication',
+              })
+            } else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+      }
+    }).catch(function (err) {
+      console.log(err)
+      wx.showToast({
+        title: '加载失败...',
+      }, wx.navigateBack({
+        delta: 1
+      })
+      )
+    })
   },
 
 
@@ -76,7 +146,8 @@ Page({
         required: true
       },
       contactTel: {
-        required: true
+        required: true,
+        tel:true
       },
       contactAddress: {
         required: true
@@ -113,7 +184,6 @@ Page({
       },
       contactTel: {
         required: '填写联系人手机号',
-        tel: true
       },
       contactAddress: {
         required: '请填写联系地址'
@@ -185,6 +255,9 @@ Page({
       })
       return false;
     }
+    wx.showLoading({
+      title: '正在提交',
+    })
     delete value.province
     let address = {}
 
@@ -231,6 +304,7 @@ Page({
                   wx.showToast({
                     title: '上传成功',
                   })
+                  wx.hideLoading()
 
                   // 
                   that.listsimilarseek(e)

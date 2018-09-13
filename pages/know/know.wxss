@@ -1,0 +1,18 @@
+/* pages/my/know/know.wxss */
+page{
+  background-color:#fff;
+}
+.title{
+  width:100%;
+  text-align: center;
+  margin-top:28rpx;
+  font-size:28rpx;
+}
+
+.neirong{
+  font-size:26rpx;
+  margin:30rpx;
+}
+.otitle{
+  font-size:28rpx;
+}

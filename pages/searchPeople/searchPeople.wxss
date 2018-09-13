@@ -2,10 +2,11 @@
 
 .title{
   color:red;
+  padding-left:15rpx;
 }
 
 .fillIn{
-  margin:0 20rpx;
+  margin:0 40rpx;
 }
 .list{
   display: flex;

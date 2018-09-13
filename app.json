@@ -11,6 +11,7 @@
     "pages/replyMe/replyMe",
     "pages/browse/browse",
     "pages/myCollection/myCollection",
+    "pages/know/know",
     "pages/volunteer/volunteer",
     "pages/comment/comment",
     "pages/searchHome/searchHome",

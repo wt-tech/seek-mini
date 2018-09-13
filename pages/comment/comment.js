@@ -1,6 +1,7 @@
 // pages/comment/comment.js
 import request from '../../utils/request.js';
 import constant from '../../utils/constant.js';
+import wxValidate from '../../utils/wxValidate.js';
 var app = getApp()
 Page({
 
@@ -47,21 +48,58 @@ Page({
     console.log(that.data.seek, customer, getcustomerbyid)
 
     that.getcustomerbyid(getcustomerbyid)
+    that.initValidata()
   },  
 
 
+  initValidata: function () {
+    const rules = {
+      content:{
+        required :true
+        },
+      realName:{
+        required: true
+      },
+      tel:{
+        required: true,
+        tel: true
+      }
+    }
+    const messages = {
+      content:{
+        required:'请输入内容',
+      },
+      realName:{
+        required:'请填写姓名'
+      },
+      tel:{
+        required:'请填写联系方式',
+      }
 
+    }
+    this.WxValidate = new wxValidate(rules, messages)
+  },
 
 
   formSubmit:function(e){
     let that = this
     console.log(that.data.repplyId, '*********')
+    
+    if (!that.WxValidate.checkForm(e)) {
+      const error = this.WxValidate.errorList[0]
+      wx.showToast({
+        title: `${error.msg} `,
+        image: '../../resource/img/error.png',
+        duration: 2000
+      })
+      return false;
+    }
     let thatData = this.data
     let value = {} 
     let concat = {}
     let coment = {}
     let topComent = {}
-    concat.realName = e.detail.value.realName;
+    concat.realname = e.detail.value.realName;
     concat.tel = e.detail.value.tel;
     concat.customer = {} ;
     concat.customer = thatData.customer;
@@ -75,42 +113,61 @@ Page({
     value.topComent = thatData.topComent
 
     console.log(value)
-    if (value.content == ''){
-      wx.showToast({
-        title: '线索不能为空',
-        image:'../../resource/img/error.png'
-      })
-    }else if(value.realName == ''){
-      wx.showToast({
-        title: '请填写姓名',
-        image: '../../resource/img/error.png'
-      })
-    }else if(value.tel == ''){
-      wx.showToast({
-        title: '请填写联系方式',
-        image: '../../resource/img/error.png'
-      })
-    }else {
-      // 发起请求
-      if (!that.data.replyId && !that.data.repplyId){
-        // 评论寻人信息
-        that.savetopcoment(value)
+
+    console.log(concat)
+    that.updatetel(concat)
+    // if (value.content == ''){
+    //   wx.showToast({
+    //     title: '线索不能为空',
+    //     image:'../../resource/img/error.png'
+    //   })
+    // }else if(value.realName == ''){
+    //   wx.showToast({
+    //     title: '请填写姓名',
+    //     image: '../../resource/img/error.png'
+    //   })
+    // }else if(value.tel == ''){
+    //   wx.showToast({
+    //     title: '请填写联系方式',
+    //     image: '../../resource/img/error.png'
+    //   })
+    // }else {
+    //   // 发起请求
+    //   if (!that.data.replyId && !that.data.repplyId){
+    //     // 评论寻人信息
+    //     that.savetopcoment(value)
        
-      } else if (that.data.replyId) {
-        // 内层层评论
-        value.topComent = that.data.topComent
-        value.coment = coment
-        that.savecoment(value)
-      }else {
-        //外层的评论
-        value.topComent = that.data.topComent
-        that.savecoment(value)
-      }
+    //   } else if (that.data.replyId) {
+    //     // 内层层评论
+    //     value.topComent = that.data.topComent
+    //     value.coment = coment
+    //     that.savecoment(value)
+    //   }else {
+    //     //外层的评论
+    //     value.topComent = that.data.topComent
+    //     that.savecoment(value)
+    //   }
 
 
+    // }
+
+    if (!that.data.replyId && !that.data.repplyId) {
+      // 评论寻人信息
+      that.savetopcoment(value)
+
+    } else if (that.data.replyId) {
+      // 内层评论
+      value.topComent = that.data.topComent
+      value.coment = coment
+      that.savecoment(value)
+    } else {
+      //外层的评论
+      value.topComent = that.data.topComent
+      that.savecoment(value)
     }
   },
 
+// 
   savetopcoment:function(params){
     let that = this
     request.postRequestWithJSONSchema(['topcoment/savetopcoment',params]).then(function(res){
@@ -128,6 +185,9 @@ Page({
       }
     }).catch(function(err){
       console.log(err)
+      wx.showToast({
+        title: '提交失败请重试',
+      })
     })
   },
 
@@ -150,12 +210,27 @@ Page({
       console.log(err)
     })
   },
+
+
+
+// 提交新的联系方式
+  updatetel: function (params){
+    params.id = params.customer.id
+    delete params.customer
+    request.postRequest(['customer',params]).then(function(res){
+      console.log(res)
+    }).catch(function(err){
+      console.log(err)
+    })
+  },
+
+  // 获取联系信息
   getcustomerbyid:function(id){
     let that = this
     request.getRequest(['getcustomerbyid',{id : id}]).then(function(res){
       console.log(res)
       that.setData({
-        realname: res.realname,
+        realName: res.realname,
         tel: res.tel
       })
     }).catch(function(err){

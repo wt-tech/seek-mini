@@ -93,11 +93,11 @@ Page({
     //维护当前页数
     if (!page.maintainPageNo(false)) {//后台没有更多数据
       console.log('no more data');
+      wx.hideLoading()
       wx.showToast({
         title: '没有更多数据了',
         image: '../../resource/img/tip.png'
       })
-      wx.hideLoading()
       return;
     }
     //获取查询参数

@@ -120,7 +120,7 @@
       <text decode="true">与失踪人关系：</text>
       <input name="relationship" class="{{status7?'active':'no'}}" bindfocus='focus7' bindblur='blur7' placeholder='与失踪人关系'></input>
     </view>
-    <view class="title mt30" style="margin-left:-20rpx">
+    <view class="mt30" style="color:red;margin-left:-20rpx">
       联系人信息:<text style="color:#000;">（此信息会保密）</text>
     </view>
     <view class="list mt20">

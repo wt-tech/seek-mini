@@ -59,6 +59,7 @@ Page({
       let content = res.seekcontent
       console.log(res)
 
+      // 获取第一张图片的信息，为canvas生成图片准备
       wx.getImageInfo({
         src: content.seekimgs.split(',')[0],
         success: function (res) {
@@ -88,24 +89,24 @@ Page({
 
       if (res.topComents.length!='0' ){
         let coment = []
-        for (let topTmp of res.topComents) {
-          for (let tmp of res.coments) {
-            if (topTmp.id == tmp.topComentId) {
-              coment.push(tmp)
-              topTmp.coment = coment
-            }
-          }
-          coment = []
-        }
+        // for (let topTmp of res.topComents) {
+        //   for (let tmp of res.coments) {
+        //     if (topTmp.id == tmp.topComentId) {
+        //       coment.push(tmp)
+        //       topTmp.coment = coment
+        //     }
+        //   }
+        //   coment = []
+        // }
 
-        for (let Mcoment of res.topComents) {
-          if (Mcoment.coment) {
-            Mcoment.coment.sort(function (a, b) {
-              return a.comentId - b.comentId
-            })
-          }
+        // for (let Mcoment of res.topComents) {
+        //   if (Mcoment.coment) {
+        //     Mcoment.coment.sort(function (a, b) {
+        //       return a.comentId - b.comentId
+        //     })
+        //   }
 
-        }
+        // }
         let comment = that.data.comment
         // console.log('加载的数据', res.topComents)
         // console.log('重组的数据', coment)
@@ -113,6 +114,7 @@ Page({
         that.setData({
           comment: coment
         })
+        console.log(that.data.comment)
       } else if (res.topComents.length == '0' && currentPageNo > 1){
         wx.showToast({
           title: '没有更多数据了',
@@ -143,7 +145,7 @@ Page({
   },
 
 // 分享
-  share:function(){
+  shareImg:function(){
     let that = this
     const ctx = wx.createCanvasContext('myCanvas')
     // 获取当前的信息
@@ -424,5 +426,21 @@ Page({
     wx.navigateTo({
       url: '../comment/comment?replyId=' + id + '&detailId=' + detailid + '&repplyId=' + comentid,
     })
+  },
+
+  // 点击关闭分享弹窗
+  closed:function(){
+    let that = this
+    that.setData({
+      markHide:false
+    })
+  },
+  onShareAppMessage:function(res){
+    if (res.from == 'button'){
+      console.log('res')
+    }
+    return{
+      title: '帮TA寻找回家的路',
+    }
   }
 })

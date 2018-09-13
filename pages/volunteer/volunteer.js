@@ -2,6 +2,7 @@
 import request from '../../utils/request.js'
 import constant from '../../utils/constant.js'
 import random from '../../utils/random.js'
+import wxValidate from '../../utils/wxValidate.js';
 var app = getApp()
 Page({
 
@@ -11,7 +12,8 @@ Page({
   data: {
     zheng: [],
     fan: [],
-    id: ''
+    id: '',
+    getvolunteer:true
   },
 
   /**
@@ -19,17 +21,40 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    let customerId = wx.getStorageSync(constant.customerId)
     app.getUserInfo()
+    that.initValidata()
     let volunteer = random.getRandomString2(5, true)
     console.log(volunteer)
     that.setData({
       sequence: volunteer
     })
-    let customerId = wx.getStorageSync(constant.customerId)
+    this.getvolunteer(customerId)
     this.setData({
       id: customerId
     })
   },
+// 获取认证状态
+  getvolunteer: function (customerId) {
+    let that = this
+    let params = {
+      customerId: customerId
+    }
+    request.getRequest(['volunteer/getvolunteer', params]).then(function (res) {
+      console.log(res)
+      if (res.volunteer) {
+        if (res.volunteer.volResult == '等待审核' || res.volunteer.volResult == '审核通过') {
+          that.setData({
+            getvolunteer: false
+          })
+        }
+      }
+
+    }).catch(function (err) {
+      console.log(err)
+    })
+  },
+
 
   adImg: function () {
     let that = this
@@ -69,40 +94,59 @@ Page({
     let customer = {}
     customer.id = that.data.id
     value.customer = customer
-    if (value.customerName == '') {
+
+    if (that.data.getvolunteer){
+      wx.showLoading()
+      if (!that.WxValidate.checkForm(e)) {
+        const error = this.WxValidate.errorList[0]
+        wx.showToast({
+          title: `${error.msg} `,
+          image: '../../resource/img/error.png',
+          duration: 2000
+        })
+        return false;
+      }
+      // if (value.customerName == '') {
+      //   wx.showToast({
+      //     title: '请填写姓名',
+      //     image: '../../resource/img/error.png'
+      //   })
+      // } else if (value.identityNO == '') {
+      //   wx.showToast({
+      //     title: '请填写身份证号',
+      //     image: '../../resource/img/error.png'
+      //   })
+      // } else if (value.address == '') {
+      //   wx.showToast({
+      //     title: '请填写联系地址',
+      //     image: '../../resource/img/error.png'
+      //   })
+      // } else if (value.tel == '') {
+      //   wx.showToast({
+      //     title: '请填写联系电话',
+      //     image: '../../resource/img/error.png'
+      //   })
+      // } else
+      
+      if (value.positiveIdentityUrl.length == '0') {
+        wx.showToast({
+          title: '请选择正面照',
+          image: '../../resource/img/error.png'
+        })
+      } else if (value.negativIdentityUrl.length == '0') {
+        wx.showToast({
+          title: '请选择反面照',
+          image: '../../resource/img/error.png'
+        })
+      } else {
+        delete value.positiveIdentityUrl
+        delete value.negativIdentityUrl
+        that.athentication(value)
+      }
+    }else{
       wx.showToast({
-        title: '请填写姓名',
-        image: '../../resource/img/error.png'
+        title: '请勿重复申请',
       })
-    } else if (value.identityNO == '') {
-      wx.showToast({
-        title: '请填写身份证号',
-        image: '../../resource/img/error.png'
-      })
-    } else if (value.address == '') {
-      wx.showToast({
-        title: '请填写联系地址',
-        image: '../../resource/img/error.png'
-      })
-    } else if (value.tel == '') {
-      wx.showToast({
-        title: '请填写联系电话',
-        image: '../../resource/img/error.png'
-      })
-    } else if (value.positiveIdentityUrl.length == '0') {
-      wx.showToast({
-        title: '请选择正面照',
-        image: '../../resource/img/error.png'
-      })
-    } else if (value.negativIdentityUrl.length == '0') {
-      wx.showToast({
-        title: '请选择反面照',
-        image: '../../resource/img/error.png'
-      })
-    } else {
-      delete value.positiveIdentityUrl
-      delete value.negativIdentityUrl
-      that.athentication(value)
     }
   },
 
@@ -114,6 +158,7 @@ Page({
       if (res.status == 'success') {
         that.saveAuthenticationImage1(res.volunteerId)
         that.saveAuthenticationImage2(res.volunteerId)
+        wx.hideLoading()
         wx.showToast({
           title: '已提交，请耐心等待审核',
         })
@@ -145,6 +190,43 @@ Page({
     }).catch(function (err) {
       console.log(err)
     })
+  },
+
+
+
+  initValidata: function () {
+    const rules = {
+      customerName: {
+        required: true
+      },
+      identityNO: {
+        required: true,
+        idcard: true
+      },
+      address: {
+        required: true
+      },
+      tel: {
+        required: true,
+        tel: true
+      }
+    }
+    const messages = {
+      customerName: {
+        required: '请输入姓名',
+      },
+      identityNO: {
+        required: '请填写身份证号'
+      },
+      address: {
+        required: '请填写地址'
+      },
+      tel: {
+        required: '请填写联系方式',
+      }
+
+    }
+    this.WxValidate = new wxValidate(rules, messages)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

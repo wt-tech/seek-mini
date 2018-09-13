@@ -71,8 +71,7 @@ Page({
 
           }
         })
-      }
-      if (res.authentication.authResult == '等待认证'){
+      }else if (res.authentication.authResult == '等待认证'){
         wx.showModal({
           title: '',
           content: '您的认证正在审核，请您耐心等待',
@@ -88,8 +87,7 @@ Page({
             }
           }
         })
-      }
-      if (res.authentication.authResult == '认证不通过') {
+      }else if (res.authentication.authResult == '认证不通过') {
         wx.showModal({
           title: '',
           content: '您的认证未通过，请前往重新认证',
@@ -148,7 +146,8 @@ Page({
         required:true
       },
       contactTel:{
-        required:true
+        required:true,
+        tel:true
       },
       contactAddress:{
         required:true

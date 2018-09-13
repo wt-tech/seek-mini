@@ -8,6 +8,9 @@ Page({
    */
   data: {
     renzed:'',
+    message:'',
+    phoneCall:'0551--65590880',
+    getvolunteer:''
   },
 
   /**
@@ -15,14 +18,44 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    that.renzheng()
+    var customerId = wx.getStorageSync(constant.customerId)
+    that.renzheng(customerId)
+    that.message(customerId)
+    that.getvolunteer(customerId)
   },
 
-
-
-  renzheng: function () {
+  onShow:function(){
     let that = this
     var customerId = wx.getStorageSync(constant.customerId)
+    that.renzheng(customerId)
+    that.message(customerId)
+    that.getvolunteer(customerId)
+  },
+// 获取是否有新消息
+  message: function (customerId) {
+    let that = this
+    let params ={
+      customerId: customerId
+    }
+  util.getRequest(['message/getmessage',params]).then(function(res){
+    console.log(res)
+    if(!res){
+      that.setData({
+        message : false
+      })
+    }else{
+      that.setData({
+        message: true
+      })
+    }
+  }).catch(function(err){
+    console.log(err)
+  })
+},
+
+// 获取认证状态
+  renzheng: function (customerId) {
+    let that = this
     let params = {
       customerId: customerId
     }
@@ -56,7 +89,35 @@ Page({
     })
   },
 
-
+// 获取志愿者状态
+  getvolunteer: function (customerId){
+    let that = this
+    let params = {
+      customerId: customerId
+    }
+    console.log(params)
+    util.getRequest(['volunteer/getvolunteer', params]).then(function(res){
+    console.log(res)
+      if (res.volunteer){
+        if (res.volunteer.volResult == '等待审核') {
+          that.setData({
+            getvolunteer: res.volunteer.volResult
+          })
+        } else if (res.volunteer.volResult == '审核通过') {
+          that.setData({
+            getvolunteer: res.volunteer.volResult
+          })
+        } else if (res.volunteer.volResult == '审核不通过'){
+          that.setData({
+            getvolunteer: res.volunteer.volResult
+          })
+        }
+      }
+      
+  }).catch(function(err){
+    console.log(err)
+  })
+},
 
 // 认证
   Authentication:function(){
@@ -104,8 +165,20 @@ Page({
       url: '../../pages/volunteer/volunteer',
     })
   },
+// 使用须知
+  Notes:function(){
+    wx.navigateTo({
+      url: '../../pages/know/know',
+    })
+  },
 
-
+// 电话
+  Contact:function(){
+    let phoneCall = this.data.phoneCall
+    wx.makePhoneCall({
+      phoneNumber: phoneCall,
+    })
+  },
 
 
 

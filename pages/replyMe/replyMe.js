@@ -16,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     this.myReply()
+    this.updateMessage()
   },
 
   myReply: function (currentPageNo) {
@@ -43,7 +44,18 @@ Page({
     })
   },
 
-
+// 更新新消息的状态
+  updateMessage:function(){
+    var customerId = wx.getStorageSync(constant.customerId)
+    let params = {
+      customerId: customerId
+    }
+    request.getRequest(['message/updatemessage',params]).then(function(res){
+      console.log(res)
+    }).catch(function(err){
+      console.log(err)
+    })
+  },
 
   onReachBottom: function () {
     let that = this

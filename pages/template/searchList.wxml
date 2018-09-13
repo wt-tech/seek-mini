@@ -1,7 +1,7 @@
 <template name="searchList">
 <view class="List mt20" bindtap='toDetails' data-id="{{id}}">
   <view class="avatarImg">
-    <image  src="{{seekimgs}}"></image>
+    <image  src="{{seekimgs || ''}}"></image>
   </view>
   <view class="Info ml20 mt10">
     <view><text class="clgray">姓名：</text>{{missName?missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{gender}}</text></view>    

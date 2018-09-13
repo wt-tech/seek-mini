@@ -1,6 +1,6 @@
 <!--pages/myReply/myReply.wxml-->
-<view class="allComents mt20" wx:for="{{allComents}}" wx:key="allComents">
-  <view class="content">
+<view class="allComents mt30" wx:for="{{allComents}}" wx:key="allComents" bindtap='todetails' data-id="{{item.seekId}}" >
+  <view class="content"  >
     <view  class="title">原文：</view>
     <view class="coment">{{item.seek.title}}</view>
   </view>

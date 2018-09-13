@@ -27,14 +27,14 @@ swiper{
   /* display: flex;
   justify-content: space-between; */
   position: relative;
-  margin:20rpx 20rpx 0 20rpx;
+  margin:30rpx 20rpx 0 30rpx;
 }
 .details-cont{
-  margin:0 20rpx;
+  margin:0 30rpx;
+  display: flex;
+  justify-content: flex-start
 }
-/* .details .left{
-  width:60%;
-} */
+
 .details .left view,.details-cont{
   /* height:50rpx; */
   line-height: 50rpx;
@@ -55,7 +55,10 @@ swiper{
 .firstText{
   margin-right:10px;
 }
-
+.contText{
+  display: inline-block;
+  width:80%;
+}
 
 /* 底部功能 */
 
@@ -115,9 +118,13 @@ swiper{
 .content{
   width:82%;
 }
-.nickname{
+/* .nickname{
   color:#00AF82;
   width:18%;
+} */
+.name{
+  color:#00AF82;
+  padding-right:15rpx;
 }
 .repply{
   background:#f0f0f0;
@@ -147,10 +154,7 @@ swiper{
   top:0;
   left:0;
 }
-.mark::before{
-  border:1px solid red;
-  border-radius: 50%;
-}
+
 .markcont{
   background:#fff;
   z-index: 1222;
@@ -180,4 +184,18 @@ swiper{
   line-height: 70rpx;
   background:#00af82;
   color:#fff;
+}
+
+.closed{
+  width:55rpx;
+  height:55rpx;
+  position: fixed;
+  bottom:4%;
+  left: 44%;
+  z-index: 1333;
+}
+.closed image{
+  width:100%;
+  height:100%;
+
 }

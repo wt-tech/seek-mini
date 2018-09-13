@@ -1,6 +1,7 @@
 // pages/Authentication/Authentication.js
 import request from '../../utils/request.js'
 import constant from '../../utils/constant.js'
+import wxValidate from '../../utils/wxValidate.js';
 var app = getApp()
 Page({
 
@@ -11,7 +12,7 @@ Page({
     zheng : [],
     fan :[],
     id:'',
-    renzed:''
+    renzed:true
   },
 
   /**
@@ -24,7 +25,10 @@ Page({
       id: customerId
     })
     this.renzheng()
+    this.initValidata()
   },
+
+
 
 
 
@@ -36,26 +40,22 @@ Page({
     }
     request.getRequest(['authentication/getAuthentication', params]).then(function (res) {
       console.log(res)
-      if (res.authentication.authResult == '等待认证') {
-        wx.showModal({
-          title: '',
-          content: '你已经提交过认证，请耐心等待',
-        })
-        that.setData({
-          renzed: false
-        })
+      if (res.authentication){
+        if (res.authentication.authResult == '等待认证') {
+          wx.showModal({
+            title: '',
+            content: '你已经提交过认证，请耐心等待',
+          })
+          that.setData({
+            renzed: false
+          })
+        } else if (res.authentication.authResult == '认证通过') {
+          that.setData({
+            renzed: false
+          })
+        }
       }
       
-      if (res.authentication.authResult == '认证通过') {
-        that.setData({
-          renzed: false
-        })
-      }
-      if (res.authentication.authResult == '认证不通过') {
-        that.setData({
-          renzed: true
-        })
-      }
     }).catch(function (err) {
       console.log(err)
       wx.showToast({
@@ -105,7 +105,17 @@ formSubmit:function(e){
       title: '请勿重复认证',
     })
   }else{
-    
+
+    if (!that.WxValidate.checkForm(e)) {
+      const error = this.WxValidate.errorList[0]
+      wx.showToast({
+        title: `${error.msg} `,
+        image: '../../resource/img/error.png',
+        duration: 2000
+      })
+      return false;
+    }
+    wx.showLoading()
   let value = e.detail.value
   let positiveIdentityUrl = that.data.zheng
   let negativIdentityUrl = that.data.fan
@@ -114,27 +124,43 @@ formSubmit:function(e){
   let customer = {}
   customer.id = that.data.id
   value.customer = customer
-  if (value.customerName == ''){
-    wx.showToast({
-      title: '请填写姓名',
-      image:'../../resource/img/error.png'
-    })
-  }else if(value.identityNO == '') {
-    wx.showToast({
-      title: '请填写身份证号',
-      image: '../../resource/img/error.png'
-    })
-  }else if(value.address == ''){
-    wx.showToast({
-      title: '请填写联系地址',
-      image: '../../resource/img/error.png'
-    })
-  }else if (value.tel == ''){
-    wx.showToast({
-      title: '请填写联系电话',
-      image: '../../resource/img/error.png'
-    })
-  } else if (value.positiveIdentityUrl.length == '0'){
+  // if (value.customerName == ''){
+  //   wx.showToast({
+  //     title: '请填写姓名',
+  //     image:'../../resource/img/error.png'
+  //   })
+  // }else if(value.identityNO == '') {
+  //   wx.showToast({
+  //     title: '请填写身份证号',
+  //     image: '../../resource/img/error.png'
+  //   })
+  // }else if(value.address == ''){
+  //   wx.showToast({
+  //     title: '请填写联系地址',
+  //     image: '../../resource/img/error.png'
+  //   })
+  // }else if (value.tel == ''){
+  //   wx.showToast({
+  //     title: '请填写联系电话',
+  //     image: '../../resource/img/error.png'
+  //   })
+  // } else if (value.positiveIdentityUrl.length == '0'){
+  //   wx.showToast({
+  //     title: '请选择正面照',
+  //     image: '../../resource/img/error.png'
+  //   })
+  // } else if (value.negativIdentityUrl.length == '0'){
+  //   wx.showToast({
+  //     title: '请选择反面照',
+  //     image: '../../resource/img/error.png'
+  //   })
+  // }else {
+  //   delete value.positiveIdentityUrl
+  //   delete value.negativIdentityUrl
+  //   that.athentication(value)
+  // }
+
+    if (value.positiveIdentityUrl.length == '0') {
     wx.showToast({
       title: '请选择正面照',
       image: '../../resource/img/error.png'
@@ -144,10 +170,10 @@ formSubmit:function(e){
       title: '请选择反面照',
       image: '../../resource/img/error.png'
     })
-  }else {
-    delete value.positiveIdentityUrl
-    delete value.negativIdentityUrl
-    that.athentication(value)
+  }else{
+      delete value.positiveIdentityUrl
+      delete value.negativIdentityUrl
+      that.athentication(value)
   }
 
 
@@ -163,6 +189,7 @@ formSubmit:function(e){
       if(res.status == 'success'){
         that.saveAuthenticationImage1(res.authenticationId)
         that.saveAuthenticationImage2(res.authenticationId)
+        wx.hideLoading()
         wx.showToast({
           title: '已提交，请耐心等待审核',
         })
@@ -170,7 +197,7 @@ formSubmit:function(e){
           wx.navigateBack({
             delta:1
           })
-        }, 1500)
+        }, 2000)
       }
     }).catch(function(err){
       console.log(err)
@@ -195,6 +222,43 @@ formSubmit:function(e){
       console.log(err)
     })
   },
+
+
+  initValidata: function () {
+    const rules = {
+      customerName: {
+        required: true
+      },
+      identityNO: {
+        required: true,
+        idcard:true
+      },
+      address:{
+        required:true
+      },
+      tel: {
+        required: true,
+        tel: true
+      }
+    }
+    const messages = {
+      customerName: {
+        required: '请输入姓名',
+      },
+      identityNO: {
+        required: '请填写身份证号'
+      },
+      address:{
+        required:'请填写地址'
+      },
+      tel: {
+        required: '请填写联系方式',
+      }
+
+    }
+    this.WxValidate = new wxValidate(rules, messages)
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

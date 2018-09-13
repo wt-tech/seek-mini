@@ -89,9 +89,12 @@
 
 
 <view wx:if="{{searchList.length != 0}}">
-  <block wx:for="{{searchList}}" wx:key="searchList" >
-    <template is="searchList" data="{{...item}}"  data-index="{{item.index}}"></template>
-  </block>
+  <view class="father">
+    <block wx:for="{{searchList}}" wx:key="searchList" >
+      <template is="searchList" data="{{...item}}"  data-index="{{item.index}}"></template>
+
+    </block>
+  </view>
 </view>
 <view wx:else>
   <view class="container">当前位置暂时没有数据</view>

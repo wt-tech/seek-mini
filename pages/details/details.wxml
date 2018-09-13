@@ -46,19 +46,19 @@
     </view>
 
       <view class="details-cont">
-        <text class="clgray">相貌特征：</text><text>{{content.feature}}</text>
+        <view class="clgray firstText">相貌特征：</view><view class="contText">{{content.feature}}</view>
       </view>
       <view class="details-cont">
-        <text class="clgray">失踪经过：</text><text>{{content.plot}}</text>
+        <view class="clgray firstText">失踪经过：</view><view  class="contText">{{content.plot}}</view>
       </view>
       <view class="details-cont">
-        <text class="clgray">失踪原因：</text><text>{{content.seekSubtype}}</text>
+        <text class="clgray firstText">失踪原因：</text><text>{{content.seekSubtype}}</text>
       </view>
       <view class="details-cont" wx:if="{{content.relationship}}">
-        <text class="clgray">与失踪人关系：</text><text>{{content.relationship}}</text>
+        <text class="clgray firstText">与失踪人关系：</text><text>{{content.relationship}}</text>
       </view>
       <view class="details-cont" wx:if="{{content.otherInformation}}">
-        <text class="clgray">其它信息：</text><text>{{content.otherInformation}}</text>
+        <text class="clgray firstText">其它信息：</text><text>{{content.otherInformation}}</text>
       </view>
 
   </view>
@@ -69,7 +69,7 @@
 
     <view  wx:for="{{comment}}" wx:key="comment" wx:for-item="coment">
       <view class="comment-list">
-        <view class="nickname">
+        <view class="name">
           {{coment.customer.nickname}}:
         </view>
         <view class="content">
@@ -83,7 +83,7 @@
           <view wx:if="{{coment.coment}}">
             <view class="repply" wx:for="{{coment.coment}}" wx:key="repply">
               <view class="repply-list">
-                <view class="nickname">{{item.customer.nickname}}:</view>
+                <view class="nickname"><text class="name">{{item.customer.replyname}} </text>回复 <text  class="name">{{item.customer.nickname}}:</text></view>
                 <view >{{item.content}}</view>
                 <view class="reply-btn" bindtap="reply" data-id="{{item.id}}" data-comentid="{{coment.id}}">
                   <image src="../../resource/img/reply2.png"></image>
@@ -116,7 +116,7 @@
       <image src="../../resource/img/apply.png"></image>
       <text>提供信息</text>
     </view>
-    <view bindtap='share'>
+    <view bindtap='shareImg'>
       <image src="../../resource/img/share.png"></image>
       <text sytle="line-height:70rpx;height:70rpx;display:inline-block">转发扩散</text>
     </view>
@@ -128,6 +128,10 @@
 <view wx:if='{{markHide}}' class='mark'>
 </view>
 
+
+  <view  wx:if='{{markHide}}' class="closed" bindtap='closed'>
+    <image src="../../resource/img/error.png"></image>
+  </view>
 <view  wx:if='{{markHide}}' class="markcont">
   <image mode='aspectFill' src="{{filePath}}"></image>
   <view class="btn">
