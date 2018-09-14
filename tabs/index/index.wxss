@@ -99,6 +99,6 @@ button{
   font-size:22rpx;
 }
 
-.father .List:nth-child(odd){
+/* .father .List:nth-child(odd){
   background:#f8fdfc;
-}
+} */
