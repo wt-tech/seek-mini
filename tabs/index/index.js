@@ -422,9 +422,9 @@ Page({
       console.log(success);
       wx.hideLoading()
       //1.展示数据
-      page.maintainSeekList(false, success.seeks);
+      page.maintainSeekList(false, success.Seeks || success.seeks);
       //2.维护当前页数,noMoreData
-      page.maintainHasNoMoreData(success.pageSize > success.seeks.length);
+      page.maintainHasNoMoreData(success.pageSize > success.Seeks.length || success.seeks.length);
     }).catch(function (err) {
       console.log(err);
     });
