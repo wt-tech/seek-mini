@@ -417,9 +417,9 @@ Page({
       console.log(success);
       wx.hideLoading()
       //1.展示数据
-      page.maintainSeekList(false, success.Seeks);
+      page.maintainSeekList(false, success.seeks);
       //2.维护当前页数,noMoreData
-      page.maintainHasNoMoreData(success.pageSize > success.Seeks.length);
+      page.maintainHasNoMoreData(success.pageSize > success.seeks.length);
     }).catch(function (err) {
       console.log(err);
     });
