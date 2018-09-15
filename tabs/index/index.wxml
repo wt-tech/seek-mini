@@ -69,7 +69,7 @@
 <swiper autoplay='true' indicator-dots='true' interval="3000" duration="500" circular="true" indicator-active-color='#00af82'>
   <block wx:for="{{imgUrls}}" wx:key="banner">
     <swiper-item>
-        <image  src="{{item.url}}" width="100%" height="150"></image> 
+        <image bindtap='turnToDetailPage' data-id='{{item.id}}'  src="{{item.url}}" width="100%" height="150"></image> 
     </swiper-item>
   </block>
 </swiper>

@@ -1,0 +1,2 @@
+<!--pages/bannerdetail/bannerdetail.wxml-->
+<web-view src="{{src}}"></web-view>

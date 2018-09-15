@@ -1,0 +1,4 @@
+/* pages/bannerdetail/bannerdetail.wxss */
+web-view{
+  font-size:80rpx;
+}

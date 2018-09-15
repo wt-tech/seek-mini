@@ -2,6 +2,7 @@
   "pages":[
     "tabs/index/index",
     "pages/share/share",
+    "pages/bannerdetail/bannerdetail",
     "pages/authorize/authorize",
     "tabs/release/release",
     "pages/searchPeople/searchPeople",

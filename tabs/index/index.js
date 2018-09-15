@@ -59,7 +59,12 @@ Page({
     })
   },
 
-
+  turnToDetailPage : function(e){
+    let id = e.target.dataset.id;
+    wx.navigateTo({
+      url: '/pages/bannerdetail/bannerdetail?bannerId='+id
+    });
+  },
 
   onPullDownRefresh: function () {
     let page = this;
