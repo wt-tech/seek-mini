@@ -9,7 +9,7 @@
   box-sizing: border-box;
 } 
 page{
-  font-size:22rpx;
+  font-size:24rpx;
 }
 
 .mt10{

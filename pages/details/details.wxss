@@ -12,7 +12,7 @@ canvas{
   padding:20rpx 0;
 }
 .title{
-  font-size:24rpx;
+  font-size:26rpx;
   width:100%;
   text-align: center;
 }
@@ -72,7 +72,7 @@ swiper{
   border-top:2rpx solid #ccc;
   height:70rpx;
   line-height: 70rpx;
-  font-size:24rpx;
+  font-size:26rpx;
   width:100%;
 }
 .Clue image{
@@ -102,7 +102,7 @@ swiper{
 .comment{
   background: #fff;
   /* padding:20rpx; */
-  font-size:22rpx;
+  font-size:24rpx;
   margin-bottom:200rpx;
 }
 .comment-list,.repply-list{
@@ -179,7 +179,7 @@ swiper{
   margin-top:80rpx;
 }
 .btn button{
-  font-size:22rpx;
+  font-size:24rpx;
   height:70rpx;
   line-height: 70rpx;
   background:#00af82;

@@ -96,7 +96,7 @@ button{
   height: 55rpx;
   line-height: 55rpx;
   width:90%;
-  font-size:22rpx;
+  font-size:24rpx;
 }
 
 /* .father .List:nth-child(odd){
