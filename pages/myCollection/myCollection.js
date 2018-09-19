@@ -33,6 +33,13 @@ Page({
     request.getRequest(['mark/listmark', params]).then(function(res){
       console.log(res)
       let searchList = that.data.searchList.concat(res.marks)
+      for (let tmp of searchList) {
+        if (tmp.seek.seekimgs) {
+          tmp.seek.seekimgs = tmp.seek.seekimgs.split(',')[0]
+        }
+        tmp.seek.birthdate = tmp.seek.birthdate.split(' ')[0]
+        tmp.seek.missDate = tmp.seek.missDate.split(' ')[0]
+      }
       that.setData({
         searchList : searchList
       })

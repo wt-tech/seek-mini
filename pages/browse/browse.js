@@ -31,12 +31,22 @@ Page({
       customerId: id,
       currentPageNo: page
     }
-    request.getRequest(['browsehistory/listbrowsehistory', params]).then(function(res){
+    request.getRequest(['browsehistory/listbrowsehistory', params]).then(function (res) {
+      console.log(res)
       let searchList = that.data.searchList.concat(res.browsehistorys)
+      
+        for (let tmp of searchList) {
+          if (tmp.seek.seekimgs) {
+            tmp.seek.seekimgs = tmp.seek.seekimgs.split(',')[0]
+          }
+
+          tmp.seek.birthdate = tmp.seek.birthdate.split(' ')[0]
+          tmp.seek.missDate = tmp.seek.missDate.split(' ')[0]
+        }
+      
       that.setData({
         searchList: searchList
       })
-      console.log(res)
       if (res.browsehistorys.length == 0){
         wx.showToast({
           title: '已加载全部...',

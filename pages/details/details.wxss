@@ -58,7 +58,7 @@ swiper{
 .contText{
   display: inline-block;
   width:80%;
-}
+  }
 
 /* 底部功能 */
 
@@ -116,7 +116,7 @@ swiper{
   border-bottom: 1rpx solid #ddd;
 }
 .content{
-  width:82%;
+  width:100%;
 }
 /* .nickname{
   color:#00AF82;
@@ -140,7 +140,7 @@ swiper{
   height:30rpx;
   padding-right:10rpx;
   vertical-align:middle;
-  margin-left:80%;
+  margin-left:85%;
 }
 
 

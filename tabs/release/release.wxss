@@ -3,17 +3,12 @@ page{
   background: #f0f0f0;
 }
 
-.tips{
-  width:80%;
-  margin: 0 auto;
-  margin-top:50rpx;
-}
 
-.choose{
+/* .choose{
   margin-top:400rpx;
   display: flex;
   justify-content:space-around;
-}
+} */
 .shearchPeople,.shearchHome{
   border:2rpx solid #ccc;
   border-radius:15rpx;
@@ -21,11 +16,43 @@ page{
   height: 180rpx;
   background: #fff;
   text-align: center;
+  
 }
 .shearchPeople image,.shearchHome image{
-  width:50%;
-  height: 50%;
-  /* margin-left:25%; */
+  width:100rpx;
+  height: 100rpx;
   margin-top:15%;
   margin-bottom:6%;
+}
+
+
+
+
+.shearchPeople{
+  position:fixed;
+  top:10%;
+  left:10%;
+  width:80%;
+  height:25%;
+}
+.shearchHome{
+  position:fixed;
+  top:50%;
+  width:80%;
+  height:25%;
+  left:10%;
+}
+.top{
+  position:fixed;
+  width:100%;
+  background:red;
+  height: 50%;
+}
+.bottom{
+  background:green;
+}
+
+.chooseType{
+  display: flex;
+  justify-content: space-around;
 }

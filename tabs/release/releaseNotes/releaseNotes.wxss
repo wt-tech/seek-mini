@@ -1,0 +1,14 @@
+/* tabs/release/releaseNotes/releaseNotes.wxss */
+page{
+  background:#f0f0f0;
+}
+.tips{
+  width:80%;
+  margin: 0 auto;
+  margin-top:50rpx;
+}
+button{
+  width:90%;
+  margin-top:60%;
+  font-size:24rpx;
+}

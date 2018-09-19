@@ -1,5 +1,8 @@
 /* pages/searchPeople/searchPeople.wxss */
-
+.must{
+  color:red;
+  margin-left:-15rpx;
+}
 .title{
   color:red;
   padding-left:15rpx;

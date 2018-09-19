@@ -32,6 +32,14 @@ Page({
       if(res.status == 'success'){
         let searchList = that.data.searchList.concat(res.seeks)
         console.log(searchList)
+        for (let tmp of searchList) {
+          if (tmp.seekimgs) {
+            tmp.seekimgs = tmp.seekimgs.split(',')[0]
+          }
+
+          tmp.birthdate = tmp.birthdate.split(' ')[0]
+          tmp.missDate = tmp.missDate.split(' ')[0]
+        }
         that.setData({
           searchList: searchList
         })

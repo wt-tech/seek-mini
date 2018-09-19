@@ -92,13 +92,38 @@ radio,checkbox{
 .picker{
   color:#555;
 }
-button{
+.cancel{
+   height: 55rpx;
+  line-height: 55rpx;
+  width:45%;
+  font-size:24rpx;
+}
+.button{
   height: 55rpx;
   line-height: 55rpx;
-  width:90%;
+  width:45%;
   font-size:24rpx;
 }
 
 /* .father .List:nth-child(odd){
-  background:#f8fdfc;
+  background:#dfe7e59f;
 } */
+
+.cutTab{
+  display: flex;
+  justify-content: space-around;
+  margin:20rpx;
+}
+.tab{
+  width:100%;
+  text-align: center;
+  border:1rpx solid #00af82;
+  font-size:24rpx;
+  height:45rpx;
+  line-height: 45rpx;
+  padding-left:21%;
+}
+.active{
+  background:#00af82;
+  color:#fff;
+}

@@ -1,0 +1,38 @@
+<!--pages/volunteer/Notes.wxml-->
+<view class="title">
+  <text>志愿者须知
+  </text>
+</view>
+<view class="list">
+<text>1.遵守国家法律法规及志愿者组织的相关规定。
+
+</text>
+<text>2.每名注册志愿者每年参加志愿服务时间累计不少于20小时。
+
+</text>
+<text>3.履行志愿服务承诺，传播志愿服务理念。
+
+</text>
+<text>4.自觉维护团组织、志愿者组织和志愿者的形象。
+
+</text>
+<text>5.自觉维护服务对象的合法权益。
+
+</text>
+<text>6.自觉抵制任何以志愿者身份从事的赢利活动或其他违背社会公德的活动（行为）。
+
+</text>
+<text>7.履行相关法律法规及接受志愿服务活动的组织者的指导和安排，履行志愿服务承诺，完成相应的任务。
+
+</text>
+<text>8.尊重志愿服务接受者的意愿和人格、隐私等权利。
+
+</text>
+<text>9.向志愿服务活动的组织者提出意见和建议。
+
+</text>
+
+<text>10.根据自己的意愿和时间、能力等条件，选择参加志愿服务活动。</text>
+
+<button type="primary" bindtap='volunteer'>我已阅读，下一步</button>
+</view>
