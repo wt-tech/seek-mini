@@ -2,7 +2,7 @@
  * 专门用于发送GET,POST,PUT,DELETE,FILEUPLOAD请求的文件
  */
 
-// const baseURL = "http://www.want-tech.com:8080/seek01/"
+// const baseURL = "https://www.qghls.com/seek01/"
 const baseURL = "http://192.168.0.177:8888/seek01/"
 // const baseURL = "http://192.168.0.102:8080/seek01/"
 
