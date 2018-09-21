@@ -20,8 +20,12 @@
     <view class="mt10 ml30">
       <text decode='true'>类&emsp;&emsp;别：</text>
       <radio-group name="seekType">
-        <radio value='寻人' /> 寻人
-        <radio value="寻家" /> 寻家
+        <label>
+          <radio value='寻人' /> 寻人
+        </label>
+        <label>
+          <radio value="寻亲" /> 寻家
+        </label>
       </radio-group>
     </view>
     <view  class="mt10 ml30">

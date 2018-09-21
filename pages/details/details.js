@@ -157,6 +157,9 @@ Page({
     }else{
       ctx.drawImage('../../resource/img/searchLogo3.jpg', 0, 0, 360, 360)
     }
+    // 填充小程序码
+    ctx.drawImage('../../resource/img/hbxr.jpg', 10, 505, 90, 90)
+
 
     // 填充文本
     ctx.setFontSize(14)
@@ -166,6 +169,7 @@ Page({
     ctx.fillText('失踪地点：' + missadd, 5, 430)
     ctx.fillText('相貌特征：', 5, 450)
 
+    ctx.fillText('扫码关注，帮助更多人与家人团聚', 105, 550)
 
 
     var text = feature    //这是要绘制的文本
@@ -216,9 +220,9 @@ Page({
         x: 0,
         y: 0,
         width: 500,
-        height: 750,
+        height: 800,
         destWidth: 1500,
-        destHeight: 2250,
+        destHeight: 2400,
         canvasId: 'myCanvas',
         success: function (res) {
           that.setData({

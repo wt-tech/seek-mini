@@ -75,6 +75,45 @@ Page({
       url: '../details/details?id=' + id,
     })
   },
+
+  cased:function(e){
+    let that = this
+    let id = e.target.dataset.id
+    wx.showModal({
+      title: '您确定结案么',
+      content: '',
+      success:function(res){
+        if (res.confirm){
+          that.casebutton(id)
+        }
+      }
+    })
+  },
+
+  casebutton:function(id){
+    let that = this
+    let params = {
+      id : id,
+      seekStatus: '已结案'
+    }
+    request.postRequest(['seek/updateseek',params]).then(function(res){
+      console.log(res)
+      if(res.status == 'success'){
+        that.setData({
+          searchList :[],
+          currentPageNo:1
+        })
+        // let pages = that.data.currentPageNo
+        that.listseekbycustomerid();
+        wx.showToast({
+          title: '恭喜您家人团聚',
+          duration:2000
+        })
+      }
+    }).catch(function(err){
+      console.log(err)
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

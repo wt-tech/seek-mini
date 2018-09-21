@@ -12,11 +12,15 @@
       <view><text class="clgray">详细地点：</text>{{missDetailPlace?missDetailPlace:'不详'}}</view>
     </view>
   </view>
+<view class="case" wx:if="{{seekStatus == '已结案'}}">
+   <image src="../../resource/img/case4.png"></image>
+</view>
 
 
 <view wx:if="{{seekType=='寻人'}}" class="tag">
   <image src="../../resource/img/tag-people.png"></image>
 </view>
+
 <view wx:else class="tag">
    <image src="../../resource/img/tag-home.png"></image>
 </view>

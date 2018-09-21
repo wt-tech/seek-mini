@@ -159,15 +159,15 @@ swiper{
   background:#fff;
   z-index: 1222;
   width:80%;
-  height: 80%;
+  height: 85%;
   position: fixed;
-  top:10%;
+  top:5%;
   left: 10%;
   margin:0 auto;
 }
 .markcont image{
   width:100%;
-  height: 80%;
+  height: 92%;
 }
 
 
@@ -176,7 +176,7 @@ swiper{
   margin:0 auto;
   display: flex;
   justify-content: space-around;
-  margin-top:80rpx;
+  /* margin-top:40rpx; */
 }
 .btn button{
   font-size:24rpx;
@@ -190,7 +190,7 @@ swiper{
   width:55rpx;
   height:55rpx;
   position: fixed;
-  bottom:4%;
+  bottom:5%;
   left: 44%;
   z-index: 1333;
 }

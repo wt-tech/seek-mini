@@ -36,3 +36,17 @@
   width:100rpx;
   height:100rpx;
 }
+.case{
+  position:absolute;
+  top:-8rpx;
+  left:0;
+  /* opacity:0.8 */
+}
+/* .case image{
+  width:150rpx;
+  height:32rpx;
+} */
+.case image{
+  width:100rpx;
+  height:89rpx;
+}
