@@ -1,7 +1,7 @@
 <!--pages/matching/matching.wxml-->
 <import src="../template/searchList.wxml" />
-<view class="has " wx:if="{{searchList.length != 0}}">您的信息已经发布，数据库中与您的信息匹配的内容如下：</view>
-<view class="container" wx:else>数据库中暂时没有匹配的信息，请您继续关注平台信息。
+<view class="has " wx:if="{{searchList.length != 0}}">您的信息已经发布，根据您所输入的关键词，系统自动为您筛选出条件相似的信息，请您仔细核对：</view>
+<view class="container" wx:else>数据库中暂时没有匹配的信息，根据您所输入的关键词，系统暂未发现条件相似的信息，请持续关注本平台。
   <button type="primary" bindtap='btn'>确定</button>
 </view>
 

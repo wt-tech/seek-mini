@@ -1,19 +1,40 @@
 <!--pages/release/release.wxml-->
-<view class="tips">
-  <view class="mt10">1、必须保证所提供信息的真实性，同时内容要精准、完整，不要引出歧义造成陈述失误。并且没有任何人误解或者虚假的陈述。 </view>
-  <view class="mt10">2、登记者所登记内容具有法律约束力，对其带来的后果承担法律责任。</view>
-  <view class="mt10">3、保证所登记的信息资料不违反中华人民共和国法律法规，也不构成对任何第三者任何形式的侵权</view>
-</view>
 
 
+<!-- 
 <view class="choose">
-  <view class='shearchPeople' bindtap='searchPeople'>
+  <view class='shearchPeople tabBar' bindtap='searchPeople'>
     <image src="../../resource/img/people.png"></image>
     <view>发布寻人</view>
   </view>
   
-  <view class='shearchHome' bindtap='searchHome'>
+  <view class='shearchHome tabBar' bindtap='searchHome'>
     <image src="../../resource/img/searchHome.png"></image>
     <view>发布寻家</view>
   </view>
+</view> -->
+
+
+
+<view class="chooseType">
+  <view class='shearchPeople tabBar' bindtap='searchPeople'>
+    <image src="../../resource/img/people.png"></image>
+    <view>发布寻人</view>
+  </view>
+
 </view>
+
+
+  <view class='shearchHome tabBar' bindtap='searchHome'>
+    <image src="../../resource/img/searchHome.png"></image>
+    <view>发布寻家</view>
+  </view>
+
+<!-- 
+  <view class="top">
+  sdssdf
+  </view>
+
+  <view class="bottom">
+  
+  </view> -->

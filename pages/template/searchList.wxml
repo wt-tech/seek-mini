@@ -1,14 +1,28 @@
 <template name="searchList">
-<view class="List mt20" bindtap='toDetails' data-id="{{id}}">
-  <view class="avatarImg">
-    <image  src="{{seekimgs || ''}}"></image>
+<view class="conlist mt20" bindtap='toDetails' data-id="{{id}}">
+  <view class="List">
+    <view class="avatarImg" >
+      <image wx:if="{{seekimgs}}" src="{{seekimgs}}"></image>
+      <image wx:else src="../../resource/img/searchLogo3.jpg"></image>
+    </view>
+    <view class="Info ml20 mt10">
+      <view><text class="clgray">姓名：</text>{{missName?missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{gender}}</text></view>    
+      <view><text class="clgray">出生日期：</text>{{birthdate?birthdate:'不详'}}</view>
+      <view><text class="clgray">失踪日期：</text>{{missDate?missDate:'不详'}}</view>
+      <view><text class="clgray">详细地点：</text>{{missDetailPlace?missDetailPlace:'不详'}}</view>
+    </view>
   </view>
-  <view class="Info ml20 mt10">
-    <view><text class="clgray">姓名：</text>{{missName?missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{gender}}</text></view>    
-    <view><text class="clgray">出生日期：</text>{{birthdate?birthdate:'不详'}}</view>
-    <view><text class="clgray">失踪日期：</text>{{missDate?missDate:'不详'}}</view>
-    <view><text class="clgray">详细地点：</text>{{missDetailPlace?missDetailPlace:'不详'}}</view>
-  </view>
+<view class="case" wx:if="{{seekStatus == '已结案'}}">
+   <image src="../../resource/img/case4.png"></image>
+</view>
 
+
+<view wx:if="{{seekType=='寻人'}}" class="tag">
+  <image src="../../resource/img/tag-people.png"></image>
+</view>
+
+<view wx:else class="tag">
+   <image src="../../resource/img/tag-home.png"></image>
+</view>
 </view>
 </template>

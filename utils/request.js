@@ -2,9 +2,7 @@
  * 专门用于发送GET,POST,PUT,DELETE,FILEUPLOAD请求的文件
  */
 
-// const baseURL = "https://www.qghls.com/seek01/"
-const baseURL = "http://192.168.0.177:8888/seek01/"
-// const baseURL = "http://192.168.0.102:8080/seek01/"
+const baseURL = "https://www.qghls.com/seek/"
 
 /*
 params是一个对象,该对象的每一个属性均需要传递到后台,

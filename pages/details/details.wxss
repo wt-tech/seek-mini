@@ -12,7 +12,7 @@ canvas{
   padding:20rpx 0;
 }
 .title{
-  font-size:24rpx;
+  font-size:26rpx;
   width:100%;
   text-align: center;
 }
@@ -58,7 +58,7 @@ swiper{
 .contText{
   display: inline-block;
   width:80%;
-}
+  }
 
 /* 底部功能 */
 
@@ -72,7 +72,7 @@ swiper{
   border-top:2rpx solid #ccc;
   height:70rpx;
   line-height: 70rpx;
-  font-size:24rpx;
+  font-size:26rpx;
   width:100%;
 }
 .Clue image{
@@ -102,7 +102,7 @@ swiper{
 .comment{
   background: #fff;
   /* padding:20rpx; */
-  font-size:22rpx;
+  font-size:24rpx;
   margin-bottom:200rpx;
 }
 .comment-list,.repply-list{
@@ -116,7 +116,7 @@ swiper{
   border-bottom: 1rpx solid #ddd;
 }
 .content{
-  width:82%;
+  width:100%;
 }
 /* .nickname{
   color:#00AF82;
@@ -140,7 +140,7 @@ swiper{
   height:30rpx;
   padding-right:10rpx;
   vertical-align:middle;
-  margin-left:80%;
+  margin-left:85%;
 }
 
 
@@ -159,15 +159,15 @@ swiper{
   background:#fff;
   z-index: 1222;
   width:80%;
-  height: 80%;
+  height: 85%;
   position: fixed;
-  top:10%;
+  top:5%;
   left: 10%;
   margin:0 auto;
 }
 .markcont image{
   width:100%;
-  height: 80%;
+  height: 92%;
 }
 
 
@@ -176,10 +176,10 @@ swiper{
   margin:0 auto;
   display: flex;
   justify-content: space-around;
-  margin-top:80rpx;
+  /* margin-top:40rpx; */
 }
 .btn button{
-  font-size:22rpx;
+  font-size:24rpx;
   height:70rpx;
   line-height: 70rpx;
   background:#00af82;
@@ -190,7 +190,7 @@ swiper{
   width:55rpx;
   height:55rpx;
   position: fixed;
-  bottom:4%;
+  bottom:5%;
   left: 44%;
   z-index: 1333;
 }

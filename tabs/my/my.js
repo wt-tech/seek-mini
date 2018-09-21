@@ -24,13 +24,7 @@ Page({
     that.getvolunteer(customerId)
   },
 
-  onShow:function(){
-    let that = this
-    var customerId = wx.getStorageSync(constant.customerId)
-    that.renzheng(customerId)
-    that.message(customerId)
-    that.getvolunteer(customerId)
-  },
+
 // 获取是否有新消息
   message: function (customerId) {
     let that = this
@@ -162,7 +156,7 @@ Page({
 // 志愿者
   volunteer:function(){
     wx.navigateTo({
-      url: '../../pages/volunteer/volunteer',
+      url: '../../pages/volunteer/Notes',
     })
   },
 // 使用须知
@@ -195,7 +189,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+      let that = this
+      var customerId = wx.getStorageSync(constant.customerId)
+      that.renzheng(customerId)
+      that.message(customerId)
+      that.getvolunteer(customerId)
   },
 
   /**

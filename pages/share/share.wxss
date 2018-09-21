@@ -18,7 +18,7 @@
   margin-top:80rpx;
 }
 .btn button{
-  font-size:22rpx;
+  font-size:24rpx;
   height:70rpx;
   line-height: 70rpx;
   background:#00af82;

@@ -20,8 +20,12 @@
     <view class="mt10 ml30">
       <text decode='true'>类&emsp;&emsp;别：</text>
       <radio-group name="seekType">
-        <radio value='寻人' /> 寻人
-        <radio value="寻家" /> 寻家
+        <label>
+          <radio value='寻人' /> 寻人
+        </label>
+        <label>
+          <radio value="寻亲" /> 寻家
+        </label>
       </radio-group>
     </view>
     <view  class="mt10 ml30">
@@ -54,7 +58,8 @@
       </checkbox-group>
     </view>
     <view class="mt10">
-      <button form-type='submit' type="primary">
+      <button class="cancel" bindtap="cancel">取消</button>
+      <button class="button" form-type='submit' type="primary">
         确定
       </button>
     </view>
@@ -85,6 +90,25 @@
 
 
 
+
+<!-- <view class="cutTab mt20">
+  <view class="searchPeople tab {{cutTab?'active':'default'}}" bindtap='cutTab'>寻人</view>
+  <view class="searchHome tab {{cutTab2?'active':'default'}}"  bindtap='cutTab2'>寻家</view>
+</view> -->
+
+<!-- <view wx:if="{{cutTab?cutTab2}}">
+  <view wx:if="{{searchPeople.length != 0}}">
+    <view class="father">
+      <block wx:for="{{searchPeople}}" wx:key="searchPeople" >
+        <template is="searchList" data="{{...item}}"  data-index="{{item.index}}"></template>
+
+      </block>
+    </view>
+  </view>
+  <view wx:else>
+    <view class="container">当前位置暂时没有数据</view>
+  </view>
+</view> -->
 
 
 

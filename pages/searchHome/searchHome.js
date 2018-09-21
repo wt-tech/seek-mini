@@ -33,7 +33,7 @@ Page({
   //生命周期函数--监听页面加载   
   onLoad: function (options) {
     let that = this
-    that.renzheng()
+    // that.renzheng()
     that.autoLocate();
     let time = util.formatTime(new Date())
     let getRandomString = random.getRandomString(5, false)
@@ -256,7 +256,7 @@ Page({
       return false;
     }
     wx.showLoading({
-      title: '正在提交',
+      title: '正在提交数据',
     })
     delete value.province
     let address = {}
@@ -289,6 +289,12 @@ Page({
     let that = this
     util.postRequestWithJSONSchema(['seek/saveseek', e]).then(function (res) {
       console.log(res)
+      if (res.message == "请勿重复发布信息." && res.status == 'fail') {
+        wx.hideLoading();
+        wx.showToast({
+          title: "请勿重复发布信息",
+        })
+      }
       if (res.status == 'success') {
         let imgPaths = that.data.touxiang
         let seekId = res.seeksId
@@ -297,6 +303,7 @@ Page({
           for (let imgPath of imgPaths) {
             util.fileUpload(['seek/saveseekImg', imgPath, 'seekImg', { seekId: seekId }]).then(function (res) {
               console.log(res)
+              wx.hideLoading()
               if (res.status == 'success') {
                 i++
                 console.log(i, imgPaths.length)
@@ -304,10 +311,12 @@ Page({
                   wx.showToast({
                     title: '上传成功',
                   })
-                  wx.hideLoading()
-
+                  let timer = setTimeout(function(){
+                    that.listsimilarseek(e)
+                    clearTimeout(timer)
+                  },1500)
                   // 
-                  that.listsimilarseek(e)
+                  
                 }
 
               }
@@ -320,9 +329,16 @@ Page({
             })
           }
         } else {
+          wx.hideLoading()
           that.listsimilarseek(e)
         }
 
+      }
+      if (res.message == "请勿重复发布信息") {
+        wx.hideLoading();
+        wx.showToast({
+          title: "请勿重复发布信息",
+        })
       }
 
 

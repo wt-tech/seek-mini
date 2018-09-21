@@ -15,7 +15,7 @@
     发布前认证
     <view style='float:right'>
      <text style="color:red" wx:if="{{renzed == 'fail'}}">未认证</text>
-     <text style="color:red" wx:elif="{{renzed == '等待认证'}}">已提交，等待审核</text>
+     <text style="color:red" wx:elif="{{renzed == '等待认证'}}">已提交，请等待审核</text>
      <text style="color:red" wx:elif="{{renzed == '认证不通过'}}">认证未通过，请重新认证</text>
      <text style="color:green" wx:else="{{renzed == '认证通过'}}">认证已通过</text>
     
@@ -53,15 +53,18 @@
     <view style='float:right'>
       <text style="color:red" wx:if="{{getvolunteer == '等待审核'}}">已提交，待审核</text>
       <text style="color:green" wx:elif="{{getvolunteer == '审核通过'}}">审核已通过</text>
-      <text style="color:green" wx:elif="{{getvolunteer == '审核不通过'}}">审核未通过，重新申请</text>
+      <text style="color:red" wx:elif="{{getvolunteer == '审核不通过'}}">审核未通过，请重新申请</text>
       <text wx:else> 〉</text>
     </view>
   </view>
 </view>
 
 <view class="mt30">
-  <view class="list-cont border-bottom" bindtap="Notes">
+  <view class="list-cont border-bottom" bindtap="Notes" style="color:blue">
+    <!-- 〈  -->
     平台须知
+     <!-- 〉 -->
+    <!-- " 平台须知 " -->
   </view>
   <view class="list-cont " bindtap="Contact">
     联系我们<text style="padding-left:50rpx;">{{phoneCall}}</text>

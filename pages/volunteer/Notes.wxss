@@ -1,0 +1,16 @@
+/* pages/volunteer/Notes.wxss */
+page{
+  background:#f0f0f0;
+}
+.title{
+  text-align: center;
+  width:100%;
+  font-size:28rpx;
+}
+.list{
+  margin:20rpx;
+}
+button{
+  font-size:24rpx;
+  margin-top:280rpx;
+}

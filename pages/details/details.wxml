@@ -10,14 +10,18 @@
         <view class="clgray">
           <text decode='true' class="firstText">编&emsp;&emsp;号：</text>{{content.sequence}}
         </view>
+        <swiper autoplay='true' indicator-dots='true' interval="3000" duration="500" circular="true" indicator-active-color='#00af82' >
 
-      <swiper  autoplay='true' indicator-dots='true' interval="3000" duration="500" circular="true" indicator-active-color='#00af82' >
-        <block wx:for="{{imgUrls}}" wx:key="banner" >
-          <swiper-item>
-              <image mode="aspectFill" data-index="{{index}}" data-src="{{imgUrls}}" src="{{item}}" width="100%" height="150"  bindtap='previewImg'></image> 
-          </swiper-item>
-        </block>
-      </swiper>
+            <block wx:for="{{imgUrls}}" wx:key="banner" >
+              <swiper-item>
+                  <image mode="aspectFill" data-index="{{index}}" data-src="{{imgUrls}}" src="{{item}}" width="100%" height="150"  bindtap='previewImg'></image> 
+                  
+              </swiper-item>
+            </block>
+
+        </swiper>
+
+
 
 
         <view>
@@ -130,7 +134,7 @@
 
 
   <view  wx:if='{{markHide}}' class="closed" bindtap='closed'>
-    <image src="../../resource/img/error.png"></image>
+    <image src="../../resource/img/error01.png"></image>
   </view>
 <view  wx:if='{{markHide}}' class="markcont">
   <image mode='aspectFill' src="{{filePath}}"></image>

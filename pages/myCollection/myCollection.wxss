@@ -4,3 +4,12 @@
 page{
   background:#f0f0f0
 }
+.tag{
+  position:absolute;
+  top:0;
+  right:0;
+}
+.tag image{
+  width:100rpx;
+  height:100rpx;
+}

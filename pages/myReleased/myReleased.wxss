@@ -3,3 +3,9 @@
 page{
   background:#f0f0f0;
 }
+button{
+  height: 60rpx;
+  font-size:24rpx;
+  width:95%;
+  margin-top:-10rpx;
+}

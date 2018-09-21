@@ -2,11 +2,47 @@
 <import src="../template/searchList.wxml" />
 
 
-<view wx:if="{{searchList.length != 0}}">
+
+<block wx:for="{{searchList}}" wx:key="searchList" >
+  <view class="conlist mt20" bindtap='toDetails' data-id="{{item.id}}">
+    <view class="List">
+      <view class="avatarImg" >
+        <image wx:if="{{item.seekimgs}}" src="{{item.seekimgs}}"></image>
+        <image wx:else src="../../resource/img/searchLogo3.jpg"></image>
+      </view>
+      <view class="Info ml20 mt10">
+        <view><text class="clgray">姓名：</text>{{item.missName?item.missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{item.gender}}</text></view>    
+        <view><text class="clgray">出生日期：</text>{{item.birthdate?item.birthdate:'不详'}}</view>
+        <view><text class="clgray">失踪日期：</text>{{item.missDate?item.missDate:'不详'}}</view>
+        <view><text class="clgray">详细地点：</text>{{item.missDetailPlace?item.missDetailPlace:'不详'}}</view>
+      </view>
+    </view>
+  <view class="case" wx:if="{{item.seekStatus == '已结案'}}">
+    <image src="../../resource/img/case4.png"></image>
+  </view>
+
+
+  <view wx:if="{{item.seekType=='寻人'}}" class="tag">
+    <image src="../../resource/img/tag-people.png"></image>
+  </view>
+
+  <view wx:else class="tag">
+    <image src="../../resource/img/tag-home.png"></image>
+  </view>
+  </view>
+  <button disabled="{{item.seekStatus == '已结案'?true:false}}" bindtap="cased" data-id="{{item.id}}">已找到，结案</button>
+</block>
+
+
+
+
+<!-- <view wx:if="{{searchList.length != 0}}">
   <block wx:for="{{searchList}}" wx:key="searchList" >
     <template is="searchList" data="{{...item}}"  data-index="{{item.index}}"></template>
+    
+  <button bindtap="cased" data-id="{{id}}">结案</button>
   </block>
 </view>
 <view wx:else>
   <view class="container">暂时没有数据</view>
-</view>
+</view> -->

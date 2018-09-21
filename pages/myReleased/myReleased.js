@@ -32,6 +32,14 @@ Page({
       if(res.status == 'success'){
         let searchList = that.data.searchList.concat(res.seeks)
         console.log(searchList)
+        for (let tmp of searchList) {
+          if (tmp.seekimgs) {
+            tmp.seekimgs = tmp.seekimgs.split(',')[0]
+          }
+
+          tmp.birthdate = tmp.birthdate.split(' ')[0]
+          tmp.missDate = tmp.missDate.split(' ')[0]
+        }
         that.setData({
           searchList: searchList
         })
@@ -65,6 +73,45 @@ Page({
     console.log(id)
     wx.navigateTo({
       url: '../details/details?id=' + id,
+    })
+  },
+
+  cased:function(e){
+    let that = this
+    let id = e.target.dataset.id
+    wx.showModal({
+      title: '您确定结案么',
+      content: '',
+      success:function(res){
+        if (res.confirm){
+          that.casebutton(id)
+        }
+      }
+    })
+  },
+
+  casebutton:function(id){
+    let that = this
+    let params = {
+      id : id,
+      seekStatus: '已结案'
+    }
+    request.postRequest(['seek/updateseek',params]).then(function(res){
+      console.log(res)
+      if(res.status == 'success'){
+        that.setData({
+          searchList :[],
+          currentPageNo:1
+        })
+        // let pages = that.data.currentPageNo
+        that.listseekbycustomerid();
+        wx.showToast({
+          title: '恭喜您家人团聚',
+          duration:2000
+        })
+      }
+    }).catch(function(err){
+      console.log(err)
     })
   },
   /**

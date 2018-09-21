@@ -3,17 +3,25 @@
   border-radius:15rpx;
   display: flex;
   justify-content:flex-start;
-  margin: 15rpx 20rpx;
   box-shadow: 2px 3px 6px #dcdbdb;
   padding-right:10rpx;
+}
+.conlist{
+  margin: 15rpx 20rpx;
+  position: relative;
+
+}
+.Info{
+  width:70%;
 }
 /* .father :nth-child(odd){
   background:#f5f5f5
 } */
 .avatarImg{
-  padding: 15rpx;
-  width:200rpx;
+  margin: 15rpx 15rpx 15rpx 40rpx;
+  width:30%;
   height: 200rpx;
+  
 }
 .avatarImg image{
   border-radius:10rpx;
@@ -22,4 +30,27 @@
 }
 .Info view{
   line-height: 50rpx;
+}
+.tag{
+  position:absolute;
+  top:0;
+  right:0;
+}
+.tag image{
+  width:100rpx;
+  height:100rpx;
+}
+.case{
+  position:absolute;
+  top:-8rpx;
+  left:0;
+  /* opacity:0.8 */
+}
+/* .case image{
+  width:150rpx;
+  height:32rpx;
+} */
+.case image{
+  width:100rpx;
+  height:89rpx;
 }

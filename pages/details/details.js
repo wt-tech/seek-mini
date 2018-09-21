@@ -12,12 +12,15 @@ Page({
     collectioned:false,
     currentPageNo: 1,
     content:{
-      imgUrls: [],
     },
+
+    imgUrls: [],
     id:'',
     customer : {},
     filePath:'',
-    markHide:false
+    markHide:false,
+    searchLogo:'/pages/resource/img/searchLogo3.jpg'
+
   },
 
   /**
@@ -59,17 +62,19 @@ Page({
       let content = res.seekcontent
       console.log(res)
 
-      // 获取第一张图片的信息，为canvas生成图片准备
-      wx.getImageInfo({
-        src: content.seekimgs.split(',')[0],
-        success: function (res) {
-          console.log(res)
-          let path = res.path
-          that.setData({
-            imgPath: path
-          })
-        }
-      })
+      // 获取第一张图片的信息，为canvas生成图片准备,如果没有图片就用默认的图片
+      if (content.seekimgs){
+        wx.getImageInfo({
+          src: content.seekimgs.split(',')[0],
+          success: function (res) {
+            console.log(res)
+            let path = res.path
+            that.setData({
+              imgPath: path
+            })
+          }
+        })
+      }       
 
       if (content.seekimgs!=null) {
         let imgUrls = []
@@ -81,7 +86,7 @@ Page({
       }else {
         that.setData({
           content: content,
-          imgUrls: []
+          imgUrls: ['../../resource/img/searchLogo3.jpg']
         })
       }
 
@@ -89,24 +94,6 @@ Page({
 
       if (res.topComents.length!='0' ){
         let coment = []
-        // for (let topTmp of res.topComents) {
-        //   for (let tmp of res.coments) {
-        //     if (topTmp.id == tmp.topComentId) {
-        //       coment.push(tmp)
-        //       topTmp.coment = coment
-        //     }
-        //   }
-        //   coment = []
-        // }
-
-        // for (let Mcoment of res.topComents) {
-        //   if (Mcoment.coment) {
-        //     Mcoment.coment.sort(function (a, b) {
-        //       return a.comentId - b.comentId
-        //     })
-        //   }
-
-        // }
         let comment = that.data.comment
         // console.log('加载的数据', res.topComents)
         // console.log('重组的数据', coment)
@@ -165,7 +152,14 @@ Page({
     ctx.fillRect(0, 0, 360, 600)
     // ctx.setStrokeStyle("#00ff00")
     ctx.rect(0, 0, 360, 560)
-    ctx.drawImage(that.data.imgPath, 0, 0, 360, 360)
+    if (that.data.imgPath){
+      ctx.drawImage(that.data.imgPath, 0, 0, 360, 360)
+    }else{
+      ctx.drawImage('../../resource/img/searchLogo3.jpg', 0, 0, 360, 360)
+    }
+    // 填充小程序码
+    ctx.drawImage('../../resource/img/hbxr.jpg', 10, 505, 90, 90)
+
 
     // 填充文本
     ctx.setFontSize(14)
@@ -175,6 +169,7 @@ Page({
     ctx.fillText('失踪地点：' + missadd, 5, 430)
     ctx.fillText('相貌特征：', 5, 450)
 
+    ctx.fillText('扫码关注，帮助更多人与家人团聚', 105, 550)
 
 
     var text = feature    //这是要绘制的文本
@@ -225,9 +220,9 @@ Page({
         x: 0,
         y: 0,
         width: 500,
-        height: 750,
+        height: 800,
         destWidth: 1500,
-        destHeight: 2250,
+        destHeight: 2400,
         canvasId: 'myCanvas',
         success: function (res) {
           that.setData({

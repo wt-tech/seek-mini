@@ -16,6 +16,10 @@ Page({
     showModels: false,
     selected:true,
     selected1:false,
+    cutTab:true,
+     cutTab2:false,
+     searchPeople:[],
+     searchHome:[],
     searchList:[
       // {
       //   missName: '刘某某',
@@ -64,6 +68,20 @@ Page({
     wx.navigateTo({
       url: '/pages/bannerdetail/bannerdetail?bannerId='+id
     });
+  },
+
+  // 选项卡切换
+  cutTab:function(){
+    this.setData({
+      cutTab:true,
+      cutTab2: false,
+    })
+  },
+  cutTab2: function () {
+    this.setData({
+      cutTab: false,
+      cutTab2: true,
+    })
   },
 
   onPullDownRefresh: function () {
@@ -140,12 +158,32 @@ Page({
 
   maintainSeekList: function (isClear, toAddList = null) {
     let page = this;
+    console.log(toAddList)
     if (isClear === true) {
       page.setData({
         searchList: []
       });
     } else {
+      for (let tmp of toAddList){
+        tmp.missDate = tmp.missDate.split(' ')[0]
+        tmp.birthdate = tmp.birthdate.split(' ')[0]
+      }
+      // for (let tmp of toAddList){
+      //   if (tmp.seekType == "寻亲"){
+      //     page.setData({
+      //       searchHome: page.data.searchHome.concat(tmp)
+      //     })
+          
+      //   }else{
+      //     page.setData({
+      //       searchPeople: page.data.searchPeople.concat(tmp)
+      //     })
+          
+      //   }
+      // }
+      // console.log(page.data.searchHome, page.data.searchPeople)
       page.setData({
+        
         searchList: page.data.searchList.concat(toAddList)
       });
       // for (let tmp of page.data.searchList){
@@ -162,6 +200,12 @@ Page({
     let that = this
     let showModels = that.data.showModels
     that.setData({
+      showModels: !showModels
+    })
+  },
+  cancel:function(){
+    let showModels = this.data.showModels
+    this.setData({
       showModels: !showModels
     })
   },
@@ -424,7 +468,8 @@ Page({
       //1.展示数据
       page.maintainSeekList(false, success.Seeks || success.seeks);
       //2.维护当前页数,noMoreData
-      page.maintainHasNoMoreData(success.pageSize > success.Seeks.length || success.seeks.length);
+      page.maintainHasNoMoreData(success.pageSize > success.seeks.length);
+      //  || success.seeks.length
     }).catch(function (err) {
       console.log(err);
     });

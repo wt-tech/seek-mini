@@ -1,5 +1,8 @@
 /* pages/searchPeople/searchPeople.wxss */
-
+.must{
+  color:red;
+  margin-left:-15rpx;
+}
 .title{
   color:red;
   padding-left:15rpx;
@@ -61,7 +64,7 @@ radio{
   width:90%;
   height: 60rpx;
   line-height: 60rpx;
-  font-size:22rpx;
+  font-size:24rpx;
 }
 
 .active{
