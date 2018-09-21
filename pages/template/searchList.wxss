@@ -11,13 +11,17 @@
   position: relative;
 
 }
+.Info{
+  width:70%;
+}
 /* .father :nth-child(odd){
   background:#f5f5f5
 } */
 .avatarImg{
   margin: 15rpx 15rpx 15rpx 40rpx;
-  width:200rpx;
+  width:30%;
   height: 200rpx;
+  
 }
 .avatarImg image{
   border-radius:10rpx;

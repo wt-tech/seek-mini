@@ -11,7 +11,7 @@
         <image wx:else src="../../resource/img/searchLogo3.jpg"></image>
       </view>
       <view class="Info ml20 mt10">
-        <view><text class="clgray">姓名：</text>{{item.missName?missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{gender}}</text></view>    
+        <view><text class="clgray">姓名：</text>{{item.missName?item.missName:'不详'}} <text class='ml50'><text class="clgray">性别：</text>{{item.gender}}</text></view>    
         <view><text class="clgray">出生日期：</text>{{item.birthdate?item.birthdate:'不详'}}</view>
         <view><text class="clgray">失踪日期：</text>{{item.missDate?item.missDate:'不详'}}</view>
         <view><text class="clgray">详细地点：</text>{{item.missDetailPlace?item.missDetailPlace:'不详'}}</view>
