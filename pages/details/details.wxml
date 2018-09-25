@@ -25,13 +25,13 @@
 
 
         <view>
-          <text decode='true' class="firstText clgray">姓&emsp;&emsp;名：</text>{{content.missName}}
+          <text decode='true' class="firstText clgray">姓&emsp;&emsp; 名：</text>{{content.missName}}
         </view>
         <view>
-          <text decode='true' class="firstText clgray">性&emsp;&emsp;别：</text>{{content.gender}}
+          <text decode='true' class="firstText clgray">性&emsp;&emsp; 别：</text>{{content.gender}}
         </view>
         <view>
-          <text decode="true" class="firstText clgray">籍&emsp;&emsp;贯：</text><text  wx:if="{{content.address.birthProvinceName}}">{{content.address.birthProvinceName+'-'+content.address.birthCityName +'-'+content.address.birthCountyName}}</text>
+          <text decode="true" class="firstText clgray">籍&emsp;&emsp; 贯：</text><text  wx:if="{{content.address.birthProvinceName}}">{{content.address.birthProvinceName+'-'+content.address.birthCityName +'-'+content.address.birthCountyName}}</text>
         </view>
         <view>
           <text class="firstText clgray">出生日期：</text><text>{{content.birthdate?content.birthdate:'不详'}}</text>
@@ -56,13 +56,13 @@
         <view class="firstText clgray">失踪经过：</view><view  class="contText">{{content.plot}}</view>
       </view>
       <view class="details-cont">
-        <text class="clgray firstText">失踪原因：</text><text>{{content.seekSubtype}}</text>
+        <text class="clgray firstText">失踪原因：</text><text class="contText">{{content.seekSubtype}}</text>
       </view>
       <view class="details-cont" wx:if="{{content.relationship}}">
-        <text class="clgray firstText">与失踪人关系：</text><text>{{content.relationship}}</text>
+        <text class="clgray firstText">与失踪人关系：</text><text style="width:50%;margin-right:10rpx;" >{{content.relationship}}</text>
       </view>
       <view class="details-cont" wx:if="{{content.otherInformation}}">
-        <text class="clgray firstText">其它信息：</text><text>{{content.otherInformation}}</text>
+        <text class="clgray firstText">其它信息：</text><text class="contText">{{content.otherInformation}}</text>
       </view>
 
   </view>

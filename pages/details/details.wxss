@@ -57,7 +57,7 @@ swiper{
 }
 .contText{
   display: inline-block;
-  width:80%;
+  width:75%;
   }
 
 /* 底部功能 */
