@@ -30,11 +30,11 @@
     </view>
     <view class="list mt20">
       <text decode="true">联系地址：</text>
-      <input name='address' type="idcard" placeholder='您的联系地址'></input>
+      <input name='address' placeholder='您的联系地址'></input>
     </view>
     <view class="list mt20">
       <text decode="true">联系电话：</text>
-      <input name="tel" type="idcard" placeholder='您的手机或者电话号码'></input>
+      <input name="tel" type="number" placeholder='您的手机或者电话号码'></input>
     </view>
   </view>
 

@@ -30,7 +30,7 @@
     <image src="../../resource/img/tag-home.png"></image>
   </view>
   </view>
-  <button disabled="{{item.seekStatus == '已结案'?true:false}}" bindtap="cased" data-id="{{item.id}}">已找到，结案</button>
+  <button disabled="{{item.seekStatus == '已结案'?true:false}}" bindtap="cased" data-id="{{item.id}}">已找到，我要结案!</button>
 </block>
 
 

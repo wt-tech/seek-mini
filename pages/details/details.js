@@ -13,7 +13,7 @@ Page({
     currentPageNo: 1,
     content:{
     },
-
+    hasNoMoreData : false,
     imgUrls: [],
     id:'',
     customer : {},
@@ -54,6 +54,13 @@ Page({
 // 加载详情数据
   loadDetail: function (id, currentPageNo){
     let that = this
+    if (that.data.hasNoMoreData){
+      wx.showToast({
+        title: '没有更多数据了',
+        image: '../../resource/img/tip.png'
+      });
+      return;
+    }
     let params={
       id : id,
       currentPageNo: currentPageNo
@@ -92,7 +99,7 @@ Page({
 
       wx.hideLoading()
 
-      if (res.topComents.length!='0' ){
+      if (res.topComents.length!=0 ){
         let coment = []
         let comment = that.data.comment
         // console.log('加载的数据', res.topComents)
@@ -102,11 +109,14 @@ Page({
           comment: coment
         })
         console.log(that.data.comment)
-      } else if (res.topComents.length == '0' && currentPageNo > 1){
+      } else if (res.topComents.length ===0 && currentPageNo > 1){
         wx.showToast({
           title: '没有更多数据了',
           image:'../../resource/img/tip.png'
-        })
+        });
+        that.setData({
+          hasNoMoreData : true
+        });
       }
       
     }).catch(function(err){
@@ -414,9 +424,11 @@ Page({
   // 评论内层内容
   reply:function(e){
     console.log(e)
+    
     let comentid = e.currentTarget.dataset.comentid
     let id = e.currentTarget.dataset.id
     let detailid = this.data.id
+
     console.log('内层评论的id',id)
     wx.navigateTo({
       url: '../comment/comment?replyId=' + id + '&detailId=' + detailid + '&repplyId=' + comentid,

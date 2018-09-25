@@ -4,7 +4,7 @@ page{
   background: #f0f0f0;
 }
 .has{
-  padding:30rpx 10rpx;
+  padding:30rpx;
 }
 
 button{

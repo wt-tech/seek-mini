@@ -9,14 +9,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    realName:'',
-    content:'',
-    tel:'',
-    customer:{},
-    seek : {},
-    topComent : {},
-    getcustomerbyid : '',
-    repplyId : '',
+    realName: '',
+    content: '',
+    tel: '',
+    customer: {},
+    seek: {},
+    topComent: {},
+    getcustomerbyid: '',
+    repplyId: '',
   },
 
   /**
@@ -28,7 +28,7 @@ Page({
     let detailid = options.detailId || ''
     // 上级评论的id
     let replyId = options.replyId || ''
-    let repplyId = options.repplyId||''
+    let repplyId = options.repplyId || ''
     // 用户的id
     var getcustomerbyid = wx.getStorageSync(constant.customerId)
 
@@ -49,31 +49,31 @@ Page({
 
     that.getcustomerbyid(getcustomerbyid)
     that.initValidata()
-  },  
+  },
 
 
   initValidata: function () {
     const rules = {
-      content:{
-        required :true
-        },
-      realName:{
+      content: {
         required: true
       },
-      tel:{
+      realName: {
+        required: true
+      },
+      tel: {
         required: true,
         tel: true
       }
     }
     const messages = {
-      content:{
-        required:'请输入内容',
+      content: {
+        required: '请输入内容',
       },
-      realName:{
-        required:'请填写姓名'
+      realName: {
+        required: '请填写姓名'
       },
-      tel:{
-        required:'请填写联系方式',
+      tel: {
+        required: '请填写联系方式',
       }
 
     }
@@ -81,10 +81,10 @@ Page({
   },
 
 
-  formSubmit:function(e){
+  formSubmit: function (e) {
     let that = this
     console.log(that.data.repplyId, '*********')
-    
+
     if (!that.WxValidate.checkForm(e)) {
       const error = this.WxValidate.errorList[0]
       wx.showToast({
@@ -95,13 +95,13 @@ Page({
       return false;
     }
     let thatData = this.data
-    let value = {} 
+    let value = {}
     let concat = {}
     let coment = {}
     let topComent = {}
     concat.realname = e.detail.value.realName;
     concat.tel = e.detail.value.tel;
-    concat.customer = {} ;
+    concat.customer = {};
     concat.customer = thatData.customer;
     coment.id = thatData.replyId;
 
@@ -136,7 +136,7 @@ Page({
     //   if (!that.data.replyId && !that.data.repplyId){
     //     // 评论寻人信息
     //     that.savetopcoment(value)
-       
+
     //   } else if (that.data.replyId) {
     //     // 内层层评论
     //     value.topComent = that.data.topComent
@@ -167,33 +167,10 @@ Page({
     }
   },
 
-// 
-  savetopcoment:function(params){
+  // 
+  savetopcoment: function (params) {
     let that = this
-    request.postRequestWithJSONSchema(['topcoment/savetopcoment',params]).then(function(res){
-      console.log(res)
-      if (res.status == 'success'){
-        wx.showToast({
-          title: '提交成功',
-        })
-        that.setData({
-          realName: '',
-          content: '',
-          tel: ''
-        })
-
-      }
-    }).catch(function(err){
-      console.log(err)
-      wx.showToast({
-        title: '提交失败请重试',
-      })
-    })
-  },
-
-  savecoment:function(params){
-    let that = this
-    request.postRequestWithJSONSchema(['coment/savecoment', params]).then(function(res){
+    request.postRequestWithJSONSchema(['topcoment/savetopcoment', params]).then(function (res) {
       console.log(res)
       if (res.status == 'success') {
         wx.showToast({
@@ -206,36 +183,62 @@ Page({
         })
 
       }
-    }).catch(function(err){
+    }).catch(function (err) {
+      console.log(err)
+      wx.showToast({
+        title: '提交失败请重试',
+      })
+    })
+  },
+
+  savecoment: function (params) {
+    let that = this
+    request.postRequestWithJSONSchema(['coment/savecoment', params]).then(function (res) {
+      console.log(res)
+      if (res.status == 'success') {
+        wx.showToast({
+          title: '提交成功',
+        })
+        that.setData({
+          realName: '',
+          content: '',
+          tel: ''
+        })
+
+      }
+    }).catch(function (err) {
       console.log(err)
     })
   },
 
 
 
-// 提交新的联系方式
-  updatetel: function (params){
+  // 提交新的联系方式
+  updatetel: function (params) {
     params.id = params.customer.id
     delete params.customer
-    request.postRequest(['customer',params]).then(function(res){
+    request.postRequest(['customer', params]).then(function (res) {
       console.log(res)
-    }).catch(function(err){
+    }).catch(function (err) {
       console.log(err)
     })
   },
 
   // 获取联系信息
-  getcustomerbyid:function(id){
+  getcustomerbyid: function (id) {
     let that = this
-    request.getRequest(['getcustomerbyid',{id : id}]).then(function(res){
+    request.getRequest(['getcustomerbyid', { id: id }]).then(function (res) {
       console.log(res)
       that.setData({
         realName: res.realname,
         tel: res.tel
       })
-    }).catch(function(err){
+    }).catch(function (err) {
       console.log(err)
     })
+  },
+  onShow: function () {
+    app.getUserInfo()
   }
 
 

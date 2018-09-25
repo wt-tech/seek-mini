@@ -24,7 +24,7 @@ App({
       let params = {
         id: id,
         nickname: nickname,
-        gender: gender,
+        gender: gender ==1 ?'男':'女',
         avatarurl: avatarurl
       }
       request.putRequest(['customer', params]).then(function (res) {

@@ -8,7 +8,8 @@ Page({
    */
   data: {
     currentPageNo: 1,
-    allComents: []
+    allComents: [],
+    hasNoMoreData : false
   },
 
   /**
@@ -21,6 +22,13 @@ Page({
 
   myReply: function (currentPageNo) {
     let that = this
+    if (that.data.hasNoMoreData) {
+      wx.showToast({
+        title: '没有更多数据了',
+        image: '../../resource/img/tip.png'
+      });
+      return;
+    }
     var customerId = wx.getStorageSync(constant.customerId)
     let pages = currentPageNo || 1
     let params = {

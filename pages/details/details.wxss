@@ -116,7 +116,7 @@ swiper{
   border-bottom: 1rpx solid #ddd;
 }
 .content{
-  width:100%;
+  width:85%;
 }
 /* .nickname{
   color:#00AF82;
@@ -125,6 +125,7 @@ swiper{
 .name{
   color:#00AF82;
   padding-right:15rpx;
+  max-width:15%;
 }
 .repply{
   background:#f0f0f0;
@@ -140,7 +141,7 @@ swiper{
   height:30rpx;
   padding-right:10rpx;
   vertical-align:middle;
-  margin-left:85%;
+  margin-left:80%;
 }
 
 
