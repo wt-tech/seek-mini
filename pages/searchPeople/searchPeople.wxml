@@ -137,7 +137,7 @@
     </view>
     <view class="list mt20">
       <text decode="true">QQ：</text>
-      <input name="contactQQ" class="{{status11?'active':'no'}}" bindfocus='focus11' bindblur='blur11' placeholder='联系人手机号'></input>
+      <input name="contactQQ" class="{{status11?'active':'no'}}" bindfocus='focus11' bindblur='blur11' placeholder='联系人QQ号'></input>
     </view>
     <view class="list mt20">
       <text decode="true"><text class="must">*</text>联系地址：</text>

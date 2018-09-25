@@ -23,6 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     let that = this
     // 详情的id
     let detailid = options.detailId || ''
@@ -236,6 +237,9 @@ Page({
     }).catch(function(err){
       console.log(err)
     })
+  },
+  onShow:function(){
+    app.getUserInfo()
   }
 
 

@@ -1,6 +1,7 @@
 // pages/my/my.js
 import util from '../../utils/request.js';
 import constant from '../../utils/constant.js';
+var app = getApp()
 Page({
 
   /**
@@ -22,6 +23,7 @@ Page({
     that.renzheng(customerId)
     that.message(customerId)
     that.getvolunteer(customerId)
+    app.getUserInfo()
   },
 
 
