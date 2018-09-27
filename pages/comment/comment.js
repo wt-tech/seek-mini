@@ -176,7 +176,9 @@ Page({
       if (res.status == 'success'){
         wx.showToast({
           title: '提交成功',
-        })
+        },wx.navigateBack({
+          delta:1
+        }))
         that.setData({
           realName: '',
           content: '',
@@ -199,7 +201,9 @@ Page({
       if (res.status == 'success') {
         wx.showToast({
           title: '提交成功',
-        })
+        }, wx.navigateBack({
+          delta: 1
+        }))
         that.setData({
           realName: '',
           content: '',

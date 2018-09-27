@@ -79,9 +79,23 @@ App({
           console.log('*****************************')
         },
         fail: function (e) {
-          wx.navigateTo({
-            url: "/pages/authorize/authorize",
+          wx.showModal({
+            title: '授权',
+            content: '您还没有授权，请您授权',
+            success:function(res){
+              if(res.confirm){
+                wx.navigateTo({
+                  url: "/pages/authorize/authorize",
+                })
+              }else{
+                wx.switchTab({
+                  url: '/tabs/index/index'
+                })
+
+              }
+            }
           })
+          
           return false
         }
       })

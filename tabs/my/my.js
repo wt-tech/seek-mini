@@ -23,7 +23,6 @@ Page({
     that.renzheng(customerId)
     that.message(customerId)
     that.getvolunteer(customerId)
-    app.getUserInfo()
   },
 
 
@@ -196,6 +195,7 @@ Page({
       that.renzheng(customerId)
       that.message(customerId)
       that.getvolunteer(customerId)
+       app.getUserInfo()
   },
 
   /**

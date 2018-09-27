@@ -394,7 +394,7 @@ Page({
   // 点击提供信息
   apply:function(){
     let id = this.data.id
-    app.getUserInfo()
+    // app.getUserInfo()
     wx.navigateTo({
       url: '../comment/comment?detailId='+id,
     })
@@ -403,7 +403,7 @@ Page({
   // 评论外层内容
   coment:function(e){
     console.log(e)
-    app.getUserInfo()
+    // app.getUserInfo()
     let id = e.currentTarget.dataset.comentid
     let detailid = this.data.id
     console.log('外层id', id,'内容id',detailid)
