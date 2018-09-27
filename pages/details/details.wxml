@@ -50,10 +50,10 @@
     </view>
 
       <view class="details-cont">
-        <view class="clgray firstText">相貌特征：</view><view class="contText">{{content.feature}}</view>
+        <view class="firstText clgray">相貌特征：</view><view class="contText">{{content.feature}}</view>
       </view>
       <view class="details-cont">
-        <view class="clgray firstText">失踪经过：</view><view  class="contText">{{content.plot}}</view>
+        <view class="firstText clgray">失踪经过：</view><view  class="contText">{{content.plot}}</view>
       </view>
       <view class="details-cont">
         <text class="clgray firstText">失踪原因：</text><text class="contText">{{content.seekSubtype}}</text>
@@ -84,12 +84,21 @@
           </view>
 
 
-          <view wx:if="{{coment.coment}}">
-            <view class="repply" wx:for="{{coment.coment}}" wx:key="repply">
+          <view wx:if="{{coment.talks}}">
+            <view class="repply" wx:for="{{coment.talks}}" wx:key="repply">
               <view class="repply-list">
-                <view class="nickname"><text class="name">{{item.customer.replyname}} </text>回复 <text  class="name">{{item.customer.nickname}}:</text></view>
-                <view >{{item.content}}</view>
-                <view class="reply-btn" bindtap="reply" data-id="{{item.id}}" data-comentid="{{coment.id}}">
+
+                <view class="nickname" wx:if="{{item.comentCustomerName}}">
+                  <text class="name">{{item.replyCustomerName}} </text>
+                    回复 
+                  <text  class="name">{{item.comentCustomerName}}:</text>
+                  <view >{{item.replyContent}}</view>
+                </view>
+                <view wx:else>
+                  <text  class="name">{{item.replyCustomerName}}</text><text>:</text>
+                  <view >{{item.replyContent}}</view>
+                </view>
+                <view class="reply-btn" bindtap="reply" data-id="{{item.replyId}}" data-comentid="{{coment.id}}">
                   <image src="../../resource/img/reply2.png"></image>
                   <text>回复</text>
                 </view>
