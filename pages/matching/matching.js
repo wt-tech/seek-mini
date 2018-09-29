@@ -14,7 +14,7 @@ Page({
   onLoad: function(options) {
     let that = this
     let similarSeeks = JSON.parse(options.similarSeeks)
-    console.log(similarSeeks)
+    
     that.setData({
       searchList: similarSeeks
     })
@@ -23,7 +23,7 @@ Page({
 
   toDetails: function(e) {
     let id = e.currentTarget.dataset.id
-    console.log(id)
+   
     wx.navigateTo({
       url: '../../pages/details/details?id=' + id,
     })

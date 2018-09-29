@@ -17,7 +17,6 @@ App({
     if (userInfo) {
       // let userInfo = wx.getStorageSync(userInfo)
       var id = wx.getStorageSync(constant.customerId)
-      console.log(id, userInfo)
       let nickname = userInfo.nickName;
       let gender = userInfo.gender;
       let avatarurl = userInfo.avatarUrl;
@@ -28,9 +27,9 @@ App({
         avatarurl: avatarurl
       }
       request.putRequest(['customer', params]).then(function (res) {
-        console.log(res)
+
       }).catch(function (err) {
-        console.log(err)
+
       })
     }
 
@@ -39,13 +38,12 @@ App({
       return;
     wx.login({
       success: res => {
-        console.log(res);
         let uri = 'authorization/' + res.code;
         request.simpleRequest([uri]).then(function (result) {
-          console.log(result);
+
           wx.setStorageSync(constant.customerId, result.customerId);
         }).catch(function (err) {
-          console.log(err);
+          
         });
       }
     });
@@ -64,9 +62,9 @@ App({
       }
     }
     request.postRequestWithJSONSchema(['visitrecord', param]).then(function (result) {
-      console.log(result);
+     
     }).catch(function (err) {
-      console.log(err);
+     
     });
   },
 
@@ -76,7 +74,7 @@ App({
       wx.getUserInfo({
         success: function (res) {
           wx.setStorageSync("userInfo", res.userInfo)
-          console.log('*****************************')
+          
         },
         fail: function (e) {
           wx.showModal({

@@ -40,7 +40,7 @@ Page({
       customer: customer,
       id : id
     })
-    console.log(options, customerId)
+    
     that.loadDetail(id, currentPageNo)
 
     let params = {
@@ -67,14 +67,14 @@ Page({
     }
     request.postRequest(['seek/getseek',params]).then(function(res){
       let content = res.seekcontent
-      console.log(res)
+   
 
       // 获取第一张图片的信息，为canvas生成图片准备,如果没有图片就用默认的图片
       if (content.seekimgs){
         wx.getImageInfo({
           src: content.seekimgs.split(',')[0],
           success: function (res) {
-            console.log(res)
+        
             let path = res.path
             that.setData({
               imgPath: path
@@ -102,13 +102,12 @@ Page({
       if (res.topComents.length!=0 ){
         let coment = []
         let comment = that.data.comment
-        // console.log('加载的数据', res.topComents)
-        // console.log('重组的数据', coment)
+     
         coment = comment.concat(res.topComents)
         that.setData({
           comment: coment
         })
-        console.log(that.data.comment)
+       
       } else if (res.topComents.length ===0 && currentPageNo > 1){
         wx.showToast({
           title: '没有更多数据了',
@@ -120,7 +119,7 @@ Page({
       }
       
     }).catch(function(err){
-      console.log(err)
+    
     })
   },
 
@@ -135,9 +134,9 @@ Page({
       seek : seek
     }
     request.postRequestWithJSONSchema(['browsehistory/savebrowsehistory',params]).then(function(res){
-      console.log(res)
+    
     }).catch(function(err){
-      console.log(err)
+    
     })
   },
 
@@ -148,7 +147,7 @@ Page({
     // 获取当前的信息
 
     let content = that.data.content
-    console.log(content)
+    
     let name = content.missName
     let missdata = content.missDate
     let missadd = content.missDetailPlace
@@ -184,7 +183,7 @@ Page({
 
     var text = feature    //这是要绘制的文本
     var chr = text.split("")
-    console.log(chr)
+  
     var temp = ""
     var row = []
     for (var a = 0; a < chr.length; a++) {
@@ -255,7 +254,7 @@ Page({
     wx.saveImageToPhotosAlbum({
       filePath: url,
       success: function (res) {
-        console.log(res)
+     
         if (res.errMsg == "saveImageToPhotosAlbum:ok") {
           wx.showToast({
             title: '图片保存成功',
@@ -295,7 +294,7 @@ Page({
 
   // 图片预览
   previewImg:function(e){
-    console.log(e)
+   
     let index = e.currentTarget.dataset.index
     let src = e.currentTarget.dataset.src
     let current = src[index]
@@ -316,7 +315,7 @@ Page({
     let thatData = that.data
     params.customer = thatData.customer
     params.seek.id = Number(thatData.id)
-    console.log(params)
+   
     that.savemark(params)
     let collectioned = that.data.collectioned
     // 发起请求，收藏该信息
@@ -348,7 +347,7 @@ Page({
   savemark:function(params){
     let that = this
     request.postRequestWithJSONSchema(['mark/savemark',params]).then(function(res){
-      console.log(res)
+   
       if (res.status == 'success'){
         that.setData({
           collectioned: true
@@ -360,7 +359,7 @@ Page({
       }
 
     }).catch(function(err){
-      console.log(err)
+     
     })
   },
 
@@ -368,7 +367,7 @@ Page({
   deletmark:function(params){
     let that = this
     request.postRequest(['mark/deletemark',params]).then(function(res){
-      console.log(res)
+   
       if (res.status == 'success'){
         that.setData({
           collectioned: false
@@ -380,7 +379,7 @@ Page({
       }
 
     }).catch(function(err){
-      console.log(err)
+     
     })
   },
 
@@ -389,7 +388,7 @@ Page({
   getmark:function(params){
     let that = this
     request.getRequest(['mark/getmark', params]).then(function (res) {
-      console.log(res)
+     
       if (res.status){
         that.setData({
           collectioned: res.status
@@ -397,7 +396,7 @@ Page({
       }
      
     }).catch(function (err) {
-      console.log(err)
+   
     })
   },
 
@@ -412,24 +411,24 @@ Page({
 
   // 评论外层内容
   coment:function(e){
-    console.log(e)
+  
     // app.getUserInfo()
     let id = e.currentTarget.dataset.comentid
     let detailid = this.data.id
-    console.log('外层id', id,'内容id',detailid)
+   
     wx.navigateTo({
       url: '../comment/comment?repplyId=' + id + '&detailId=' + detailid,
     })
   },
   // 评论内层内容
   reply:function(e){
-    console.log(e)
+ 
     
     let comentid = e.currentTarget.dataset.comentid
     let id = e.currentTarget.dataset.id
     let detailid = this.data.id
 
-    console.log('内层评论的id',id)
+   
     wx.navigateTo({
       url: '../comment/comment?replyId=' + id + '&detailId=' + detailid + '&repplyId=' + comentid,
     })
@@ -444,7 +443,7 @@ Page({
   },
   onShareAppMessage:function(res){
     if (res.from == 'button'){
-      console.log('res')
+    
     }
     return{
       title: '帮TA寻找回家的路',

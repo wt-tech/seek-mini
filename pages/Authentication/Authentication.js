@@ -39,7 +39,6 @@ Page({
       customerId: customerId
     }
     request.getRequest(['authentication/getAuthentication', params]).then(function (res) {
-      console.log(res)
       if (res.authentication) {
         if (res.authentication.authResult == '等待认证') {
           wx.showModal({
@@ -57,7 +56,6 @@ Page({
       }
 
     }).catch(function (err) {
-      console.log(err)
       wx.showToast({
         title: '加载失败...',
       }, wx.navigateBack({
@@ -99,7 +97,7 @@ Page({
 
   formSubmit: function (e) {
     let that = this
-    console.log(e)
+    
     if (!that.data.renzed) {
       wx.showToast({
         title: '请勿重复认证',
@@ -185,7 +183,7 @@ Page({
   athentication: function (params) {
     let that = this
     request.postRequestWithJSONSchema(['authentication/saveAuthentication', params]).then(function (res) {
-      console.log(res)
+     
       if (res.status == 'success') {
         that.saveAuthenticationImage1(res.authenticationId)
         that.saveAuthenticationImage2(res.authenticationId)
@@ -200,7 +198,7 @@ Page({
         }, 2000)
       }
     }).catch(function (err) {
-      console.log(err)
+      
     })
   },
 
@@ -208,18 +206,14 @@ Page({
     let that = this
     let positiveIdentityUrl = that.data.zheng[0]
     request.fileUpload(['authentication/saveAuthenticationImage', positiveIdentityUrl, 'positiveIdentityUrl', { authenticationId: id }]).then(function (res) {
-      console.log(res)
     }).catch(function (err) {
-      console.log(err)
     })
   },
   saveAuthenticationImage2: function (id) {
     let that = this
     let negativIdentityUrl = that.data.fan[0]
     request.fileUpload(['authentication/saveAuthenticationImage', negativIdentityUrl, 'negativIdentityUrl', { authenticationId: id }]).then(function (res) {
-      console.log(res)
     }).catch(function (err) {
-      console.log(err)
     })
   },
 

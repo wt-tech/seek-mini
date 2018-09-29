@@ -32,7 +32,7 @@ Page({
       currentPageNo: page
     }
     request.getRequest(['browsehistory/listbrowsehistory', params]).then(function (res) {
-      console.log(res)
+     
       let searchList = that.data.searchList.concat(res.browsehistorys)
       
         for (let tmp of searchList) {
@@ -54,7 +54,7 @@ Page({
         })
       }
     }).catch(function(err){
-      console.log(err)
+      
     })
   },
 

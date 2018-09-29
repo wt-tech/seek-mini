@@ -36,7 +36,7 @@ Page({
       currentPageNo: pages
     }
     request.getRequest(['topcoment/listcomentbycustomerid', params]).then(function (res) {
-      console.log(res)
+     
       let allComents = that.data.allComents.concat(res.comentwho)
       that.setData({
         allComents: allComents
@@ -48,7 +48,7 @@ Page({
         })
       }
     }).catch(function (err) {
-      console.log(err)
+      
     })
   },
 
@@ -59,9 +59,9 @@ Page({
       customerId: customerId
     }
     request.getRequest(['message/updatemessage',params]).then(function(res){
-      console.log(res)
+    
     }).catch(function(err){
-      console.log(err)
+   
     })
   },
 
