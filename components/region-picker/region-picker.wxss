@@ -1,0 +1,4 @@
+/* components/region-picker/region-picker.wxss */
+.fontGray{
+  color: #aaaaaa
+}

@@ -1,0 +1,4 @@
+<!--tabs/load/load.wxml-->
+<view class="body">
+  <image mode='widthFix' src="../../resource/img/qidong3.jpg"></image>
+</view>
