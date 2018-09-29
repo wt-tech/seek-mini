@@ -81,9 +81,9 @@ swiper{
   vertical-align: middle;
   padding-right:10rpx;
 }
-.Clue view{
+.Clue .thrd{
   width:33%;
-  padding-left:5%;
+  /* padding-left:5%; */
 }
 .border{
   border-right:2rpx solid #ccc;
