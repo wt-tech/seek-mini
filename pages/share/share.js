@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    console.log(options.filePath,options.id)
+  
     that.setData({
       filePath: options.filePath,
       id: options.id
@@ -38,7 +38,7 @@ Page({
     wx.saveImageToPhotosAlbum({
       filePath: url,
       success:function(res){
-        console.log(res)
+        
         if (res.errMsg == "saveImageToPhotosAlbum:ok"){
           wx.showToast({
             title: '图片保存成功',

@@ -28,10 +28,10 @@ Page({
       currentPageNo: pages
     }
     request.getRequest(['seek/listseekbycustomerid', params]).then(function(res){
-      console.log(res)
+     
       if(res.status == 'success'){
         let searchList = that.data.searchList.concat(res.seeks)
-        console.log(searchList)
+       
         for (let tmp of searchList) {
           if (tmp.seekimgs) {
             tmp.seekimgs = tmp.seekimgs.split(',')[0]
@@ -51,7 +51,7 @@ Page({
         })
       }
     }).catch(function(err){
-      console.log(err)
+    
     })
   },
 
@@ -70,7 +70,7 @@ Page({
   // 点击进入详情页
   toDetails: function (e) {
     let id = e.currentTarget.dataset.id
-    console.log(id)
+    
     wx.navigateTo({
       url: '../details/details?id=' + id,
     })
@@ -97,7 +97,7 @@ Page({
       seekStatus: '已结案'
     }
     request.postRequest(['seek/updateseek',params]).then(function(res){
-      console.log(res)
+  
       if(res.status == 'success'){
         that.setData({
           searchList :[],
@@ -111,7 +111,7 @@ Page({
         })
       }
     }).catch(function(err){
-      console.log(err)
+     
     })
   },
   /**

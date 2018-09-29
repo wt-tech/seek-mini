@@ -83,11 +83,11 @@ animation:function(){
     animationData2: animation2.export(),
     animationData: animation.export()
   })
-    // setTimeout(function(){
-    //   wx.navigateTo({
-    //     url: './releaseNotes/releaseNotes?searchPeople=false',
-    //   })
-    // }, 600)
+    setTimeout(function(){
+      wx.navigateTo({
+        url: './releaseNotes/releaseNotes?searchPeople=false',
+      })
+    }, 600)
 },
 animation2:function(){
   let animation = wx.createAnimation({
@@ -110,11 +110,11 @@ animation2:function(){
     animationData: animation2.export(),
     animationData2: animation.export()
   })
-    // setTimeout(function () {
-    //   wx.navigateTo({
-    //     url: './releaseNotes/releaseNotes?searchPeople=true',
-    //   })
-    // }, 600)
+    setTimeout(function () {
+      wx.navigateTo({
+        url: './releaseNotes/releaseNotes?searchPeople=true',
+      })
+    }, 600)
 },
   /**
    * 生命周期函数--监听页面初次渲染完成

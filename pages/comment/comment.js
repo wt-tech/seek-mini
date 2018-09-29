@@ -23,7 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+   
     let that = this
     // 详情的id
     let detailid = options.detailId || ''
@@ -46,7 +46,7 @@ Page({
       replyId: replyId,
       customer: customer
     })
-    console.log(that.data.seek, customer, getcustomerbyid)
+  
 
     that.getcustomerbyid(getcustomerbyid)
     that.initValidata()
@@ -84,7 +84,7 @@ Page({
 
   formSubmit: function (e) {
     let that = this
-    console.log(that.data.repplyId, '*********')
+    
 
     if (!that.WxValidate.checkForm(e)) {
       const error = this.WxValidate.errorList[0]
@@ -113,9 +113,9 @@ Page({
     value.customer = thatData.customer;
     value.topComent = thatData.topComent
 
-    console.log(value)
+ 
 
-    console.log(concat)
+ 
     that.updatetel(concat)
     // if (value.content == ''){
     //   wx.showToast({
@@ -172,7 +172,7 @@ Page({
   savetopcoment: function (params) {
     let that = this
     request.postRequestWithJSONSchema(['topcoment/savetopcoment', params]).then(function (res) {
-      console.log(res)
+      
       if (res.status == 'success') {
         wx.showToast({
           title: '提交成功',
@@ -187,7 +187,7 @@ Page({
 
       }
     }).catch(function (err) {
-      console.log(err)
+     
       wx.showToast({
         title: '提交失败请重试',
       })
@@ -197,7 +197,7 @@ Page({
   savecoment: function (params) {
     let that = this
     request.postRequestWithJSONSchema(['coment/savecoment', params]).then(function (res) {
-      console.log(res)
+  
       if (res.status == 'success') {
         wx.showToast({
           title: '提交成功',
@@ -212,7 +212,7 @@ Page({
 
       }
     }).catch(function (err) {
-      console.log(err)
+    
     })
   },
 
@@ -223,9 +223,9 @@ Page({
     params.id = params.customer.id
     delete params.customer
     request.postRequest(['customer', params]).then(function (res) {
-      console.log(res)
+    
     }).catch(function (err) {
-      console.log(err)
+     
     })
   },
 
@@ -233,13 +233,13 @@ Page({
   getcustomerbyid: function (id) {
     let that = this
     request.getRequest(['getcustomerbyid', { id: id }]).then(function (res) {
-      console.log(res)
+     
       that.setData({
         realName: res.realname,
         tel: res.tel
       })
     }).catch(function (err) {
-      console.log(err)
+     
     })
   },
 

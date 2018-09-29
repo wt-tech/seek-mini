@@ -20,7 +20,7 @@ Page({
   },
   addressChange: function (event) {
     let that = this
-    console.log(event);
+   
     var address = '';
     var regionArr = event.detail.regionArr;
     if (event.detail.regionArr[2]){
@@ -37,7 +37,7 @@ Page({
     that.setData({
       addressTou: address
     })
-    console.log(address,that.data.IDs)
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -48,7 +48,7 @@ Page({
     app.getUserInfo()
     that.initValidata()
     let volunteer = random.getRandomString2(5, true)
-    console.log(volunteer)
+
     that.setData({
       sequence: volunteer
     })
@@ -64,7 +64,7 @@ Page({
       customerId: customerId
     }
     request.getRequest(['volunteer/getvolunteer', params]).then(function (res) {
-      console.log(res)
+     
       if (res.volunteer) {
         if (res.volunteer.volResult == '等待审核' || res.volunteer.volResult == '审核通过') {
           that.setData({
@@ -74,7 +74,7 @@ Page({
       }
 
     }).catch(function (err) {
-      console.log(err)
+     
     })
   },
 
@@ -109,7 +109,7 @@ Page({
   formSubmit: function (e) {
     let that = this
     let IDs = that.data.IDs
-    console.log(e)
+   
     let value = e.detail.value
     let positiveIdentityUrl = that.data.zheng
     let negativIdentityUrl = that.data.fan
@@ -165,7 +165,7 @@ Page({
   athentication: function (params) {
     let that = this
     request.postRequestWithJSONSchema(['volunteer/savevolunteer', params]).then(function (res) {
-      console.log(res)
+     
       if (res.status == 'success') {
         that.saveAuthenticationImage1(res.volunteerId)
         that.saveAuthenticationImage2(res.volunteerId)
@@ -180,7 +180,7 @@ Page({
         }, 1500)
       }
     }).catch(function (err) {
-      console.log(err)
+    
     })
   },
 
@@ -188,18 +188,18 @@ Page({
     let that = this
     let positiveIdentityUrl = that.data.zheng[0]
     request.fileUpload(['volunteer/savevolunteerImage', positiveIdentityUrl, 'positiveIdentityUrl', { volunteerId: id }]).then(function (res) {
-      console.log(res)
+     
     }).catch(function (err) {
-      console.log(err)
+      
     })
   },
   saveAuthenticationImage2: function (id) {
     let that = this
     let negativIdentityUrl = that.data.fan[0]
     request.fileUpload(['volunteer/savevolunteerImage', negativIdentityUrl, 'negativIdentityUrl', { volunteerId: id }]).then(function (res) {
-      console.log(res)
+     
     }).catch(function (err) {
-      console.log(err)
+     
     })
   },
 

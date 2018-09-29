@@ -61,7 +61,7 @@ function _getLoacation(page){
           page.locateSuccess(IDs);
         }
       }).catch(function(err){
-        console.log('网络出错...');
+      
       });
     }
   });

@@ -54,12 +54,12 @@ Page({
     })
     that.autoLocate();
     request.getRequest(['banner/listbanner']).then(function (res) {
-      console.log(res)
+      
       that.setData({
         imgUrls: res.banners
       })
     }).catch(function (err) {
-      console.log(err)
+   
     })
   },
 
@@ -115,7 +115,7 @@ Page({
     })
     //维护当前页数
     if (!page.maintainPageNo(false)) {//后台没有更多数据
-      console.log('no more data');
+     
       wx.hideLoading()
       wx.showToast({
         title: '没有更多数据了',
@@ -158,7 +158,7 @@ Page({
 
   maintainSeekList: function (isClear, toAddList = null) {
     let page = this;
-    console.log(toAddList)
+    
     if (isClear === true) {
       page.setData({
         searchList: []
@@ -181,7 +181,7 @@ Page({
           
       //   }
       // }
-      // console.log(page.data.searchHome, page.data.searchPeople)
+      
       page.setData({
         
         searchList: page.data.searchList.concat(toAddList)
@@ -219,14 +219,14 @@ Page({
   // 日期选择
   bindDateChange :function(e){
     let that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+   
     that.setData({
       birthdate: e.detail.value
     })
   },
   bindMissDateChange:function(e){
     let that = this
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    
     that.setData({
       missdate: e.detail.value
     })
@@ -242,7 +242,7 @@ Page({
       showModels: !showModels
     })
 
-    console.log(e)
+   
     that.seekRequestSubmit(e)
   },
 
@@ -266,16 +266,16 @@ Page({
 
   submit:function(params){
     request.getRequest(['seek/listseek',params]).then(function(res){
-      console.log(res)
+      
     }).catch(function(err){
-      console.log(err)
+      
     })
   },
 
   // 点击进入详情页
   toDetails:function(e){
     let id = e.currentTarget.dataset.id
-    console.log(id)
+    
     wx.navigateTo({
       url: '../../pages/details/details?id='+id,
     })
@@ -353,7 +353,7 @@ Page({
     citys.provinces.some((p, index) => {
       if (p.id == provinceId) {
         provinceCityCounty[1] = p.cities;//城市
-        console.log(provinceCityCounty[1])
+       
         return true;
       }
     });
@@ -369,7 +369,7 @@ Page({
     });
   },
   addresscolumnchange: function (event) {
-    console.log(event)
+    
     var pageData = this.data
     var page = this;
     var columnIndex = event.detail.column;
@@ -378,11 +378,7 @@ Page({
     let provinceCityCounty = pageData.provinceCityCounty;
     let id = provinceCityCounty[columnIndex][index].id;
 
-    // console.log('columnIndex:'+columnIndex);
-    // console.log('index:'+index);
-    // console.log('id:'+id);
-    // console.log('IDs:' + pageData.IDs);
-    // console.log('index:' + pageData.pccIndex);
+   
 
     switch(columnIndex){
       case 0 :
@@ -430,7 +426,7 @@ Page({
   addressChange: function (e) {
     let that = this
     let ids = e.detail.value
-    console.log(e)
+    
     let provinceCityCounty = that.data.provinceCityCounty
     let province = provinceCityCounty[0][ids[0]].id
     let city = provinceCityCounty[1][ids[1]].id
@@ -439,31 +435,24 @@ Page({
     }else{
       var conty = provinceCityCounty[2][ids[2]].id 
     }
-    console.log(province, city,conty)
+    
     that.setData({
       IDs: [province, city, conty],
       pccIndex : ids
     })
     that.displayLocateAddress()
-    console.log(ids)
+   
   },
-  // addresscolumnchange:function(event){
-  //   console.log(event)
-  //   var pageData = this.data
-  //   var page = this;
-  //   if (columnIndex == 2) return;
-  //   var columnIndex = event.detail.column;
-  //   var index = event.detail.value;
-  // }
+ 
   /**
    * 发送get请求,获取寻亲列表
    */
   getSeekList: function (params) {
-    //console.log(params);
+    
     let page = this;
     //发送请求
     request.postRequestWithJSONSchema(['seek/listseek', params]).then(function (success) {
-      console.log(success);
+     
       wx.hideLoading()
       //1.展示数据
       page.maintainSeekList(false, success.Seeks || success.seeks);
@@ -471,7 +460,7 @@ Page({
       page.maintainHasNoMoreData(success.pageSize > success.seeks.length);
       //  || success.seeks.length
     }).catch(function (err) {
-      console.log(err);
+      ;
     });
   },
 
@@ -531,7 +520,7 @@ Page({
     seekFilterParams.customer = {
       id : wx.getStorageSync(constant.customerId)
     };
-    //console.log(seekFilterParams);
+    
     return page.assembleMissPosAndPageNo(seekFilterParams);
   },
 
@@ -540,7 +529,7 @@ Page({
    */
   assembleMissPosAndPageNo: function (obj) {
     let pageData = this.data;
-    //console.log(obj);
+    
     obj.address.missProvinceId = pageData.IDs[0];
     obj.address.missCityId = pageData.IDs[1];
     obj.address.missCountyId = pageData.IDs[2];

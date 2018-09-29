@@ -3,8 +3,12 @@
  */
 
 
-// const baseURL = "https://www.qghls.com/seek/"
-const baseURL = "http://192.168.0.177:8888/seek/"
+
+
+ const baseURL = "https://www.qghls.com/seek/"
+//const baseURL = "http://192.168.0.177:8888/seek/"
+// const baseURL = "http://192.168.0.103:8080/seek01/"
+
 
 
 /*
@@ -68,7 +72,7 @@ function postRequest([url, params]) {
           reject(res);//失败时,返回res包括httpStatusCode
       },
       fail: (res) => {//请求失败,一般应该是网络原因
-        console.log(res.errMsg);
+        
         reject(res);
       }
     });
@@ -97,7 +101,7 @@ function deleteRequest([url, params]) {
           reject(res);//失败时,返回res包括httpStatusCode
       },
       fail: (res) => {//请求失败,一般应该是网络原因
-        console.log(res.errMsg);
+        
         reject(res);
       }
     });
@@ -111,7 +115,7 @@ function putRequest([url, params]) {
   if (params == null)
     return;
   params = _putHiddenMethod(params);
-  console.log(url, params)
+ 
   const promise = new Promise(function (resolved, reject) {
     wx.request({
       url: urlFactory(url),
@@ -127,7 +131,7 @@ function putRequest([url, params]) {
           reject(res);//失败时,返回res包括httpStatusCode
       },
       fail: (res) => {//请求失败,一般应该是网络原因
-        console.log(res.errMsg);
+        
         reject(res);
       }
     });
@@ -152,7 +156,7 @@ function getRequest([url, params = null]) {
           reject(res);//失败时,返回res包括httpStatusCode
       },
       fail: (res) => {//请求失败,一般应该是网络原因
-        console.log(res.errMsg);
+        
         reject(res);
       }
     });
@@ -175,7 +179,7 @@ function simpleRequest(url) {
           reject(res);//失败时,返回res包括httpStatusCode
       },
       fail: (res) => {//请求失败,一般应该是网络原因
-        console.log(res.errMsg);
+        
         reject(res);
       }
     });
@@ -211,7 +215,7 @@ function fileUpload([url, filePath, name, formData = null]) {
           reject(res);
       },
       fail: (res) => {
-        console.log(res);
+       
         reject(res);
       }
     });
@@ -224,7 +228,7 @@ function fileUpload([url, filePath, name, formData = null]) {
 
 
 function postRequestWithJSONSchema([url, params = null]) {
-  //console.log(params)
+ 
   const promise = new Promise(function (resolved, reject) {
     wx.request({
       url: urlFactory(url),
@@ -241,7 +245,7 @@ function postRequestWithJSONSchema([url, params = null]) {
           reject(res);//失败时,返回res包括httpStatusCode
       },
       fail: (res) => {//请求失败,一般应该是网络原因
-        console.log(res.errMsg);
+       
         reject(res);
       }
     });
@@ -264,7 +268,7 @@ function isNullOrUndefined(params) {
 util.baseURL 其实没必要每次都重写一遍
 */
 function urlFactory(resource) {
-  //console.log(baseURL + resource);
+  
   return baseURL + resource;
 }
 

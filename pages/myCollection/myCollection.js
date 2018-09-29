@@ -31,7 +31,7 @@ Page({
       currentPageNo: page
     }
     request.getRequest(['mark/listmark', params]).then(function(res){
-      console.log(res)
+     
       let searchList = that.data.searchList.concat(res.marks)
       for (let tmp of searchList) {
         if (tmp.seek.seekimgs) {
@@ -44,7 +44,7 @@ Page({
         searchList : searchList
       })
     }).catch(function(err){
-      console.log(err)
+     
     })
   },
 
@@ -60,7 +60,7 @@ Page({
  },
   toDetails:function(e){
     let id = e.currentTarget.dataset.id
-    console.log(id)
+  
     wx.navigateTo({
       url: '../details/details?id='+id,
     })

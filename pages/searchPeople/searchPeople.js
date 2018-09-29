@@ -52,7 +52,7 @@ Page({
       customerId: customerId
     }
     util.getRequest(['authentication/getAuthentication', params]).then(function(res){
-      console.log(res)
+      
       if(res.status == 'fail'){
         wx.showModal({
           title: '提示',
@@ -105,7 +105,7 @@ Page({
         })
       }
     }).catch(function(err){
-      console.log(err)
+     
       wx.showToast({
         title: '加载失败...',
       },wx.navigateBack({
@@ -202,8 +202,7 @@ Page({
 // 选择出生日期
   bindDateChange: function (e) {
     let that = this
-    console.log(Date)
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+
     that.setData({
       birthdate: e.detail.value
     })
@@ -211,8 +210,7 @@ Page({
   // 失踪日期
   bindMissDateChange: function (e) {
     let that = this
-    console.log(Date)
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+
     that.setData({
       missdate: e.detail.value
     })
@@ -223,7 +221,7 @@ Page({
     let that = this
     wx.chooseImage({
       success: function(res) {
-        console.log(res)
+       
         let touxiang = that.data.touxiang;
         touxiang = touxiang.concat(res.tempFilePaths);
         that.setData({
@@ -245,7 +243,7 @@ Page({
 
   formSubmit: function (event){
 
-    console.log(event)
+
     let value = event.detail.value
     let pageData = this.data
     //提交错误描述
@@ -283,7 +281,7 @@ Page({
   },
 
   gender:function(e){
-    console.log(e.detail.value)
+
   },
 submit:function(e){
   let that = this
@@ -291,7 +289,7 @@ submit:function(e){
     title: '正在提交数据',
   })
   util.postRequestWithJSONSchema(['seek/saveseek',e]).then(function(res){
-    console.log(res)
+
     if (res.message == "请勿重复发布信息." && res.status == 'fail') {
       wx.hideLoading();
       wx.showToast({
@@ -306,11 +304,11 @@ submit:function(e){
     if (imgPaths.length!='0'){
       for (let imgPath of imgPaths) {
         util.fileUpload(['seek/saveseekImg', imgPath, 'seekImg', { seekId: seekId }]).then(function (res) {
-          console.log(res)
+          
           wx.hideLoading() 
           if (res.status == 'success') {
             i++
-            console.log(i, imgPaths.length)
+       
             if (i == imgPaths.length) {
               wx.showToast({
                 title: '发布成功',
@@ -325,7 +323,7 @@ submit:function(e){
 
           }
         }).catch(function (err) {
-          console.log(err)
+        
           wx.showToast({
             title: '发布失败，请重试',
             duration: 2000
@@ -342,7 +340,7 @@ submit:function(e){
 
 
   }).catch(function(err){
-    console.log(err)
+  
     wx.showToast({
       title: '发布失败，请重试',
       duration:2000
@@ -353,45 +351,17 @@ submit:function(e){
 // 发起匹配请求
   listsimilarseek:function(e){
     util.postRequestWithJSONSchema(['seek/listsimilarseek', e]).then(function (res) {
-      console.log(res)
+      
       let similarSeeks = JSON.stringify(res.similarSeeks)
       wx.redirectTo({
         url: '../matching/matching?similarSeeks=' + similarSeeks,
       })
     }).catch(function (err) {
-      console.log(res)
+     
     })
   },
 
-  // 上传照片
-  // uploadimg: function (id) {
-  //   let that = this
-  //   let i = 0
-  //   if (that.data.touxiang.length > 0) {
-  //     console.log('开始上传图片')
-  //     let imgPath = that.data.touxiang;
-  //     that.uploadOneImg(id, imgPath, i);
-  //   }
-  // },
-
-
-  // uploadOneImg: function (id, imgPath, i) {
-  //   console.log("================before:" + imgPath);
-  //   let page = this;
-  //   let filePath = null;
-  //   if (imgPath.length <= 0)
-  //     return;
-  //   else
-  //     filePath = imgPath.splice(0, 1);
-  //   util.fileUpload(['seekImg', filePath[0], 'img', { id: id }]).then(function (result) {
-  //     if (result.status == 'success') {
-  //       i++
-  //       page.uploadOneImg(id, imgPath);
-  //     }
-  //   }).catch(function (err) {
-  //     console.log(err);
-  //   });
-  // },
+  
 
 
 
@@ -491,7 +461,7 @@ submit:function(e){
     citys.provinces.some((p, index) => {
       if (p.id == provinceId) {
         provinceCityCounty[1] = p.cities;//城市
-        console.log(provinceCityCounty[1])
+       
         this.setData({
           changeshi: provinceCityCounty[1]
         })
@@ -510,7 +480,7 @@ submit:function(e){
     });
   },
   addresscolumnchange: function (event) {
-    console.log(event)
+    
     var pageData = this.data
     var page = this;
     if (columnIndex == 2) return;
@@ -537,31 +507,31 @@ submit:function(e){
   addressChange: function (e) {
     let that = this
     let ids = e.detail.value
-    console.log(e)
+    
     let provinceCityCounty = that.data.provinceCityCounty
     let province = provinceCityCounty[0][ids[0]].id
     let city = provinceCityCounty[1][ids[1]].id
     // let conty = provinceCityCounty[2][ids[2]].id
     if (provinceCityCounty[2][ids[2]] == undefined) {
-      console.log('baocuo')
+     
       var conty = 0
     } else {
       var conty = provinceCityCounty[2][ids[2]].id
-      console.log(conty)
+     
     }
-    console.log(province, city, conty)
+   
     that.setData({
       IDs: [province, city, conty],
       pccIndex: ids
     })
     that.displayLocateAddress()
-    console.log(ids)
+    
   },
 
 
 
   addresscolumnchange2: function (event) {
-    console.log(event)
+    
     var pageData = this.data
     var page = this;
     if (columnIndex == 2) return;
@@ -588,25 +558,25 @@ submit:function(e){
   addressChange2: function (e) {
     let that = this
     let ids = e.detail.value
-    console.log(e)
+   
     let provinceCityCounty = that.data.provinceCityCounty
     let province = provinceCityCounty[0][ids[0]].id
     let city = provinceCityCounty[1][ids[1]].id
     // let conty = provinceCityCounty[2][ids[2]].id
     if (provinceCityCounty[2][ids[2]] == undefined) {
-      console.log('baocuo')
+      
       var conty = 0
     } else {
       var conty = provinceCityCounty[2][ids[2]].id
-      console.log(conty)
+     
     }
-    console.log(province, city, conty)
+    
     that.setData({
       IDs2: [province, city, conty],
       pccIndex: ids
     })
     that.displayLocateAddress2()
-    console.log(ids,that.data.IDs2)
+   
   },
 
 

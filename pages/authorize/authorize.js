@@ -83,7 +83,7 @@ Page({
    */
   onGetUserInfo: function (e) {
     var that = this
-    console.log(e)
+ 
     if (e.detail.errMsg == "getUserInfo:fail auth deny"){
       wx.switchTab({
         url: '/tabs/index/index'
@@ -92,7 +92,7 @@ Page({
       let userInfo = e.detail.userInfo
       wx.setStorageSync('userInfo', userInfo)
       app.saveCustomerId2Local(userInfo);
-      console.log(userInfo)
+     
       wx.navigateBack({
         delta: 1
       });
@@ -104,9 +104,9 @@ Page({
 
   saveuserInfo: function (params) {
     util.putRequest(['customer', params]).then(function (res) {
-      console.log(res)
+     
     }).catch(function (err) {
-      console.log(err)
+     
     })
   },
 

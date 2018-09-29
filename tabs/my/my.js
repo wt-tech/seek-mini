@@ -33,7 +33,7 @@ Page({
       customerId: customerId
     }
     util.getRequest(['message/getmessage', params]).then(function (res) {
-      console.log(res)
+     
       if (!res) {
         that.setData({
           message: false
@@ -44,7 +44,7 @@ Page({
         })
       }
     }).catch(function (err) {
-      console.log(err)
+      
     })
   },
 
@@ -55,7 +55,7 @@ Page({
       customerId: customerId
     }
     util.getRequest(['authentication/getAuthentication', params]).then(function (res) {
-      console.log(res)
+      
       if (res.status == 'fail') {
         that.setData({
           renzed: res.status
@@ -74,7 +74,7 @@ Page({
         })
       }
     }).catch(function (err) {
-      console.log(err)
+     
       wx.showToast({
         title: '加载失败...',
       }, wx.navigateBack({
@@ -90,9 +90,9 @@ Page({
     let params = {
       customerId: customerId
     }
-    console.log(params)
+    
     util.getRequest(['volunteer/getvolunteer', params]).then(function (res) {
-      console.log(res)
+      
       if (res.volunteer) {
         if (res.volunteer.volResult == '等待审核') {
           that.setData({
@@ -110,7 +110,7 @@ Page({
       }
 
     }).catch(function (err) {
-      console.log(err)
+     
     })
   },
 

@@ -35,7 +35,7 @@ myReply: function (currentPageNo){
     currentPageNo: pages
   }
   request.getRequest(['topcoment/listtopcomentbycustomerid',params]).then(function(res){
-    console.log(res)
+  
     let allComents = that.data.allComents.concat(res.mycoment)
     that.setData({
       allComents: allComents
@@ -47,7 +47,7 @@ myReply: function (currentPageNo){
       })
     }
   }).catch(function(err){
-    console.log(err)
+  
   })
 },
 
@@ -65,7 +65,7 @@ myReply: function (currentPageNo){
   },
 
   todetails:function(e){
-    console.log(e)
+   
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../details/details?id='+id,
