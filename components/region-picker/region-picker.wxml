@@ -1,0 +1,12 @@
+<!--components/region-picker/region-picker.wxml-->
+
+<view>
+  <picker 
+    mode="multiSelector" 
+    bindchange='regionChangeListener' 
+    bindcolumnchange='regionColumnChange' 
+    value='{{regionIndex}}' class='{{cssClass}}'
+    range='{{region}}' range-key='name'>
+    {{position}}
+  </picker>
+</view>

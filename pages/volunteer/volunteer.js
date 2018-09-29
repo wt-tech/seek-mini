@@ -13,9 +13,32 @@ Page({
     zheng: [],
     fan: [],
     id: '',
-    getvolunteer:true
-  },
+    getvolunteer:true,
+    addressTou:'',
+    IDs:[]
 
+  },
+  addressChange: function (event) {
+    let that = this
+    console.log(event);
+    var address = '';
+    var regionArr = event.detail.regionArr;
+    if (event.detail.regionArr[2]){
+      address = regionArr[0].name + regionArr[1].name + regionArr[2].name 
+      that.setData({
+        IDs: [regionArr[0].id, regionArr[1].id, regionArr[2].id ]
+      })
+    }else{
+      address = regionArr[0].name + regionArr[1].name
+      that.setData({
+        IDs: [regionArr[0].id, regionArr[1].id],
+      })
+    }
+    that.setData({
+      addressTou: address
+    })
+    console.log(address,that.data.IDs)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -85,12 +108,20 @@ Page({
 
   formSubmit: function (e) {
     let that = this
+    let IDs = that.data.IDs
     console.log(e)
     let value = e.detail.value
     let positiveIdentityUrl = that.data.zheng
     let negativIdentityUrl = that.data.fan
     value.positiveIdentityUrl = positiveIdentityUrl
     value.negativIdentityUrl = negativIdentityUrl
+
+    let VolunteerArea = {}
+    VolunteerArea.provinceId = IDs[0];
+    VolunteerArea.cityId = IDs[1];
+    VolunteerArea.countyId = IDs[2];
+    value.VolunteerArea = VolunteerArea
+    
     let customer = {}
     customer.id = that.data.id
     value.customer = customer
@@ -106,27 +137,7 @@ Page({
         })
         return false;
       }
-      // if (value.customerName == '') {
-      //   wx.showToast({
-      //     title: '请填写姓名',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // } else if (value.identityNO == '') {
-      //   wx.showToast({
-      //     title: '请填写身份证号',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // } else if (value.address == '') {
-      //   wx.showToast({
-      //     title: '请填写联系地址',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // } else if (value.tel == '') {
-      //   wx.showToast({
-      //     title: '请填写联系电话',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // } else
+     
       
       if (value.positiveIdentityUrl.length == '0') {
         wx.showToast({

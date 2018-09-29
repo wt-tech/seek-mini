@@ -1,0 +1,5 @@
+/* tabs/load/load.wxss */
+
+image{
+  width:100%;
+}

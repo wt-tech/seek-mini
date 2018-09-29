@@ -4,7 +4,7 @@
 
 
 const baseURL = "https://www.qghls.com/seek/"
-// const baseURL = "http://192.168.0.177:8888/seek/"
+
 
 /*
 params是一个对象,该对象的每一个属性均需要传递到后台,

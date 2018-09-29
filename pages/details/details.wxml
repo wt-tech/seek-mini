@@ -117,21 +117,29 @@
 
 
   <view class="Clue">
-    <view wx:if="{{!collectioned}}" class="collection border" bindtap='collection'>
-      <image src="../../resource/img/collection.png"></image>
-      <text>收藏</text>
+    <view wx:if="{{!collectioned}}" class="collection border thrd" bindtap='collection'>
+      <view style='margin:0 auto;width:50%;'>
+        <image src="../../resource/img/collection.png"></image>
+        <text>收藏</text>      
+      </view>
     </view>
-    <view wx:else="{{collectioned}}" class="collectioned border" bindtap='collectioned'>
-      <image src="../../resource/img/collectioned.png"></image>
-      <text>已收藏</text>
+    <view wx:else="{{collectioned}}" class="collectioned border thrd" bindtap='collectioned'>
+      <view style='margin:0 auto;width:50%;'>
+        <image src="../../resource/img/collectioned.png"></image>
+        <text>已收藏</text>
+      </view>
     </view>
-    <view class="border" bindtap='apply'>
+    <view class="border thrd" bindtap='apply'>
+    <view style='margin:0 auto;width:60%;'>
       <image src="../../resource/img/apply.png"></image>
       <text>提供信息</text>
     </view>
-    <view bindtap='shareImg'>
+    </view>
+    <view bindtap='shareImg' class="thrd">
+      <view style='margin:0 auto;width:60%;'>
       <image src="../../resource/img/share.png"></image>
       <text sytle="line-height:70rpx;height:70rpx;display:inline-block">转发扩散</text>
+      </view>
     </view>
   </view>
 

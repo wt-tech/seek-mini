@@ -16,8 +16,8 @@
 
 
 
-<view class="chooseType">
-  <view class='shearchPeople tabBar' bindtap='searchPeople'>
+<view class="chooseType" >
+  <view class='shearchPeople tabBar' bindtap='searchPeople' bindtap='bindcheck2' animation="{{animationData2}}" >
     <image src="../../resource/img/people.png"></image>
     <view>发布寻人</view>
   </view>
@@ -25,7 +25,7 @@
 </view>
 
 
-  <view class='shearchHome tabBar' bindtap='searchHome'>
+  <view style="background:{{bgcolor2}}" class='shearchHome tabBar' bindtap='searchHome' bindtap='bindcheck' animation="{{animationData}}">
     <image src="../../resource/img/searchHome.png"></image>
     <view>发布寻家</view>
   </view>

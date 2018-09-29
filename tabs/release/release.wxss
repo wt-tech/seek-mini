@@ -1,6 +1,8 @@
 /* pages/release/release.wxss */
 page{
   background: #f0f0f0;
+ 
+
 }
 
 
@@ -34,6 +36,7 @@ page{
   left:10%;
   width:80%;
   height:25%;
+  box-shadow: 5px 5px 10px #ccc;
 }
 .shearchHome{
   position:fixed;
@@ -41,6 +44,7 @@ page{
   width:80%;
   height:25%;
   left:10%;
+    box-shadow: 5px 5px 10px #ccc;
 }
 .top{
   position:fixed;
