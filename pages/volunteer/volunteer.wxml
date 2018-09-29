@@ -29,12 +29,16 @@
         </view>
     </view>
     <view class="list mt20">
-      <text decode="true">联系地址：</text>
-      <input name='address' placeholder='您的联系地址'></input>
+    <text decode="true">选择城市：</text>
+    <region-picker bind:change="addressChange"></region-picker>
+    </view>
+    <view class="list mt20">
+      <text decode="true">详细地址：</text>
+      <input name='address' placeholder='您的详细联系地址' value='{{addressTou}}'></input>
     </view>
     <view class="list mt20">
       <text decode="true">联系电话：</text>
-      <input name="tel" type="number" placeholder='您的手机或者电话号码'></input>
+      <input name="tel" type="number" placeholder='您的手机或者电话号码' ></input>
     </view>
   </view>
 

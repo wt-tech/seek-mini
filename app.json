@@ -1,5 +1,6 @@
 {
   "pages":[
+    "tabs/load/load",
     "tabs/index/index",
     "pages/share/share",
     "pages/bannerdetail/bannerdetail",
