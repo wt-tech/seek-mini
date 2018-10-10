@@ -46,7 +46,7 @@ Page({
     }
   },
 // 页面加载
-  onLoad: function () {
+  onLoad: function (options) {
     let that = this
     let time = request.formatTime(new Date())
     that.setData({

@@ -1,5 +1,7 @@
 <!--pages/details/details.wxml-->
- 
+ <view>
+  <image src="{{src}}"></image>
+ </view>
   <view hidden='{{!content.missName}}' class="mb80 detail">
     <view class="title" >
       {{content.title}}

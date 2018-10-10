@@ -4,8 +4,8 @@
 
 
 
- const baseURL = "https://www.qghls.com/seek/"
-//const baseURL = "http://192.168.0.177:8888/seek/"
+//  const baseURL = "https://www.qghls.com/seek/"
+const baseURL = "http://192.168.0.177:8888/seek/"
 // const baseURL = "http://192.168.0.103:8080/seek01/"
 
 

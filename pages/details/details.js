@@ -19,8 +19,8 @@ Page({
     customer : {},
     filePath:'',
     markHide:false,
-    searchLogo:'/pages/resource/img/searchLogo3.jpg'
-
+    searchLogo:'/pages/resource/img/searchLogo3.jpg',
+    src:''
   },
 
   /**
@@ -28,7 +28,14 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-
+    console.log('***********************',options)
+    if (options.scene){
+      console.log(options.scene)
+      const scene = decodeURIComponent(options.scene)
+      that.setData({
+        id : scene
+      })
+    }
 
     
     let currentPageNo = that.data.currentPageNo
@@ -49,7 +56,77 @@ Page({
     }
     that.getmark(params) 
     that.browse()   //向后台插入浏览记录
+
+    that.pageImg()
   },
+
+// 绘制页面二维码
+pageImg:function(){
+  var that = this
+  request.getRequest(['code/accesstoken']).then(function(res){
+      var reCode = res.result.split(',')[0];
+      var code = reCode.split(':')[1]
+      if(res.status == 'success'){
+        that.token(code.split('"')[1])
+      }
+  }).catch(function(err){
+    console.log(err)
+  })
+},
+
+token:function(a){
+  var that = this;
+  var id = that.data.id
+  wx.request({
+    url: 'http://192.168.0.177:8888/seek/code/wxcode',
+    // url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='+a,
+    data:{
+      access_token: a,
+      scene: id,
+      page:'pages/details/details',
+    },
+    method: "POST",
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    responseType: 'arraybuffer',
+    success: function (res) {
+      console.log(res.data)
+      var resData = res.data
+      // var resData = res.data.split('"')[1]
+      
+      var src = wx.arrayBufferToBase64(resData)
+      src = src.replace(/\s+/g, "");
+      src = src.replace(/<\/?.+?>/g, "");
+      src = src.replace(/[\r\n]/g, "");
+      that.setData({
+        src:  "data:image/png;base64,"+src
+      })
+    },
+    fail: function (err) {
+      console.log(err)
+    }
+  })
+
+
+  // =========================================
+
+
+  // var params = {
+  //   access_token:a,
+  //   scene:'11',
+  //   page:'pages/details/details',
+  // }
+  // // "14_Yez0o24wwT_QsXB9Qkx8vSZT-wTXLw1Mg8J6FDhwt677vECvDFFxiJZ4mjnr4w8FwoEXkSHnXs4yfu3YFBZ891TbEI5Zzh4EqiPKg5IUR87aHoCVCmJG9D0QY5IXLDiAJADRJ"
+  // request.postRequest(['code/wxcode',params]).then(function(res){
+  //   console.log(res)
+  // }).catch(function(err){
+  //   console.log(err)
+  // })
+},
+
+
+
 
 // 加载详情数据
   loadDetail: function (id, currentPageNo){
@@ -74,7 +151,6 @@ Page({
         wx.getImageInfo({
           src: content.seekimgs.split(',')[0],
           success: function (res) {
-        
             let path = res.path
             that.setData({
               imgPath: path
@@ -155,28 +231,30 @@ Page({
 
 
 
-
     // 设置背景颜色以及图片大小位置
     ctx.setFillStyle('#fff')
     ctx.fillRect(0, 0, 360, 600)
     // ctx.setStrokeStyle("#00ff00")
     ctx.rect(0, 0, 360, 560)
+
+    // 获取图片，没有就绘制指定的图片
     if (that.data.imgPath){
       ctx.drawImage(that.data.imgPath, 0, 0, 360, 360)
     }else{
       ctx.drawImage('../../resource/img/searchLogo3.jpg', 0, 0, 360, 360)
     }
     // 填充小程序码
-    ctx.drawImage('../../resource/img/hbxr.jpg', 10, 505, 90, 90)
+    // ctx.drawImage('../../resource/img/hbxr.jpg', 15, 505, 90, 90)
+
 
 
     // 填充文本
     ctx.setFontSize(14)
     ctx.setFillStyle('#000000')
-    ctx.fillText('姓名：'+name, 5, 390)
-    ctx.fillText('失踪时间：' + missdata, 5, 410)
-    ctx.fillText('失踪地点：' + missadd, 5, 430)
-    ctx.fillText('相貌特征：', 5, 450)
+    ctx.fillText('姓名：'+name, 15, 390)
+    ctx.fillText('失踪时间：' + missdata, 15, 410)
+    ctx.fillText('失踪地点：' + missadd, 15, 430)
+    ctx.fillText('相貌特征：', 15, 450)
 
     ctx.fillText('扫码关注，帮助更多人与家人团聚', 105, 550)
 
@@ -184,6 +262,11 @@ Page({
     var text = feature    //这是要绘制的文本
     var chr = text.split("")
   
+
+
+
+
+
     var temp = ""
     var row = []
     for (var a = 0; a < chr.length; a++) {
@@ -221,6 +304,18 @@ Page({
       ctx.fillText(row[b], 75, 450 + b * 20);
     }
 
+// 绘制当前页面的二维码
+
+    const src = that.data.src;  
+
+  
+    ctx.drawImage(src, 0, 0, 200, )
+   
+
+
+
+
+    // console.log(src)
 
 
 
@@ -238,6 +333,7 @@ Page({
             filePath: res.tempFilePath,
             markHide:true
           })
+
           // let id = that.data.id
           // wx.navigateTo({
           //   url: '../share/share?filePath=' + res.tempFilePath + '&id='+id,
