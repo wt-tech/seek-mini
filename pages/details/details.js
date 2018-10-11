@@ -76,54 +76,61 @@ pageImg:function(){
 token:function(a){
   var that = this;
   var id = that.data.id
-  wx.request({
-    url: 'http://192.168.0.177:8888/seek/code/wxcode',
-    // url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='+a,
-    data:{
-      access_token: a,
-      scene: id,
-      page:'pages/details/details',
-    },
-    method: "GET",
-    header: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    responseType: 'arraybuffer',
-    success: function (res) {
-      console.log(res.data)
-      var resData = res.data
-      // var resData = res.data.split('"')[1]
+  // wx.request({
+  //   url: 'http://192.168.0.177:8888/seek/code/wxcode',
+  //   // url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='+a,
+  //   data:{
+  //     access_token: a,
+  //     scene: id,
+  //     page:'pages/details/details',
+  //   },
+  //   method: "GET",
+  //   header: {
+  //     'Content-Type': 'application/x-www-form-urlencoded'
+  //   },
+  //   // responseType: 'arraybuffer',
+  //   success: function (res) {
+  //     console.log(res.data)
+  //     var resData = res.data
+  //     // var resData = res.data.split('"')[1]
       
-      var src = wx.arrayBufferToBase64(resData)
-      src = src.replace(/\s+/g, "");
-      src = src.replace(/<\/?.+?>/g, "");
-      src = src.replace(/[\r\n]/g, "");
-      that.setData({
-        src:  "data:image/png;base64,"+src
-      })
-      // 当二维码的请求全部结束之后调用canvas绘制图片
-      that.shareImg2()
-    },
-    fail: function (err) {
-      console.log(err)
-    }
-  })
+  //     var src = wx.arrayBufferToBase64(resData)
+  //     src = src.replace(/\s+/g, "");
+  //     src = src.replace(/<\/?.+?>/g, "");
+  //     src = src.replace(/[\r\n]/g, "");
+  //     that.setData({
+  //       src:  "data:image/png;base64,"+src
+  //     })
+  //     // 当二维码的请求全部结束之后调用canvas绘制图片
+  //     that.shareImg2()
+  //   },
+  //   fail: function (err) {
+  //     console.log(err)
+  //   }
+  // })
 
 
   // =========================================
 
 
-  // var params = {
-  //   access_token:a,
-  //   scene:'11',
-  //   page:'pages/details/details',
-  // }
-  // // "14_Yez0o24wwT_QsXB9Qkx8vSZT-wTXLw1Mg8J6FDhwt677vECvDFFxiJZ4mjnr4w8FwoEXkSHnXs4yfu3YFBZ891TbEI5Zzh4EqiPKg5IUR87aHoCVCmJG9D0QY5IXLDiAJADRJ"
-  // request.postRequest(['code/wxcode',params]).then(function(res){
-  //   console.log(res)
-  // }).catch(function(err){
-  //   console.log(err)
-  // })
+  var params = {
+    access_token:a,
+    scene:id,
+    path:'pages/details/details',
+  }
+  // "14_Yez0o24wwT_QsXB9Qkx8vSZT-wTXLw1Mg8J6FDhwt677vECvDFFxiJZ4mjnr4w8FwoEXkSHnXs4yfu3YFBZ891TbEI5Zzh4EqiPKg5IUR87aHoCVCmJG9D0QY5IXLDiAJADRJ"
+  request.postRequest(['code/wxcode',params]).then(function(res){    
+    if(res.status == 'success'){
+      console.log(res)
+      // 当二维码的请求全部结束之后调用canvas绘制图片
+      // that.setData({
+      //   src : res.url
+      // })
+      that.shareImg2(res.url)
+    }
+  }).catch(function(err){
+    console.log(err)
+  })
 },
 
 
@@ -224,7 +231,7 @@ token:function(a){
   
   },
 // 绘制canvas
-shareImg2:function(){
+shareImg2:function(src){
   var that = this
   const ctx = wx.createCanvasContext('myCanvas')
   // 获取当前的信息
@@ -250,9 +257,13 @@ shareImg2:function(){
   } else {
     ctx.drawImage('../../resource/img/searchLogo3.jpg', 0, 0, 360, 360)
   }
-  // 填充小程序码
+  // 填充小程序码,该小程序码是本地图片
   // ctx.drawImage('../../resource/img/hbxr.jpg', 15, 505, 90, 90)
 
+
+  // 绘制当前页面的二维码
+  // const src = that.data.src;
+  ctx.drawImage("https://www.qghls.com/statics/seek/seek-img/84.jpg", 10, 500, 90, 90)
 
 
   // 填充文本
@@ -306,9 +317,6 @@ shareImg2:function(){
     ctx.fillText(row[b], 75, 450 + b * 20);
   }
 
-  // 绘制当前页面的二维码
-  const src = that.data.src;
-  ctx.drawImage(src, 10, 500, 90, 90)
 
   ctx.draw(true, setTimeout(function () {
     wx.canvasToTempFilePath({
