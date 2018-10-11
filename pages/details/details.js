@@ -126,7 +126,15 @@ token:function(a){
       // that.setData({
       //   src : res.url
       // })
-      that.shareImg2(res.url)
+      wx.getImageInfo({
+        src: res.url,
+        success: function (res) {
+          var path = res.path
+          console.log(path)
+          that.shareImg2(path)
+        }
+      })
+      
     }
   }).catch(function(err){
     console.log(err)
@@ -261,10 +269,11 @@ shareImg2:function(src){
   // ctx.drawImage('../../resource/img/hbxr.jpg', 15, 505, 90, 90)
 
 
+   
   // 绘制当前页面的二维码
   // const src = that.data.src;
-  ctx.drawImage("https://www.qghls.com/statics/seek/seek-img/84.jpg", 10, 500, 90, 90)
 
+  ctx.drawImage(src, 10, 500, 90, 90)
 
   // 填充文本
   ctx.setFontSize(14)
