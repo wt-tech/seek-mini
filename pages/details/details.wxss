@@ -4,7 +4,9 @@ page{
 }
 canvas{
   position: fixed;
-  z-index: 999;
+  margin-top:500%;
+  /* top:0; */
+  /* z-index: -1; */
 }
 
 .detail{
@@ -192,7 +194,7 @@ swiper{
   height:55rpx;
   position: fixed;
   bottom:5%;
-  left: 44%;
+  left: 45%;
   z-index: 1333;
 }
 .closed image{

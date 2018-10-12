@@ -13,8 +13,12 @@
     <view class="mt10 ml30">
       <text decode='true'>性&emsp;&emsp;别：</text>
       <radio-group name="gender">
-        <radio value='男' /> 男
-        <radio value="女" /> 女
+        <label>
+          <radio value='男' /> 男
+        </label>
+        <label>
+         <radio value="女" /> 女
+        </label>        
       </radio-group>
     </view>
     <view class="mt10 ml30">
@@ -54,7 +58,10 @@
 
     <view class="mt10 ml30">
       <checkbox-group name="hadBrowsed">
-        <checkbox value="true" />过滤掉已查看
+        <label>
+          <checkbox value="true" />过滤掉已查看
+        </label>
+        
       </checkbox-group>
     </view>
     <view class="mt10">

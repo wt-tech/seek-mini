@@ -28,7 +28,6 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    console.log('***********************',options)
     if (options.scene){
       console.log(options.scene)
       const scene = decodeURIComponent(options.scene)
@@ -72,69 +71,34 @@ pageImg:function(){
     console.log(err)
   })
 },
-
 token:function(a){
   var that = this;
   var id = that.data.id
-  // wx.request({
-  //   url: 'http://192.168.0.177:8888/seek/code/wxcode',
-  //   // url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='+a,
-  //   data:{
-  //     access_token: a,
-  //     scene: id,
-  //     page:'pages/details/details',
-  //   },
-  //   method: "GET",
-  //   header: {
-  //     'Content-Type': 'application/x-www-form-urlencoded'
-  //   },
-  //   // responseType: 'arraybuffer',
-  //   success: function (res) {
-  //     console.log(res.data)
-  //     var resData = res.data
-  //     // var resData = res.data.split('"')[1]
-      
-  //     var src = wx.arrayBufferToBase64(resData)
-  //     src = src.replace(/\s+/g, "");
-  //     src = src.replace(/<\/?.+?>/g, "");
-  //     src = src.replace(/[\r\n]/g, "");
-  //     that.setData({
-  //       src:  "data:image/png;base64,"+src
-  //     })
-  //     // 当二维码的请求全部结束之后调用canvas绘制图片
-  //     that.shareImg2()
-  //   },
-  //   fail: function (err) {
-  //     console.log(err)
-  //   }
-  // })
-
-
-  // =========================================
-
-
   var params = {
     access_token:a,
     scene:id,
     path:'pages/details/details',
   }
-  // "14_Yez0o24wwT_QsXB9Qkx8vSZT-wTXLw1Mg8J6FDhwt677vECvDFFxiJZ4mjnr4w8FwoEXkSHnXs4yfu3YFBZ891TbEI5Zzh4EqiPKg5IUR87aHoCVCmJG9D0QY5IXLDiAJADRJ"
-  request.postRequest(['code/wxcode',params]).then(function(res){    
+  request.postRequest(['code/wxcode',params]).then(function(res){
     if(res.status == 'success'){
       console.log(res)
-      // 当二维码的请求全部结束之后调用canvas绘制图片
-      // that.setData({
-      //   src : res.url
-      // })
       wx.getImageInfo({
         src: res.url,
         success: function (res) {
           var path = res.path
-          console.log(path)
+          console.log(res)
+          console.log("获取临时地址成功",path)
           that.shareImg2(path)
+        },
+        fail:function(err){
+          console.log("获取临时地址失败****")
+          that.shareImg2()
         }
       })
       
+    }else{
+      console.log('当前没有返回图片地址')
+      that.shareImg2()
     }
   }).catch(function(err){
     console.log(err)
@@ -257,7 +221,7 @@ shareImg2:function(src){
   ctx.setFillStyle('#fff')
   ctx.fillRect(0, 0, 360, 600)
   // ctx.setStrokeStyle("#00ff00")
-  ctx.rect(0, 0, 360, 560)
+  ctx.rect(0, 0, 400, 560)
 
   // 获取图片，没有就绘制指定的图片
   if (that.data.imgPath) {
@@ -265,25 +229,30 @@ shareImg2:function(src){
   } else {
     ctx.drawImage('../../resource/img/searchLogo3.jpg', 0, 0, 360, 360)
   }
-  // 填充小程序码,该小程序码是本地图片
-  // ctx.drawImage('../../resource/img/hbxr.jpg', 15, 505, 90, 90)
+
+ // 填充小程序码,如果没有当前页面的二维码则使用本地小程序码
+  if(src){
+    console.log(src)
+    ctx.drawImage(src, 30, 490, 90, 90)
+  }else{
+    console.log('meiyou')
+    ctx.drawImage('../../resource/img/hbxr.jpg', 30, 490, 90, 90)
+  }
+ 
+  
 
 
    
-  // 绘制当前页面的二维码
-  // const src = that.data.src;
-
-  ctx.drawImage(src, 10, 500, 90, 90)
 
   // 填充文本
   ctx.setFontSize(14)
   ctx.setFillStyle('#000000')
-  ctx.fillText('姓名：' + name, 15, 390)
-  ctx.fillText('失踪时间：' + missdata, 15, 410)
-  ctx.fillText('失踪地点：' + missadd, 15, 430)
-  ctx.fillText('相貌特征：', 15, 450)
+  ctx.fillText('姓名：' + name, 30, 390)
+  ctx.fillText('失踪时间：' + missdata, 30, 410)
+  ctx.fillText('失踪地点：' + missadd, 30, 430)
+  ctx.fillText('相貌特征：', 30, 450)
 
-  ctx.fillText('扫码关注，帮助更多人与家人团聚', 105, 550)
+  ctx.fillText('扫码扩散，帮助更多人与家人团聚', 120, 550)
 
 
   var text = feature    //这是要绘制的文本
@@ -323,7 +292,7 @@ shareImg2:function(src){
     row = rowCut;
   }
   for (var b = 0; b < row.length; b++) {
-    ctx.fillText(row[b], 75, 450 + b * 20);
+    ctx.fillText(row[b], 95, 450 + b * 20);
   }
 
 
