@@ -86,18 +86,14 @@ token:function(a){
         src: res.url,
         success: function (res) {
           var path = res.path
-          console.log(res)
-          console.log("获取临时地址成功",path)
           that.shareImg2(path)
         },
         fail:function(err){
-          console.log("获取临时地址失败****")
           that.shareImg2()
         }
       })
       
     }else{
-      console.log('当前没有返回图片地址')
       that.shareImg2()
     }
   }).catch(function(err){
@@ -203,7 +199,7 @@ token:function(a){
   
   },
 // 绘制canvas
-shareImg2:function(src){
+shareImg2:function(src=null){
   var that = this
   const ctx = wx.createCanvasContext('myCanvas')
   // 获取当前的信息
@@ -232,10 +228,8 @@ shareImg2:function(src){
 
  // 填充小程序码,如果没有当前页面的二维码则使用本地小程序码
   if(src){
-    console.log(src)
     ctx.drawImage(src, 30, 490, 90, 90)
   }else{
-    console.log('meiyou')
     ctx.drawImage('../../resource/img/hbxr.jpg', 30, 490, 90, 90)
   }
  
