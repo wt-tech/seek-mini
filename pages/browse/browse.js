@@ -34,7 +34,7 @@ Page({
     request.getRequest(['browsehistory/listbrowsehistory', params]).then(function (res) {
      
       let searchList = that.data.searchList.concat(res.browsehistorys)
-      
+      console.log(searchList)
         for (let tmp of searchList) {
           if (tmp.seek.seekimgs) {
             tmp.seek.seekimgs = tmp.seek.seekimgs.split(',')[0]
@@ -67,5 +67,24 @@ Page({
      currentPageNo : page
    })
    that.browse(id,page)
- }
+ },
+  delBrowse:function(e){
+    let that = this;
+    let id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    let searchList = that.data.searchList;
+    console.log(id,index)
+    request.getRequest(['browsehistory/deletebrowsehistory?id='+id]).then(function(res){
+      console.log(res)
+      if(res.status == 'success'){
+        searchList.splice(index, 1);
+        that.setData({
+          searchList: searchList
+        });
+      }
+      
+    }).catch(function(err){
+
+    });
+  },
 })

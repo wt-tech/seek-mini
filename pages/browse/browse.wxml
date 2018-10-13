@@ -1,7 +1,7 @@
 <!--pages/myCollection/myCollection.wxml-->
 <view  wx:for="{{searchList}}">
 <view class="conlist">
-<view class="List mt20" bindtap='toDetails'  data-id="{{item.seek.id}}" wx:key="bros">
+<view class="List mt20" bindtap='toDetails'  data-id="{{item.seek.id}}" data-index='{{index}}' wx:key="bros">
   <!-- <view class="avatarImg">
     <image  src="{{item.seek.seekimgs}}"></image>
   </view> -->
@@ -16,7 +16,13 @@
     <view><text class="clgray">详细地点：</text>{{item.seek.missDetailPlace?item.seek.missDetailPlace:'不详'}}</view>
   </view>
 
+
 </view>
+
+<view class="delImg">
+  <image src='../../resource/img/delicon1.png' bindtap='delBrowse'  data-id="{{item.id}}" data-index='{{index}}'></image>
+</view>
+
 <view class="case" wx:if="{{item.seek.seekStatus == '已结案'}}">
    <image src="../../resource/img/case4.png"></image>
 </view>

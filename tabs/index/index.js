@@ -491,7 +491,7 @@ Page({
     page.maintainPageNo(true);
     page.maintainHasNoMoreData(false);
     page.maintainSeekList(true);
-    let params = page.prepareParams();//获取参数
+    let params = page.prepareParams2();//获取参数
     page.getSeekList(params);
   },
 
@@ -514,6 +514,7 @@ Page({
   /**
    * 准备待发送的参数
    */
+  
   prepareParams: function () {
     let page = this;
     let seekFilterParams = page.data.seekFilterParams;
@@ -530,9 +531,34 @@ Page({
   assembleMissPosAndPageNo: function (obj) {
     let pageData = this.data;
     
+    // 当前定位，当前按发布时间显示数据，不需要发送地址
     obj.address.missProvinceId = pageData.IDs[0];
     obj.address.missCityId = pageData.IDs[1];
     obj.address.missCountyId = pageData.IDs[2];
+    obj.currentPageNo = pageData.currentPageNo;
+    return obj;
+  },
+
+  prepareParams2: function () {
+    let page = this;
+    let seekFilterParams = page.data.seekFilterParams;
+    seekFilterParams.customer = {
+      id: wx.getStorageSync(constant.customerId)
+    };
+
+    return page.assembleMissPosAndPageNo2(seekFilterParams);
+  },
+
+  /**
+   * 组装丢失省市县和当前页数信息
+   */
+  assembleMissPosAndPageNo2: function (obj) {
+    let pageData = this.data;
+
+    // 当前定位，当前按发布时间显示数据，不需要发送地址
+    // obj.address.missProvinceId = pageData.IDs[0];
+    // obj.address.missCityId = pageData.IDs[1];
+    // obj.address.missCountyId = pageData.IDs[2];
     obj.currentPageNo = pageData.currentPageNo;
     return obj;
   },

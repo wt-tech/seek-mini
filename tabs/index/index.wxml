@@ -128,5 +128,5 @@
   </view>
 </view>
 <view wx:else>
-  <view class="container">当前位置暂时没有数据</view>
+  <view class="container">当前暂时没有数据</view>
 </view>
