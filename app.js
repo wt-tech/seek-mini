@@ -34,7 +34,7 @@ App({
     }
 
 
-    if (wx.getStorageSync(constant.customerId))//有值
+    if (wx.getStorageSync(constant.customerId) && typeof(wx.getStorageSync(constant.customerId)) == 'number')//有值
       return;
     wx.login({
       success: res => {

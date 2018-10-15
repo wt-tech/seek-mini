@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "认证"
+  "navigationBarTitleText": "认证",
+  "usingComponents": {
+    "region-picker": "/components/region-picker/region-picker"
+  }
 }

@@ -12,7 +12,9 @@ Page({
     zheng: [],
     fan: [],
     id: '',
-    renzed: true
+    renzed: true,
+    IDs: [],
+    addressTou:''
   },
 
   /**
@@ -29,7 +31,27 @@ Page({
   },
 
 
+  addressChange: function (event) {
+    let that = this
 
+    var address = '';
+    var regionArr = event.detail.regionArr;
+    if (event.detail.regionArr[2]) {
+      address = regionArr[0].name + regionArr[1].name + regionArr[2].name
+      that.setData({
+        IDs: [regionArr[0].id, regionArr[1].id, regionArr[2].id]
+      })
+    } else {
+      address = regionArr[0].name + regionArr[1].name
+      that.setData({
+        IDs: [regionArr[0].id, regionArr[1].id],
+      })
+    }
+    that.setData({
+      addressTou: address
+    })
+    console.log(that.data.IDs)
+  },
 
 
   renzheng: function () {
@@ -97,6 +119,7 @@ Page({
 
   formSubmit: function (e) {
     let that = this
+    let IDs = that.data.IDs
     
     if (!that.data.renzed) {
       wx.showToast({
@@ -114,50 +137,30 @@ Page({
         return false;
       }
       wx.showLoading()
-      let value = e.detail.value
-      let positiveIdentityUrl = that.data.zheng
-      let negativIdentityUrl = that.data.fan
-      value.positiveIdentityUrl = positiveIdentityUrl
-      value.negativIdentityUrl = negativIdentityUrl
-      let customer = {}
-      customer.id = that.data.id
-      value.customer = customer
-      // if (value.customerName == ''){
-      //   wx.showToast({
-      //     title: '请填写姓名',
-      //     image:'../../resource/img/error.png'
-      //   })
-      // }else if(value.identityNO == '') {
-      //   wx.showToast({
-      //     title: '请填写身份证号',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // }else if(value.address == ''){
-      //   wx.showToast({
-      //     title: '请填写联系地址',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // }else if (value.tel == ''){
-      //   wx.showToast({
-      //     title: '请填写联系电话',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // } else if (value.positiveIdentityUrl.length == '0'){
-      //   wx.showToast({
-      //     title: '请选择正面照',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // } else if (value.negativIdentityUrl.length == '0'){
-      //   wx.showToast({
-      //     title: '请选择反面照',
-      //     image: '../../resource/img/error.png'
-      //   })
-      // }else {
-      //   delete value.positiveIdentityUrl
-      //   delete value.negativIdentityUrl
-      //   that.athentication(value)
-      // }
+      let value = e.detail.value;
+      let positiveIdentityUrl = that.data.zheng;
+      let negativIdentityUrl = that.data.fan;
+      value.positiveIdentityUrl = positiveIdentityUrl;
+      value.negativIdentityUrl = negativIdentityUrl;
 
+      value.provinceId = IDs[0];
+      value.cityId = IDs[1];
+      value.countyId = IDs[2];
+
+      if (!value.provinceId  && !value.cityId){
+        wx.showToast({
+          title: '请选择城市',
+          image: '../../resource/img/error.png',
+        })
+        return false
+      }
+      value.address = that.data.addressTou + value.address ;
+
+
+      let customer = {};
+      customer.id = that.data.id;
+      value.customer = customer;
+  
       if (value.positiveIdentityUrl.length == '0') {
         wx.showToast({
           title: '请选择正面照',
@@ -198,7 +201,10 @@ Page({
         }, 2000)
       }
     }).catch(function (err) {
-      
+      wx.hideLoading();
+      wx.showToast({
+        title: '提交失败，请稍后再试',
+      })
     })
   },
 

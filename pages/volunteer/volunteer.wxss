@@ -14,7 +14,7 @@
   width:25%;
 }
 input,textarea{
-  width:70%;
+  width:80%;
   border:1px solid #ddd;
   padding-left:15rpx;
 }

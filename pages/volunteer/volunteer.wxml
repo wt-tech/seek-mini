@@ -34,7 +34,7 @@
     </view>
     <view class="list mt20">
       <text decode="true">详细地址：</text>
-      <input name='address' placeholder='您的详细联系地址' value='{{addressTou}}'></input>
+      <input name='address' placeholder='您的详细地址,无需重复填写省市县'></input>
     </view>
     <view class="list mt20">
       <text decode="true">联系电话：</text>

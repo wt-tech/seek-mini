@@ -116,12 +116,18 @@ Page({
     value.positiveIdentityUrl = positiveIdentityUrl
     value.negativIdentityUrl = negativIdentityUrl
 
+
+
     let VolunteerArea = {}
     VolunteerArea.provinceId = IDs[0];
     VolunteerArea.cityId = IDs[1];
     VolunteerArea.countyId = IDs[2];
     value.VolunteerArea = VolunteerArea
     
+
+
+
+    value.address = that.data.addressTou + value.address
     let customer = {}
     customer.id = that.data.id
     value.customer = customer
@@ -138,6 +144,13 @@ Page({
         return false;
       }
      
+    if (!value.VolunteerArea.provinceId && !value.VolunteerArea.cityId) {
+      wx.showToast({
+        title: '请选择城市',
+        image: '../../resource/img/error.png',
+      })
+      return false
+    }
       
       if (value.positiveIdentityUrl.length == '0') {
         wx.showToast({
@@ -180,7 +193,10 @@ Page({
         }, 1500)
       }
     }).catch(function (err) {
-    
+      wx.hideLoading();
+      wx.showToast({
+        title: '提交失败，请稍后再试',
+      })
     })
   },
 
