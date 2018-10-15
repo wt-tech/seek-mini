@@ -103,7 +103,7 @@ Page({
     }, 2000)
 
     //获取查询参数
-    let params = page.prepareParams();
+    let params = page.prepareParams2();
     //出入查询参数,获取查询列表
     page.getSeekList(params);
   },

@@ -28,20 +28,20 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    console.log('加载的参数',options)
     if (options.scene){
-      console.log(options.scene)
       const scene = decodeURIComponent(options.scene)
       that.setData({
         id : scene
       })
     }
 
-    
+    // console.log(that.data.id)
     let currentPageNo = that.data.currentPageNo
     let customer = {}
     var customerId = wx.getStorageSync(constant.customerId)
     customer.id = customerId
-    let id = options.id
+    let id = options.id || that.data.id;
     that.setData({
       customer: customer,
       id : id
@@ -57,6 +57,9 @@ Page({
     that.browse()   //向后台插入浏览记录
 
   },
+  // onLoad(options){
+  //   console.log(options)
+  // },
 
 // 绘制页面二维码
 pageImg:function(){
@@ -77,7 +80,7 @@ token:function(a){
   var params = {
     access_token:a,
     scene:id,
-    path:'pages/details/details',
+    page:'pages/details/details',
   }
   request.postRequest(['code/wxcode',params]).then(function(res){
     if(res.status == 'success'){
@@ -513,5 +516,6 @@ shareImg2:function(src=null){
     return{
       title: '帮TA寻找回家的路',
     }
-  }
+  },
+
 })

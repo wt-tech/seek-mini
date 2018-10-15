@@ -40,7 +40,6 @@ App({
       success: res => {
         let uri = 'authorization/' + res.code;
         request.simpleRequest([uri]).then(function (result) {
-
           wx.setStorageSync(constant.customerId, result.customerId);
         }).catch(function (err) {
           

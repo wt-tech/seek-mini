@@ -2,6 +2,7 @@
 <import src="../../pages/template/searchList.wxml" />
 
 
+
 <!-- 遮罩层 -->
 <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModels}}"></view>
 <view class="modelsbox" wx:if="{{showModels}}">

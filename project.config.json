@@ -24,13 +24,43 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 3,
+			"list": [
+				{
+					"id": -1,
+					"name": "tiaozhuan",
+					"pathName": "pages/details/details",
+					"query": "scene = 111"
+				},
+				{
+					"id": -1,
+					"name": "tiaozhuan",
+					"pathName": "pages/details/details",
+					"query": "options.scene = 111"
+				},
+				{
+					"id": -1,
+					"name": "tiaozhuan3",
+					"pathName": "pages/details/details",
+					"query": "scene = 111"
+				},
+				{
+					"id": 3,
+					"name": "tiaozhuan3",
+					"pathName": "pages/details/details",
+					"query": "scene=109",
+					"scene": "1012"
+				}
+			]
 		}
 	}
 }
