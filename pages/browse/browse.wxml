@@ -1,7 +1,7 @@
 <!--pages/myCollection/myCollection.wxml-->
-<view  wx:for="{{searchList}}">
+<view  wx:for="{{searchList}}"  wx:key="bros">
 <view class="conlist">
-<view class="List mt20" bindtap='toDetails'  data-id="{{item.seek.id}}" data-index='{{index}}' wx:key="bros">
+<view class="List mt20" bindtap='toDetails'  data-id="{{item.seek.id}}" data-index='{{index}}'>
   <!-- <view class="avatarImg">
     <image  src="{{item.seek.seekimgs}}"></image>
   </view> -->

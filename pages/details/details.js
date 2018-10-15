@@ -81,7 +81,7 @@ token:function(a){
   }
   request.postRequest(['code/wxcode',params]).then(function(res){
     if(res.status == 'success'){
-      console.log(res)
+      // console.log(res)
       wx.getImageInfo({
         src: res.url,
         success: function (res) {

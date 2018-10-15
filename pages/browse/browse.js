@@ -34,7 +34,7 @@ Page({
     request.getRequest(['browsehistory/listbrowsehistory', params]).then(function (res) {
      
       let searchList = that.data.searchList.concat(res.browsehistorys)
-      console.log(searchList)
+      // console.log(searchList)
         for (let tmp of searchList) {
           if (tmp.seek.seekimgs) {
             tmp.seek.seekimgs = tmp.seek.seekimgs.split(',')[0]
