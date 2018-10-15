@@ -64,7 +64,7 @@ Page({
             }
             if (res.cancel) {
               wx.navigateBack({
-                delta: 1
+                delta: 2
               })
             }
 
@@ -77,11 +77,11 @@ Page({
           success: function (res) {
             if (res.confirm) {
               wx.navigateBack({
-                delta: 1
+                delta: 2
               })
             } else {
               wx.navigateBack({
-                delta: 1
+                delta: 2
               })
             }
           }

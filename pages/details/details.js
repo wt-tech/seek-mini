@@ -28,11 +28,14 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    console.log('加载的参数',options)
     if (options.scene){
       const scene = decodeURIComponent(options.scene)
       that.setData({
         id : scene
+      })
+    }else{
+      that.setData({
+        id: options.id
       })
     }
 
@@ -41,19 +44,18 @@ Page({
     let customer = {}
     var customerId = wx.getStorageSync(constant.customerId)
     customer.id = customerId
-    let id = options.id || that.data.id;
     that.setData({
       customer: customer,
-      id : id
     })
-    
+    let id = that.data.id;
+
     that.loadDetail(id, currentPageNo)
 
     let params = {
       customerId: customerId,
       seekId : id
     }
-    that.getmark(params) 
+    that.getmark(params)  //查询收藏
     that.browse()   //向后台插入浏览记录
 
   },
