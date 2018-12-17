@@ -222,6 +222,8 @@ Page({
         let missdata = content.missDate
         let missadd = content.missDetailPlace
         let feature = content.feature
+        let contactName = content.contactName
+        let contactTel = content.contactTel
 
 
 
@@ -240,9 +242,9 @@ Page({
 
         // 填充小程序码,如果没有当前页面的二维码则使用本地小程序码
         if (src) {
-            ctx.drawImage(src, 30, 490, 90, 90)
+            ctx.drawImage(src, 30, 540, 90, 90)
         } else {
-            ctx.drawImage('../../resource/img/hbxr.jpg', 30, 490, 90, 90)
+            ctx.drawImage('../../resource/img/hbxr.jpg', 30, 540, 90, 90)
         }
 
 
@@ -256,9 +258,12 @@ Page({
         ctx.fillText('姓名：' + name, 30, 390)
         ctx.fillText('失踪时间：' + missdata, 30, 410)
         ctx.fillText('失踪地点：' + missadd, 30, 430)
-        ctx.fillText('相貌特征：', 30, 450)
+        ctx.fillText('联系人：' + contactName, 30, 450)
+        ctx.fillText('联系方式：' + contactTel, 30, 470)
+        ctx.fillText('相貌特征：',30, 490)
+       
 
-        ctx.fillText('扫码扩散，帮助更多人与家人团聚', 120, 550)
+        ctx.fillText('扫码扩散，帮助更多人与家人团聚', 120, 580)
 
 
         var text = feature    //这是要绘制的文本
@@ -267,7 +272,7 @@ Page({
         var temp = ""
         var row = []
         for (var a = 0; a < chr.length; a++) {
-            if (ctx.measureText(temp).width < 260) {
+            if (ctx.measureText(temp).width < 250) {
                 temp += chr[a];
             }
             else {
@@ -298,7 +303,7 @@ Page({
             row = rowCut;
         }
         for (var b = 0; b < row.length; b++) {
-            ctx.fillText(row[b], 95, 450 + b * 20);
+            ctx.fillText(row[b], 95, 490 + b * 20);
         }
 
 

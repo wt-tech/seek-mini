@@ -62,6 +62,12 @@
       <view class="details-cont" wx:if="{{content.relationship}}">
         <text class="clgray firstText">与失踪人关系：</text><text style="width:50%;margin-right:10rpx;" >{{content.relationship}}</text>
       </view>
+       <view class="details-cont" wx:if="{{content.contactName}}">
+        <text class="clgray firstText" style="padding-right:25rpx;">联系人：</text><text style="width:50%;margin-right:10rpx;" >{{content.contactName}}</text>
+      </view>
+       <view class="details-cont" wx:if="{{content.contactTel}}">
+        <text class="clgray firstText">联系方式：</text><text style="width:50%;margin-right:10rpx;" >{{content.contactTel}}</text>
+      </view>
       <view class="details-cont" wx:if="{{content.otherInformation}}">
         <text class="clgray firstText">其它信息：</text><text class="contText">{{content.otherInformation}}</text>
       </view>
@@ -144,7 +150,7 @@
     </view>
   </view>
 
-<canvas canvas-id="myCanvas"  style="width:360px;height:600px;" />
+<canvas canvas-id="myCanvas"  style="width:360px;height:650px;" />
 
 
 
